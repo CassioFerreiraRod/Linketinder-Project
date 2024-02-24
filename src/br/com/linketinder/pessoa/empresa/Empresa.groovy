@@ -3,15 +3,13 @@ package br.com.linketinder.pessoa.empresa
 import br.com.linketinder.pessoa.Pessoa
 
 class Empresa extends Pessoa {
-    String descricaoDaEmpresa, cnpj, pais
+    String  cnpj, pais
 
-    Empresa(String nome, String email, String cep, String estado, List<String> competencias, String descricaoDaEmpresa, String cnpj, String pais) {
-        super(nome, email, cep, estado, competencias)
-        this.descricaoDaEmpresa = descricaoDaEmpresa
+    Empresa(String nome, String email, String cep, String estado, List<String> competencias, String descricao, String cnpj, String pais) {
+        super(nome, email, cep, estado, competencias, descricao)
         this.cnpj = cnpj
         this.pais = pais
     }
-
 
     @Override
     public String toString() {
@@ -23,7 +21,7 @@ class Empresa extends Pessoa {
     País: $pais,
     Estado: ${super.estado},
     CEP: ${super.cep},
-    Descrição aa Empresa: $descricaoDaEmpresa,
+    Descrição aa Empresa: ${super.descricao},
     Competências: ${super.competencias}
 }"""
     }
