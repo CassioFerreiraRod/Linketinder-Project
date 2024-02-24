@@ -100,7 +100,7 @@ class Cadastro {
         listaCadidatos.add(candidato)
     }
     void cadastrarEmpresa(Empresa empresa) {
-        listaCadidatos.add(empresa)
+        listaEmpresas.add(empresa)
     }
 
     void listarCandidatos() {
