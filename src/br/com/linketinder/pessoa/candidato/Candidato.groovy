@@ -17,13 +17,14 @@ class Candidato extends Pessoa {
     @Override
     public String toString() {
         return """\
+{
     Nome: ${super.nome},
     Email: ${super.email},
-    CPF:'$cpf',
+    CPF: $cpf,
     Idade:$idade,
     Estado: ${super.estado},
     Cep: ${super.cep},
-    Descricao Pessoal:'$descricaoPessoal',
+    Descricao Pessoal: $descricaoPessoal,
     Competências: ${super.competencias}
 }"""
     }
