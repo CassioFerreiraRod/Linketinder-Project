@@ -42,13 +42,13 @@ class Cadastro {
                     '56.789.012/0001-89',
                     'Brasil'
             ),
-            new Empresa('XLR8Bank',
-                    'xbank@example.com',
-                    '36985-89',
-                    'RJ',
-                    ['AWS', 'Ruby', 'JavaScript'],
-                    'Banco Digital focado em trazer inovações',
-                    '12.345.678/0001-01',
+            new Empresa('ABC Tech',
+                    'abctech@example.com',
+                    '26710-10',
+                    'CE',
+                    ['Groovy', 'Grails', 'GIT'],
+                    'É uma empresa inovadora que se destaca na vanguarda da tecnologia',
+                    '34.567.890/0001-45',
                     'Brasil'
             )
     ]
@@ -59,7 +59,7 @@ class Cadastro {
                     '12345-678',
                     'SP',
                     ['Java', 'Python', 'GIT'],
-                    'Formado em Engenharia de Software pela Uninter. ',
+                    'Formado em Engenharia de Software pela Uninter',
                     '123.456.789-01',
                     25),
             new Candidato('Rebeca',
@@ -75,7 +75,7 @@ class Cadastro {
                     '55367-906',
                     'CE',
                     ['Unity', 'C++', 'Blender'],
-                    'Sou ex-encanador e busco transição de carreira para área de desenvolvimento de jogos.',
+                    'Sou ex-encanador e busco transição de carreira para área de desenvolvimento de jogos',
                     '555.666.777-88',
                     32),
             new Candidato('Eduardo',
@@ -83,7 +83,7 @@ class Cadastro {
                     '86723-024',
                     'MA',
                     ['Java', 'Spring Boot', 'GIT'],
-                    'Formado em Engenharia da computação pela UEMA.',
+                    'Formado em Engenharia da computação pela UEMA',
                     '987.654.321-00',
                     28),
             new Candidato('Francisco',
@@ -91,7 +91,7 @@ class Cadastro {
                     '12345-678',
                     'SP',
                     ['Angular', 'JavaScript', 'GIT'],
-                    'Estudante de Análise e desenvolvimento de sistemas pela Uninter.',
+                    'Estudante de Análise e desenvolvimento de sistemas pela Uninter',
                     '369.741.852-40',
                     21)
     ]
@@ -108,6 +108,6 @@ class Cadastro {
     }
 
     void listareEmpresas() {
-        listareEmpresas().each {println it}
+        listaEmpresas.each {println it}
     }
 }
