@@ -16,14 +16,15 @@ class Empresa extends Pessoa {
     @Override
     public String toString() {
         return """\
-    Nome: '${super.nome}',
-    Email: '${super.email}',
-    CNPJ: '$cnpj',
-    País: '$pais'
-    Estado: '${super.estado}'
-    CEP: ${super.cep()}
-    Descrição aa Empresa: '$descricaoDaEmpresa',
-    Competências: '${super.competencias}'
+{
+    Nome: ${super.nome},
+    Email: ${super.email},
+    CNPJ: $cnpj,
+    País: $pais,
+    Estado: ${super.estado},
+    CEP: ${super.cep},
+    Descrição aa Empresa: $descricaoDaEmpresa,
+    Competências: ${super.competencias}
 }"""
     }
 }
