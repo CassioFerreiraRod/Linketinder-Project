@@ -1,8 +1,8 @@
-package br.com.linketinder.pessoa.candidato
+package br.com.linketinder.usuario.candidato
 
-import br.com.linketinder.pessoa.Pessoa
+import br.com.linketinder.usuario.Usuario
 
-class Candidato extends Pessoa {
+class Candidato extends Usuario {
     String  cpf
     int idade
 

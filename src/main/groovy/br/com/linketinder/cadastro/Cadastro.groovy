@@ -1,7 +1,7 @@
 package br.com.linketinder.cadastro
 
-import br.com.linketinder.pessoa.candidato.Candidato
-import br.com.linketinder.pessoa.empresa.Empresa
+import br.com.linketinder.usuario.candidato.Candidato
+import br.com.linketinder.usuario.empresa.Empresa
 
 
 class Cadastro {

@@ -1,8 +1,8 @@
-package br.com.linketinder.pessoa.empresa
+package br.com.linketinder.usuario.empresa
 
-import br.com.linketinder.pessoa.Pessoa
+import br.com.linketinder.usuario.Usuario
 
-class Empresa extends Pessoa {
+class Empresa extends Usuario {
     String  cnpj, pais
 
     Empresa(String nome, String email, String cep, String estado, List<String> competencias, String descricao, String cnpj, String pais) {

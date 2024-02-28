@@ -32,6 +32,6 @@ class Menu {
                     break
             }
 
-        } while (opcao != '3')
+        } while (opcao != '0')
     }
 }

@@ -1,10 +1,10 @@
-package br.com.linketinder.pessoa
+package br.com.linketinder.usuario
 
-class Pessoa {
+class Usuario {
     String nome, email, cep, estado, descricao
     List<String> competencias = []
 
-    Pessoa(String nome, String email, String cep, String estado, List<String> competencias, String descricao) {
+    Usuario(String nome, String email, String cep, String estado, List<String> competencias, String descricao) {
         this.nome = nome
         this.email = email
         this.cep = cep
