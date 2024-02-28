@@ -52,7 +52,7 @@ class Cadastro {
                     'Brasil'
             )
     ]
-    List<Candidato> listaCadidatos = [
+    List<Candidato> listaCandidatos = [
             new Candidato(
                     'Francisco',
                     'francisco@email.com',
@@ -96,18 +96,19 @@ class Cadastro {
                     21)
     ]
 
-    void cadastrarCandidato(Candidato candidato) {
-        listaCadidatos.add(candidato)
-    }
     void cadastrarEmpresa(Empresa empresa) {
         listaEmpresas.add(empresa)
     }
 
-    void listarCandidatos() {
-        listaCadidatos.each {println it}
+    void cadastrarCandidato(Candidato candidato) {
+        listaCandidatos.add(candidato)
     }
 
-    void listareEmpresas() {
+    void listarCandidatos() {
+        listaCandidatos.each {println it}
+    }
+
+    void listarEmpresas() {
         listaEmpresas.each {println it}
     }
 }

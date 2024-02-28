@@ -22,7 +22,7 @@ class Menu {
                     cadastro.listarCandidatos()
                     break
                 case '2':
-                    cadastro.listareEmpresas()
+                    cadastro.listarEmpresas()
                     break
                 case '0':
                     println "Saindo..."
