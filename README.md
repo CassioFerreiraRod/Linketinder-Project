@@ -14,7 +14,7 @@ Para ser feito a instalação do Groovy você pode baixar clicando [aqui](https:
 
 ***3. Para excução***  
 
-* Navegue para a pasta src
+* Navegue para o diretório src/main/groovy
 * Abra o terminal e digite o seguinte comando:
 ```shell
     groovy Main
