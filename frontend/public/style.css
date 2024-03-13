@@ -3,11 +3,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #d5d9dd;
+    background: linear-gradient(to bottom, #f8f8f8,#adb1b4);
     color: #555555;
     
 }
 .cadastro{
-    background: #d5d9dd;
+    background: linear-gradient(to bottom, #f8f8f8,#adb1b4);
     color: #555555;
+    height: 130vh;
 }
