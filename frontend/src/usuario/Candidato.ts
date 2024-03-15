@@ -13,16 +13,4 @@ export class Candidato extends Usuario{
         super(nome, email, cep, estado, descricao, competencias);
     }
 
-    toString() {
-        return {
-            nome: this.nome,
-            idade: this.idade,
-            cpf: this.cpf,
-            email: this.email,
-            cep: this.cep,
-            estado: this.estado,
-            descricao: this.descricao,
-            competencias: this.competencias
-        }
-    }
 }

@@ -7,6 +7,5 @@ export abstract class Usuario {
         public descricao: string,
         public competencias: string[],
     ) {}
-    
-    abstract toString():void
+
 }
