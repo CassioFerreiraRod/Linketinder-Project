@@ -4,7 +4,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
     mode: 'development',
     entry: {
-        cadastroCandidato:'/src/cadastro/cadastroCandidato.ts'
+        cadastroCandidato:'/src/cadastro/cadastroCandidato.ts',
+        cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),
