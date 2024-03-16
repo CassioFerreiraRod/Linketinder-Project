@@ -2,6 +2,7 @@ import {Candidato} from "../usuario/Candidato";
 import {CandidatoStorage} from "../cadastro/CandidatoStorage";
 import {EmpresaStorage} from "../cadastro/EmpresaStorage";
 import {Empresa} from "../usuario/Empresa";
+import {anonimizarNome, anonimizarEmail} from "./deixaDadosEmAnomino"
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     listarEmpresas(empresas)
 })
 
-function listarEmpresas(empreas: Empresa[]) {
+function listarEmpresas(empreas: Empresa[]):void {
     const empresasElement = document.getElementById('lista-empresas')
 
     if(empresasElement) {
@@ -18,11 +19,11 @@ function listarEmpresas(empreas: Empresa[]) {
         empreas.forEach((empresa) => {
             empresasElement.innerHTML += `
                 <div>                
-                     <h4>${empresa.nome}</h4>
-                     <p>${empresa.email}</p>
-                     <p>${empresa.pais}, ${empresa.estado}, ${empresa.cep}</p>
-                     <p>${empresa.competencias.slice(0, -1)}</p>
-                     <p>${empresa.descricao}</p>                    
+                     <h4>${anonimizarNome(empresa.nome)}</h4>
+                     <p>Email: ${anonimizarEmail(empresa.email)}</p>
+                     <p>Localização: ${empresa.pais}, ${empresa.estado}, ${empresa.cep}</p>
+                     <p>Competências ${empresa.competencias.slice(0, -1).join(", ")}</p>
+                     <p>Descrição: ${empresa.descricao}</p>                    
                 </div>
             `
         })
