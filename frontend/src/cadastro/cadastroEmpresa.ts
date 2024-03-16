@@ -2,11 +2,11 @@ import {Empresa} from "../usuario/Empresa";
 import {EmpresaStorage} from "./EmpresaStorage"
 
 let nome: string
-let cnpj:string
+let cnpj: string
 let email: string
 let cep: string
 let estado: string
-let pais:string
+let pais: string
 let descricao: string
 let competencias: string[] = []
 
@@ -57,12 +57,19 @@ function atulizarFormulario(): void {
                 default:
                     break;
             }
-            const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]:checked')
-            checkboxes.forEach(checkbox => {
-                competencias.push(checkbox.value);
-            });
         })
     }))
+    const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]')
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                competencias.push(checkbox.value);
+            } else {
+                competencias = competencias.filter((competencia) => competencia !== checkbox.value)
+            }
+        })
+
+    })
 }
 
 atulizarFormulario()

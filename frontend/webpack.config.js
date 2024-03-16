@@ -5,7 +5,8 @@ module.exports = {
     mode: 'development',
     entry: {
         cadastroCandidato:'/src/cadastro/cadastroCandidato.ts',
-        cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts'
+        cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts',
+        perfilCandidato:'/src/perfil/perfilCandidato.ts'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),

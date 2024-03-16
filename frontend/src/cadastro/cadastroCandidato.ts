@@ -58,7 +58,10 @@ function atulizarFormulario(): void {
             }
             const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]:checked')
             checkboxes.forEach(checkbox => {
-                competencias.push(checkbox.value);
+                checkbox.addEventListener('change', () => {
+                    competencias.push(checkbox.value);
+                })
+
             });
         })
     }))
