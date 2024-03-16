@@ -8,7 +8,7 @@ export class CandidatoStorage {
     }
 
     getStoredCandidatos(): Candidato[] {
-        const storage = window.localStorage.getItem("empresas")
+        const storage = window.localStorage.getItem("candidatos")
         if (storage) {
             return JSON.parse(storage)
         } else {

@@ -56,15 +56,20 @@ function atulizarFormulario(): void {
                 default:
                     break;
             }
-            const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]:checked')
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', () => {
-                    competencias.push(checkbox.value);
-                })
-
-            });
+    
         })
     }))
+    const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]')
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                competencias.push(checkbox.value);
+            } else {
+                competencias = competencias.filter((competencia) => competencia !== checkbox.value)
+            }
+        })
+
+    })
 }
 
 atulizarFormulario()
