@@ -28,7 +28,7 @@ function listarEmpresas(empreas: Empresa[]): void {
                 <div>                
                      <h4>${anonimizarNome(empresa.nome)}</h4>
                      <p>Email: ${anonimizarEmail(empresa.email)}</p>
-                     <p>Localização: ${empresa.pais}, ${empresa.estado}, ${empresa.cep}</p>
+                     <p>Localização: ${empresa.pais}, ${empresa.estado}</p>
                      <p>Competências: ${empresa.competencias.slice(0, -1).join(", ")}</p>
                      <p>Descrição: ${empresa.descricao}</p>                    
                 </div>
@@ -59,7 +59,7 @@ function preencherDadosPerfil(candidato: Candidato): void {
     const estadoElement = document.querySelectorAll('.estado li')
     if (estadoElement) {
         estadoElement[0].textContent = candidato.estado
-        estadoElement[1].textContent = `, ${candidato.cep.toString()}`
+        estadoElement[1].textContent = `, ${candidato.cep}`
     }
 
     const descricaoElement = document.querySelector('.descricao')
