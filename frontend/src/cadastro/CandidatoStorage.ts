@@ -4,7 +4,7 @@ export class CandidatoStorage {
     add(candidato: Candidato ): void {
         let candidatos: Candidato[] = this.verificaStorage()
         candidatos.push(candidato)
-        window.localStorage.setItem("empresas", JSON.stringify(candidatos))
+        window.localStorage.setItem("candidatos", JSON.stringify(candidatos))
     }
 
     verificaStorage(): Candidato[] {

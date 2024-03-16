@@ -32,7 +32,7 @@
         <h5 class="text-center">Cadastro Candidato</h5>
         <section>
             <div class="text-start d-flex justify-content-center">
-                <form action="#" class="bg-white col-auto p-3 m-2 rounded">
+                <form action="#" class="bg-white col-auto p-3 m-2 rounded" name="cadastroCandidato">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" id="nome" class="form-control" placeholder="Nome e Sobrenome"
@@ -101,32 +101,32 @@
                             <h5 class="card-title me-3">Competências</h5>
                             <div class="float-none">
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="checkbox" value="Java" id="java">
+                                    <input class="form-check-input" name="competencias" type="checkbox" value="Java" id="java">
                                     <label class="form-check-label" for="java">
                                         Java
                                     </label>
                                 </div>
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="checkbox" value="TypeScript" id="typecript">
+                                    <input class="form-check-input" name="competencias" type="checkbox" value="TypeScript" id="typecript">
                                     <label class="form-check-label" for="typecript">
                                         TypeScript
                                     </label>
                                 </div>
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="checkbox" value="Groovy" id="groovy">
+                                    <input class="form-check-input" name="competencias" type="checkbox" value="Groovy" id="groovy">
                                     <label class="form-check-label" for="groovy">
                                         Groovy
                                     </label>
                                 </div>
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="checkbox" value="Teste Unitario"
+                                    <input class="form-check-input" name="competencias" type="checkbox" value="Testes Unitarios"
                                         id="teste_unitario">
                                     <label class="form-check-label" for="teste_unitario">
                                         Testes Unitários
                                     </label>
                                 </div>
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" type="checkbox" value="Git" id="git">
+                                    <input class="form-check-input" name="competencias" type="checkbox" value="Git" id="git">
                                     <label class="form-check-label" for="git">
                                         Git
                                     </label>
@@ -135,8 +135,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Descrição Pessoal</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        <label for="descricao" class="form-label">Descrição Pessoal</label>
+                        <textarea class="form-control" id="descricao" rows="3"
                             placeholder="Fale um pouco sobre você."></textarea>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -146,7 +146,7 @@
             </div>
         </section>
     </main>
-
+    <script src="cadastroCandidato.min.js"></script>
 </body>
 
 </html>
