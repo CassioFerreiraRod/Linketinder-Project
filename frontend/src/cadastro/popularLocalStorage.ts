@@ -112,7 +112,7 @@ const candidato5 = new Candidato(
     '12345-678',
     'São Paulo',
     'Estudante de Análise e desenvolvimento de sistemas pela Uninter',
-    ['TypeScript', 'JavaScript', 'GiT'],
+    ['TypeScript', 'JavaScript', 'Git'],
 )
 
 candidatoStorage.add(candidato1)
