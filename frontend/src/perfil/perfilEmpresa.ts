@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Empresa nao encontrada");
     }
 
-    
-
     const candidatoStorage = new CandidatoStorage()
     const candidatos = candidatoStorage.getStoredCandidatos()
     listarCandidatos(candidatos)

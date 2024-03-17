@@ -1,5 +1,5 @@
-import {Candidato} from "../usuario/Candidato";
-import {CandidatoStorage} from "./CandidatoStorage"
+import { Candidato } from "../usuario/Candidato";
+import { CandidatoStorage } from "./CandidatoStorage"
 
 let nome: string
 let idade: number
@@ -13,17 +13,28 @@ let competencias: string[] = []
 const candidatoForm: HTMLElement | null = document.forms.namedItem("cadastroCandidato")
 candidatoForm?.addEventListener('submit', (event) => {
     event.preventDefault()
-    const candidato:Candidato = new Candidato(nome,
-        idade,
-        cpf,
-        email,
-        cep,
-        estado,
-        descricao,
-        competencias
-    )
-    const storage:CandidatoStorage = new CandidatoStorage()
-    storage.add(candidato)
+
+    if (nome && idade && email && cep && estado && cpf && descricao && competencias.length > 0) {
+        const candidato: Candidato = new Candidato(nome,
+            idade,
+            cpf,
+            email,
+            cep,
+            estado,
+            descricao,
+            competencias
+        )
+        const storage: CandidatoStorage = new CandidatoStorage()
+        storage.add(candidato)
+        const perfilURL: string = `perfilCandidato.html?cpf=${candidato.cpf}`
+
+        window.location.href = perfilURL
+
+        alert('Cadastro realizado com sucesso!')
+    } else {
+        alert('Preencha todos os campos!')
+    }
+
 })
 
 function atulizarFormulario(): void {
@@ -56,7 +67,7 @@ function atulizarFormulario(): void {
                 default:
                     break;
             }
-    
+
         })
     }))
     const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]')

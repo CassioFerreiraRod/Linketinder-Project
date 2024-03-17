@@ -7,10 +7,17 @@ import { anonimizarNome, anonimizarEmail } from "./deixaDadosEmAnomino"
 document.addEventListener("DOMContentLoaded", () => {
 
     const candidatoStorage = new CandidatoStorage();
-    const candidatos = candidatoStorage.getStoredCandidatos();
+    const candidatos = candidatoStorage.getStoredCandidatos()
 
+    const urlParams = new URLSearchParams(window.location.search)
+    const cpfParam = urlParams.get('cpf')
+    const candidato = candidatos.find((c: Candidato) => c.cpf === cpfParam)
 
-    preencherDadosPerfil(candidatos[0])
+    if (candidato) {
+        preencherDadosPerfil(candidato)
+    } else {
+        console.error("Candidato nao encontrada");
+    }
 
     const empresaStorage = new EmpresaStorage()
     const empresas = empresaStorage.getStoredEmpresas()
