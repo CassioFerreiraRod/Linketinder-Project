@@ -9,8 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const empresaStorage = new EmpresaStorage();
     const empresas = empresaStorage.getStoredEmpresas();
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const cnpjParam = urlParams.get('cnpj');
+    const empresa = empresas.find((e: Empresa) => e.cnpj === cnpjParam);
 
-    preencherDadosPerfil(empresas[0])
+    if (empresa) {
+        preencherDadosPerfil(empresa)
+    } else {
+        console.error("Empresa nao encontrada");
+    }
+
+    
 
     const candidatoStorage = new CandidatoStorage()
     const candidatos = candidatoStorage.getStoredCandidatos()

@@ -1,5 +1,5 @@
-import {Empresa} from "../usuario/Empresa";
-import {EmpresaStorage} from "./EmpresaStorage"
+import { Empresa } from "../usuario/Empresa";
+import { EmpresaStorage } from "./EmpresaStorage"
 
 let nome: string
 let cnpj: string
@@ -13,18 +13,32 @@ let competencias: string[] = []
 const empresaForm: HTMLElement | null = document.forms.namedItem("cadastroEmpresa")
 empresaForm?.addEventListener('submit', (event) => {
     event.preventDefault()
-    const empresa: Empresa = new Empresa(
-        nome,
-        cnpj,
-        email,
-        cep,
-        estado,
-        pais,
-        descricao,
-        competencias
-    )
-    const storage: EmpresaStorage = new EmpresaStorage()
-    storage.add(empresa)
+
+    if (nome && cnpj && email && cep && estado && pais && descricao && competencias.length > 0) {
+
+        const empresa: Empresa = new Empresa(
+            nome,
+            cnpj,
+            email,
+            cep,
+            estado,
+            pais,
+            descricao,
+            competencias
+        )
+
+        const storage: EmpresaStorage = new EmpresaStorage()
+        storage.add(empresa)
+
+        const perfilURL: string = `perfilEmpresa.html?cnpj=${empresa.cnpj}`;
+
+        window.location.href = perfilURL;
+
+        alert('Cadastro realizado com sucesso!')
+    } else {
+        alert('Preencha todos os campos!')
+    }
+
 })
 
 function atulizarFormulario(): void {
