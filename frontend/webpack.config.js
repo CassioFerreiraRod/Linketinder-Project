@@ -7,7 +7,8 @@ module.exports = {
         cadastroCandidato:'/src/cadastro/cadastroCandidato.ts',
         cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts',
         perfilCandidato:'/src/perfil/perfilCandidato.ts',
-        perfilEmpresa:'/src/perfil/perfilEmpresa.ts'
+        perfilEmpresa:'/src/perfil/perfilEmpresa.ts',
+        exibirGrafico:'/src/perfil/exibirGrafico.ts'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),

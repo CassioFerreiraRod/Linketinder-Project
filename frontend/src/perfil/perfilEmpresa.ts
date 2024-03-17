@@ -25,7 +25,7 @@ function listarCandidatos(candidatos: Candidato[]): void {
         candidatosElement.innerHTML += ''
         candidatos.forEach((candidato) => {
             candidatosElement.innerHTML += `
-                <div>                
+                <div class="mb-3">                
                      <h4>${anonimizarNome(candidato.nome)}</h4>
                      <p>Email: ${anonimizarEmail(candidato.email)}</p>
                      <p>Localização: ${candidato.estado}</p>

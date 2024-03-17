@@ -1,22 +1,21 @@
-.home{
+.home {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #f8f8f8,#adb1b4);
-    color: #555555;
-    
+    background: #CCCCCC;
+    color: #333333;
+
 }
-.cadastro{
-    background: linear-gradient(to bottom, #f8f8f8,#adb1b4);
-    color: #555555;
+
+.cadastro {
+    background: #CCCCCC;
+    color: #333333;
     height: 100%;
 }
-.perfil{
-    background: linear-gradient(to bottom, #f8f8f8,#adb1b4);
-    color: #555555;
+
+.perfil {
+    background: #CCCCCC;
+    color: #333333;
     height: 100%;
 }
-    #tamanho {
-        width: 700px;
-    }
