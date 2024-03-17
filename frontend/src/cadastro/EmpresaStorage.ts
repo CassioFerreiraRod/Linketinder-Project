@@ -3,8 +3,13 @@ import {Empresa} from "../usuario/Empresa";
 export class EmpresaStorage {
     add(empresa: Empresa): void {
         let empresas: Empresa[] = this.getStoredEmpresas()
-        empresas.push(empresa)
-        window.localStorage.setItem("empresas", JSON.stringify(empresas))
+        const empresaExiste = empresas.some(empresaExistente => empresaExistente.cnpj === empresa.cnpj);
+        if (!empresaExiste) {
+            empresas.push(empresa)
+            window.localStorage.setItem("empresas", JSON.stringify(empresas))
+        } else {
+            console.log(`A empresa ${empresa.nome} já está na lista.`);
+        }
     }
 
     getStoredEmpresas(): Empresa[] {

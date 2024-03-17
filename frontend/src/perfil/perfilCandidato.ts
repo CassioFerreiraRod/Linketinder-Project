@@ -32,7 +32,7 @@ function listarEmpresas(empreas: Empresa[]): void {
         empresasElement.innerHTML += ''
         empreas.forEach((empresa) => {
             empresasElement.innerHTML += `
-                <div>                
+                <div class="mb-3" style="max-width: 300px;">                
                      <h4>${anonimizarNome(empresa.nome)}</h4>
                      <p>Email: ${anonimizarEmail(empresa.email)}</p>
                      <p>Localização: ${empresa.pais}, ${empresa.estado}</p>

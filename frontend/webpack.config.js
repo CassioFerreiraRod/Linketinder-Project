@@ -8,7 +8,8 @@ module.exports = {
         cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts',
         perfilCandidato:'/src/perfil/perfilCandidato.ts',
         perfilEmpresa:'/src/perfil/perfilEmpresa.ts',
-        exibirGrafico:'/src/perfil/exibirGrafico.ts'
+        exibirGrafico:'/src/perfil/exibirGrafico.ts',
+        popularLocalStorage:'/src/cadastro/popularLocalStorage'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),
