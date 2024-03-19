@@ -105,10 +105,10 @@ const candidato4 = new Candidato(
     ['Java', 'Groovy', 'Git'],
 )
 const candidato5 = new Candidato(
-    'Francisco',
+    'José',
     21,
     '369.741.852-40',
-    'francisco@email.com',
+    'jose@email.com',
     '12345-678',
     'São Paulo',
     'Estudante de Análise e desenvolvimento de sistemas pela Uninter',

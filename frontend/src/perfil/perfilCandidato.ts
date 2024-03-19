@@ -36,7 +36,7 @@ function listarEmpresas(empreas: Empresa[]): void {
                      <h4>${anonimizarNome(empresa.nome)}</h4>
                      <p>Email: ${anonimizarEmail(empresa.email)}</p>
                      <p>Localização: ${empresa.pais}, ${empresa.estado}</p>
-                     <p>Competências: ${empresa.competencias.slice(0, -1).join(", ")}</p>
+                     <p>Competências: ${empresa.competencias.join(", ")}</p>
                      <p>Descrição: ${empresa.descricao}</p>                    
                 </div>
             `
