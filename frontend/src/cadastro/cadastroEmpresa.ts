@@ -1,5 +1,6 @@
 import { Empresa } from "../usuario/Empresa";
 import { EmpresaStorage } from "./EmpresaStorage"
+import { validarCep, validarCnpj, validarEmail } from "./ValidarDados";
 
 let nome: string
 let cnpj: string
@@ -14,7 +15,7 @@ const empresaForm: HTMLElement | null = document.forms.namedItem("cadastroEmpres
 empresaForm?.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    if (nome && cnpj && email && cep && estado && pais && descricao && competencias.length > 0) {
+    if (nome && cnpj && email && cep && estado && pais && descricao && competencias.length > 0 && validarDados()) {
 
         const empresa: Empresa = new Empresa(
             nome,
@@ -36,10 +37,15 @@ empresaForm?.addEventListener('submit', (event) => {
 
         alert('Cadastro realizado com sucesso!')
     } else {
-        alert('Preencha todos os campos!')
+        alert('Há campos não preecnchidos ou dados inválidos.')
     }
 
 })
+
+function validarDados(): boolean {
+    return validarCep(cep), validarCnpj(cnpj), validarEmail(email)
+}
+
 
 function atulizarFormulario(): void {
     const campos: string[] = ["nome", "cnpj", "email", "cep", "estado", "pais", "descricao", "competencias"]

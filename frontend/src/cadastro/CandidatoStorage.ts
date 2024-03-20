@@ -8,7 +8,7 @@ export class CandidatoStorage {
             candidatos.push(candidato)
             window.localStorage.setItem("candidatos", JSON.stringify(candidatos))
         } else {
-            alert(`Cpf já cadastrado`);
+            console.log(`O candidato ${candidato.nome} já está na lista.`);
         }
     }
 
