@@ -1,5 +1,6 @@
 import { Candidato } from "../usuario/Candidato";
 import { CandidatoStorage } from "./CandidatoStorage"
+import { validarCep, validarCnpj, validarCpf, validarEmail } from "./ValidarDados"
 
 let nome: string
 let idade: number
@@ -14,7 +15,7 @@ const candidatoForm: HTMLElement | null = document.forms.namedItem("cadastroCand
 candidatoForm?.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    if (nome && idade && email && cep && estado && cpf && descricao && competencias.length > 0) {
+    if (nome && idade && email && cep && estado && cpf && descricao && competencias.length > 0 && validarDados()) {
         const candidato: Candidato = new Candidato(nome,
             idade,
             cpf,
@@ -25,17 +26,23 @@ candidatoForm?.addEventListener('submit', (event) => {
             competencias
         )
         const storage: CandidatoStorage = new CandidatoStorage()
+
         storage.add(candidato)
+
         const perfilURL: string = `perfilCandidato.html?cpf=${candidato.cpf}`
 
         window.location.href = perfilURL
 
         alert('Cadastro realizado com sucesso!')
     } else {
-        alert('Preencha todos os campos!')
+        alert('Há campos não preecnchidos ou dados inválidos.')
     }
 
 })
+
+function validarDados(): boolean {
+    return validarCep(cep), validarCpf(cpf), validarEmail(email)
+}
 
 function atulizarFormulario(): void {
     const campos: string[] = ["nome", "idade", "cpf", "email", "cep", "estado", "descricao", "competencias"]

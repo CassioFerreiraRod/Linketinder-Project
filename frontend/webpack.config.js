@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         cadastroCandidato:'/src/cadastro/cadastroCandidato.ts',
         cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts',
+        formatarCampos:'/src/cadastro/formatarCampos.ts',
         perfilCandidato:'/src/perfil/perfilCandidato.ts',
         perfilEmpresa:'/src/perfil/perfilEmpresa.ts',
         exibirGrafico:'/src/perfil/exibirGrafico.ts',

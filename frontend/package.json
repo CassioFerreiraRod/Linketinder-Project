@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
     "@types/chart.js": "^2.9.41",
+    "@types/cleave.js": "^1.4.12",
     "@types/live-server": "^1.2.3",
     "copy-webpack-plugin": "^12.0.2",
     "live-server": "^1.2.2",
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "chart.js": "^4.4.2"
+    "chart.js": "^4.4.2",
+    "cleave.js": "^1.6.0"
   }
 }
