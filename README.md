@@ -36,3 +36,11 @@ Para ser feito a instalação do Groovy você pode baixar clicando [aqui](https:
 * [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web/CSS_basics)
 * [Bootstrap](https://getbootstrap.com)
+
+### Banco de dados
+DER Do banco de dados:
+![MER do Banco de Dados](postgresql/Linketinder_der.png)
+O arquivo sql onde foi fei gerado o banco de dados encontra [aqui](postgresql/linketinder_postgres.sql)
+### Tecnologias usadas
+* [PostegreSQL](https://www.postgresql.org/) para o SGBD
+* [dbdiagram.io](https://dbdiagram.io/home) para o DER (Diagrama de Entidade-Relacionameto)
