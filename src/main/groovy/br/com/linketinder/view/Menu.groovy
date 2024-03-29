@@ -1,10 +1,7 @@
-package br.com.linketinder.menu
+package br.com.linketinder.view
 
-import br.com.linketinder.cadastro.Cadastro
 
 class Menu {
-
-    def cadastro = new Cadastro()
 
     void exibirMenu() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))

@@ -1,4 +1,4 @@
-import br.com.linketinder.menu.Menu
+import br.com.linketinder.view.Menu
 
 // Cassio Ferreira Rodrigues
 class Main {

@@ -1,6 +1,4 @@
-package br.com.linketinder.usuario.empresa
-
-import br.com.linketinder.usuario.Usuario
+package br.com.linketinder.model.entity
 
 class Empresa extends Usuario {
     String  cnpj, pais
@@ -14,7 +12,7 @@ class Empresa extends Usuario {
     @Override
     public String toString() {
         return """\
-{
+Empresa{
     Nome: ${super.nome},
     Email: ${super.email},
     CNPJ: $cnpj,
