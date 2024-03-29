@@ -46,9 +46,10 @@ Candidato{
     CPF: $cpf,
     Data de nascimento: $dataNascimento,
     Estado: ${super.estado},
+    Pais: $pais,
     Cep: ${super.cep},
     Descricao Pessoal: ${super.descricao},
-    Competências: ${super.competencias}
+    Competências: $competencias
 }"""
     }
 }

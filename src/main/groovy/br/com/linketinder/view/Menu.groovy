@@ -11,7 +11,9 @@ class Menu {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
         def opcao
 
-        do {
+        boolean continuar = true
+
+        while (continuar) {
             println "Escolha uma das opções a seguir"
             println "1. Listar candidatos"
             println "2. Listar empresas"
@@ -26,13 +28,14 @@ class Menu {
                     cadastro.listarEmpresas()
                     break
                 case '0':
+                    continuar = false
                     println "Saindo..."
                     break
                 default:
                     println "Opção inválida"
                     break
-            }
 
-        } while (opcao != '0')
+            }
+        }
     }
 }
