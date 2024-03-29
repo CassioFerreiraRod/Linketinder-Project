@@ -1,96 +1,118 @@
-CREATE TABLE "pais" (
-  "id" serial PRIMARY KEY,
-  "nome" varchar(20) NOT NULL
+CREATE TABLE "pais"
+(
+    "id"   serial PRIMARY KEY,
+    "nome" varchar(20) NOT NULL
 );
 
-CREATE TABLE "estados" (
-  "id" serial PRIMARY KEY,
-  "uf" char(2) NOT NULL,
-  "nome" varchar(20) NOT NULL
+CREATE TABLE "estados"
+(
+    "id"   serial PRIMARY KEY,
+    "uf"   char(2)     NOT NULL,
+    "nome" varchar(20) NOT NULL
 );
 
-CREATE TABLE "candidatos" (
-  "id" serial PRIMARY KEY,
-  "nome" VARCHAR(50) NOT NULL,
-  "sobrenome" varchar(50) NOT NULL,
-  "data_nascimento" date NOT NULL,
-  "email" varchar(100) NOT NULL,
-  "cpf" varchar(15) UNIQUE NOT NULL,
-  "estado_id" int NOT NULL,
-  "pais_id" int NOT NULL,
-  "cep" varchar(15) NOT NULL,
-  "descricao_pessoal" text NOT NULL,
-  "senha" varchar(255) NOT NULL
+CREATE TABLE "candidatos"
+(
+    "id"                serial PRIMARY KEY,
+    "nome"              VARCHAR(50)        NOT NULL,
+    "sobrenome"         varchar(50)        NOT NULL,
+    "data_nascimento"   date               NOT NULL,
+    "email"             varchar(100)       NOT NULL,
+    "cpf"               varchar(15) UNIQUE NOT NULL,
+    "estado_id"         int                NOT NULL,
+    "pais_id"           int                NOT NULL,
+    "cep"               varchar(15)        NOT NULL,
+    "descricao_pessoal" text               NOT NULL,
+    "senha"             varchar(255)       NOT NULL
 );
 
-CREATE TABLE "competencias" (
-  "id" serial PRIMARY KEY,
-  "competencia" varchar(100) NOT NULL
+CREATE TABLE "competencias"
+(
+    "id"          serial PRIMARY KEY,
+    "competencia" varchar(100) NOT NULL
 );
 
-CREATE TABLE "candidato_competencias" (
-  "candidato_id" int NOT NULL,
-  "competencia_id" int NOT NULL
+CREATE TABLE "candidato_competencias"
+(
+    "candidato_id"   int NOT NULL,
+    "competencia_id" int NOT NULL
 );
 
-CREATE TABLE "empresas" (
-  "id" serial PRIMARY KEY,
-  "nome_empresa" varchar(100) NOT NULL,
-  "cnpj" varchar(20) UNIQUE NOT NULL,
-  "email_corporativo" varchar(100) NOT NULL,
-  "descricao_empresa" text NOT NULL,
-  "estado_id" int NOT NULL,
-  "pais_id" int NOT NULL,
-  "cep" varchar(15) NOT NULL,
-  "senha" varchar(255) NOT NULL
+CREATE TABLE "empresas"
+(
+    "id"                serial PRIMARY KEY,
+    "nome_empresa"      varchar(100)       NOT NULL,
+    "cnpj"              varchar(20) UNIQUE NOT NULL,
+    "email_corporativo" varchar(100)       NOT NULL,
+    "descricao_empresa" text               NOT NULL,
+    "estado_id"         int                NOT NULL,
+    "pais_id"           int                NOT NULL,
+    "cep"               varchar(15)        NOT NULL,
+    "senha"             varchar(255)       NOT NULL
 );
 
-CREATE TABLE "vagas" (
-  "id" serial PRIMARY KEY,
-  "nome" varchar(100),
-  "descricao" text,
-  "cidade" varchar(50),
-  "estado_id" int NOT NULL,
-  "empresa_id" int NOT NULL
+CREATE TABLE "vagas"
+(
+    "id"         serial PRIMARY KEY,
+    "nome"       varchar(100),
+    "descricao"  text,
+    "cidade"     varchar(50),
+    "estado_id"  int NOT NULL,
+    "empresa_id" int NOT NULL
 );
 
-CREATE TABLE "vaga_competencias" (
-  "vaga_id" int NOT NULL,
-  "competencia_id" int NOT NULL
+CREATE TABLE "vaga_competencias"
+(
+    "vaga_id"        int NOT NULL,
+    "competencia_id" int NOT NULL
 );
 
-CREATE TABLE "curtidas" (
-  "id" serial PRIMARY KEY,
-  "candidato_id" int,
-  "vaga_id" int,
-  "empresa_id" int
+CREATE TABLE "curtidas"
+(
+    "id"           serial PRIMARY KEY,
+    "candidato_id" int,
+    "vaga_id"      int,
+    "empresa_id"   int
 );
 
-ALTER TABLE "candidatos" ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id");
+ALTER TABLE "candidatos"
+    ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "candidatos" ADD FOREIGN KEY ("pais_id") REFERENCES "pais" ("id");
+ALTER TABLE "candidatos"
+    ADD FOREIGN KEY ("pais_id") REFERENCES "pais" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "candidato_competencias" ADD FOREIGN KEY ("candidato_id") REFERENCES "candidatos" ("id");
+ALTER TABLE "candidato_competencias"
+    ADD FOREIGN KEY ("candidato_id") REFERENCES "candidatos" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "candidato_competencias" ADD FOREIGN KEY ("competencia_id") REFERENCES "competencias" ("id");
+ALTER TABLE "candidato_competencias"
+    ADD FOREIGN KEY ("competencia_id") REFERENCES "competencias" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "empresas" ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id");
+ALTER TABLE "empresas"
+    ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "empresas" ADD FOREIGN KEY ("pais_id") REFERENCES "pais" ("id");
+ALTER TABLE "empresas"
+    ADD FOREIGN KEY ("pais_id") REFERENCES "pais" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "vagas" ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id");
+ALTER TABLE "vagas"
+    ADD FOREIGN KEY ("estado_id") REFERENCES "estados" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "vagas" ADD FOREIGN KEY ("empresa_id") REFERENCES "empresas" ("id");
+ALTER TABLE "vagas"
+    ADD FOREIGN KEY ("empresa_id") REFERENCES "empresas" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "vaga_competencias" ADD FOREIGN KEY ("vaga_id") REFERENCES "vagas" ("id");
+ALTER TABLE "vaga_competencias"
+    ADD FOREIGN KEY ("vaga_id") REFERENCES "vagas" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "vaga_competencias" ADD FOREIGN KEY ("competencia_id") REFERENCES "competencias" ("id");
+ALTER TABLE "vaga_competencias"
+    ADD FOREIGN KEY ("competencia_id") REFERENCES "competencias" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "curtidas" ADD FOREIGN KEY ("candidato_id") REFERENCES "candidatos" ("id");
+ALTER TABLE "curtidas"
+    ADD FOREIGN KEY ("candidato_id") REFERENCES "candidatos" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "curtidas" ADD FOREIGN KEY ("vaga_id") REFERENCES "vagas" ("id");
+ALTER TABLE "curtidas"
+    ADD FOREIGN KEY ("vaga_id") REFERENCES "vagas" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "curtidas" ADD FOREIGN KEY ("empresa_id") REFERENCES "empresas" ("id");
+ALTER TABLE "curtidas"
+    ADD FOREIGN KEY ("empresa_id") REFERENCES "empresas" ("id") ON DELETE CASCADE;
 
 insert into public.pais (nome)
 values ('Brasil');
@@ -179,16 +201,35 @@ VALUES ('Desenvolvedor Full Stack',
         'São Paulo', 25, 5);
 
 insert into candidato_competencias (candidato_id, competencia_id)
-values (1, 3),(1, 2),(1, 7),
-       (2, 5), (2, 3), (2, 2),
-       (3, 2), (3, 5), (3, 7),
-       (4, 1), (4, 2), (2, 7),
-       (5, 5), (5, 3), (5, 4);
+values (1, 3),
+       (1, 2),
+       (1, 7),
+       (2, 5),
+       (2, 3),
+       (2, 2),
+       (3, 2),
+       (3, 5),
+       (3, 7),
+       (4, 1),
+       (4, 2),
+       (2, 7),
+       (5, 5),
+       (5, 3),
+       (5, 4);
 
 INSERT INTO vaga_competencias (vaga_id, competencia_id)
-VALUES
-    (1, 1), (1, 4), (1, 3),
-    (2, 2), (2, 5), (2, 4),
-    (3, 3), (3, 6), (3, 5),
-    (4, 4), (4, 7), (4, 5),
-    (5, 2), (5, 3), (5, 7);
+VALUES (1, 1),
+       (1, 4),
+       (1, 3),
+       (2, 2),
+       (2, 5),
+       (2, 4),
+       (3, 3),
+       (3, 6),
+       (3, 5),
+       (4, 4),
+       (4, 7),
+       (4, 5),
+       (5, 2),
+       (5, 3),
+       (5, 7);
