@@ -1,10 +1,26 @@
 package br.com.linketinder.model.entity
 
 class Empresa extends Usuario {
-    String  cnpj, pais
+    int id
+    String cnpj, pais, senha
 
-    Empresa(String nome, String email, String cep, String estado, List<String> competencias, String descricao, String cnpj, String pais) {
-        super(nome, email, cep, estado, competencias, descricao)
+    Empresa(int id, String nome, String email, String cnpj, String cep, String estado, String pais, String descricao) {
+        super(id, nome, email, cep, estado, descricao)
+        this.id = id
+        this.cnpj = cnpj
+        this.pais = pais
+    }
+
+    Empresa(String nome, String email, String cep, String estado, String descricao, String cnpj, String pais, String senha) {
+        super(nome, email, cep, estado, descricao)
+        this.id = id
+        this.cnpj = cnpj
+        this.pais = pais
+        this.senha = senha
+    }
+
+    Empresa(String nome, String email, String cep, String estado, String descricao, String cnpj, String pais) {
+        super(nome, email, cep, estado, descricao)
         this.cnpj = cnpj
         this.pais = pais
     }
@@ -20,7 +36,6 @@ Empresa{
     Estado: ${super.estado},
     CEP: ${super.cep},
     Descrição aa Empresa: ${super.descricao},
-    Competências: ${super.competencias}
 }"""
     }
 }

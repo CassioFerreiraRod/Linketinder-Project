@@ -2,33 +2,37 @@ package br.com.linketinder.model.entity
 
 class Candidato extends Usuario {
     String cpf, sobrenome, dataNascimento, pais, senha
+    List<String> competencias
 
     Candidato(String nome, String sobrenome, String email, String cep, String estado, String pais,
               String descricao, String cpf, String dataNascimento, List<String> competencias) {
-        super(nome, email, cep, estado, competencias, descricao)
+        super(nome, email, cep, estado, descricao)
         this.cpf = cpf
         this.sobrenome = sobrenome
         this.pais = pais
         this.dataNascimento = dataNascimento
+        this.competencias = competencias
     }
 
     Candidato(String nome, String sobrenome, String email, String cep, String estado, String pais,
               String descricao, String cpf, String dataNascimento, List<String> competencias, String senha) {
-        super(nome, email, cep, estado, competencias, descricao)
+        super(nome, email, cep, estado, descricao)
         this.cpf = cpf
         this.sobrenome = sobrenome
         this.pais = pais
         this.senha = senha
         this.dataNascimento = dataNascimento
+        this.competencias = competencias
     }
 
     Candidato(int id, String nome,  String sobrenome, String email, String cep, String estado, String pais,
               String descricao, String cpf,String dataNascimento, List<String> competencias) {
-        super(id, nome, email, cep, estado, descricao, competencias)
+        super(id, nome, email, cep, estado, descricao)
         this.cpf = cpf
         this.sobrenome = sobrenome
         this.pais = pais
         this.dataNascimento = dataNascimento
+        this.competencias = competencias
     }
 
     @Override

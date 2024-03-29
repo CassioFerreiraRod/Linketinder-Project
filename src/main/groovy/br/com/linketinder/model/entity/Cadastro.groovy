@@ -5,8 +5,7 @@ class Cadastro {
             new Empresa('XLR8Bank',
                     'xrl8bank@example.com',
                     '36985-489',
-                    'RJ',
-                    ['AWS', 'Ruby', 'JavaScript'],
+                    'Rio de Janeiro',
                     'Banco Digital focado em trazer inovações',
                     '12.345.678/0001-01',
                     'Brasil'
@@ -14,8 +13,7 @@ class Cadastro {
             new Empresa('Ilha Tech',
                     'ilhatech@example.com',
                     '65089-829',
-                    'MA',
-                    ['Java', 'Pytohn', 'GIT'],
+                    'Maranhão',
                     'Inovação em software',
                     '23.456.789/0001-23',
                     'Brasil'
@@ -23,8 +21,7 @@ class Cadastro {
             new Empresa('XPTO Studios',
                     'xpptostudios@example.com',
                     '74125-456',
-                    'GO',
-                    ['C++', 'Unreal', 'PhysX'],
+                    'Goiás',
                     'Estúdio de jogos digitais',
                     '45.678.901/0001-67',
                     'Brasil'
@@ -32,20 +29,19 @@ class Cadastro {
             new Empresa('QWERTY Solutions',
                     'qwertysolutions@example.com',
                     '15928-753',
-                    'PR',
-                    ['TypeScript', 'Angular', 'PostegreSQL'],
+                    'Paraná',
                     'Banco Digital focado em trazer inovações',
                     '56.789.012/0001-89',
                     'Brasil'
             ),
-            new Empresa('ABC Tech',
+            new Empresa(
+                    'ABC Tech',
                     'abctech@example.com',
                     '26710-10',
-                    'CE',
-                    ['Groovy', 'Grails', 'GIT'],
+                    'Ceará',
                     'É uma empresa inovadora que se destaca na vanguarda da tecnologia',
                     '34.567.890/0001-45',
-                    'Brasil'
+                    'Brasil',
             )
     ]
     List<Candidato> listaCandidatos = [
