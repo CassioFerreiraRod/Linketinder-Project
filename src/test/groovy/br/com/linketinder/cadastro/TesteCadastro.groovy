@@ -41,13 +41,17 @@ class TesteCadastro {
     void testaCadastroCandidato() {
         // Given:
         Candidato candidatoCadastro = new Candidato(
-                "Pablo Da Silva",
+                "Pablo",
+                "Da Silva",
                 "silvapablo@email.com",
                 "70813-467",
-                "RJ",
-                ["Java", "Spring Boot", "AWS"],
+                "Rio de Janeiro",
+                "Brasil",
                 "Estudante de Sistema de Informação pela UFRJ",
-                "349.785.167-90", 25)
+                "349.785.167-90",
+                '1999-06-13',
+                ["Java", "Spring Boot", "AWS"]
+        )
 
         // When:
         cadastro.cadastrarCandidato(candidatoCadastro)

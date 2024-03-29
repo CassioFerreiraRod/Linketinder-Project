@@ -90,6 +90,22 @@ class DatabaseUtils {
 
     }
 
+    static int obterPaisIdPorNome(Connection conn, String nomePais) throws Exception {
+        String sql = "SELECT id FROM pais WHERE nome = ?"
+
+        PreparedStatement stm = conn.prepareStatement(sql)
+        stm.setString(1, nomePais)
+
+        ResultSet resultado = stm.executeQuery()
+
+        if (resultado.next()) {
+            return resultado.getInt("id")
+        } else {
+            throw new IllegalArgumentException("Estado não encontrado: " + nomePais)
+        }
+
+    }
+
 
     static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) throws Exception {
         String sql = "SELECT id FROM empresa WHERE nome = ?"

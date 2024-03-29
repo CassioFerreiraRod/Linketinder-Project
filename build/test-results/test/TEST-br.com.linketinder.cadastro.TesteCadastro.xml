@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.linketinder.cadastro.TesteCadastro" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-03-29T01:21:20" hostname="cassio-Aspire-A515-51" time="0.105">
-  <properties/>
-  <testcase name="testaCadastroEmpresa()" classname="br.com.linketinder.cadastro.TesteCadastro" time="0.102"/>
-  <testcase name="testaCadastroCandidato()" classname="br.com.linketinder.cadastro.TesteCadastro" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

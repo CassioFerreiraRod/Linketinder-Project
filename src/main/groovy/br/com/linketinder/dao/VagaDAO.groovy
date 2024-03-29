@@ -101,6 +101,10 @@ class VagaDAO {
         } catch (Exception e) {
             e.printStackTrace()
             return false
+        } finally {
+            if (conn != null) {
+                ConexaoDAO.desconectar(conn);
+            }
         }
 
     }
@@ -114,8 +118,14 @@ class VagaDAO {
             stm.setInt(1, id)
             stm.execute()
 
+            return true
         } catch (Exception e) {
             e.printStackTrace()
+            return false
+        } finally {
+            if (conn != null) {
+                ConexaoDAO.desconectar(conn);
+            }
         }
     }
 

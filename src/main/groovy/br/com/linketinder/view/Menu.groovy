@@ -1,7 +1,11 @@
 package br.com.linketinder.view
 
+import br.com.linketinder.model.entity.Cadastro
+
 
 class Menu {
+
+    Cadastro cadastro = new Cadastro()
 
     void exibirMenu() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))

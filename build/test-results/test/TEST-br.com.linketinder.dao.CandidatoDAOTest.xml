@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.linketinder.dao.CandidatoDAOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-29T20:23:58" hostname="cassio-Aspire-A515-51" time="0.879">
+  <properties/>
+  <testcase name="listar()" classname="br.com.linketinder.dao.CandidatoDAOTest" time="0.879"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
