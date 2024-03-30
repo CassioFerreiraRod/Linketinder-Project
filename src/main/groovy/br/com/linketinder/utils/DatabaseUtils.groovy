@@ -167,4 +167,17 @@ class DatabaseUtils {
         java.util.Date dataUtil = formatador.parse(dataString)
         return new Date(dataUtil.getTime())
     }
+
+    static int obterIdVagaRecente(Connection conn) {
+        String sql = "SELECT id FROM vagas ORDER BY id DESC LIMIT 1"
+
+        PreparedStatement stm = conn.prepareStatement(sql)
+        ResultSet resultado = stm.executeQuery()
+
+        if (resultado.next()) {
+            return resultado.getInt("id")
+        } else {
+            throw new IllegalArgumentException("Não há candidatos na tabela")
+        }
+    }
 }
