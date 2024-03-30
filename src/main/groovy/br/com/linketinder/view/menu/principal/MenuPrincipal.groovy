@@ -20,8 +20,8 @@ class MenuPrincipal {
             println "Escolha uma das opções a seguir"
             println "1. Exibir menu Candidatos"
             println "2. Exibir menu empresas"
-            println "3. Exibir menu vagas"
-            println "4. Exibir menu competências"
+            println "3. Exibir menu competências"
+            println "4. Exibir menu vagas"
             println "0. Para sair"
             opcao = br.readLine()
 
