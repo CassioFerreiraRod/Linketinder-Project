@@ -11,8 +11,8 @@ class Empresa extends Usuario {
         this.pais = pais
     }
 
-    Empresa(String nome, String email, String cep, String estado, String descricao, String cnpj, String pais, String senha) {
-        super(nome, email, cep, estado, descricao)
+    Empresa(int id, String nome, String email, String cnpj, String cep, String estado, String pais, String descricao, String senha) {
+        super(id, nome, email, cep, estado, descricao)
         this.id = id
         this.cnpj = cnpj
         this.pais = pais
