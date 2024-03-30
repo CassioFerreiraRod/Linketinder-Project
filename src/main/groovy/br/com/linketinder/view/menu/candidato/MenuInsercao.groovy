@@ -1,9 +1,10 @@
 package br.com.linketinder.view.menu.candidato
 
 import br.com.linketinder.model.entity.Candidato
+import br.com.linketinder.service.CandidatoService
 
 class MenuInsercao {
-    static void menuInsercao(BufferedReader bufferedReader,CandidatoService) {
+    static void menuInsercao(BufferedReader bufferedReader, CandidatoService candidatoService) {
         println "Digite o nome:"
         String nome = bufferedReader.readLine()
 

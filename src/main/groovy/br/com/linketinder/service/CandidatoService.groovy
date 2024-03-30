@@ -57,7 +57,7 @@ class CandidatoService {
 
     }
 
-    static void atualizarCandidato(Candidato candidato) {
+    static void alterarCandidato(Candidato candidato) {
         boolean alteracaoValida = candidatoDAO.alterar(candidato)
 
         if (alteracaoValida) {
