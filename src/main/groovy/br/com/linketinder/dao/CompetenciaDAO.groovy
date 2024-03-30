@@ -89,7 +89,7 @@ class CompetenciaDAO {
     }
 
     boolean remover(Integer id) {
-        String sql = "DELETE FROM clientes WHERE id=?"
+        String sql = "DELETE FROM competencias WHERE id=?"
         try {
 
             this.conn = ConexaoDAO.conectar()
