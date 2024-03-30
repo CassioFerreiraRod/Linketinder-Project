@@ -25,6 +25,12 @@ class Empresa extends Usuario {
         this.pais = pais
     }
 
+    Empresa(String nome, String email, String cnpj, String cep, String estado, String pais, String descricao, String senha) {
+        super(nome, email, cep, estado, descricao)
+        this.cnpj = cnpj
+        this.pais = pais
+    }
+
     @Override
     public String toString() {
         return """\
