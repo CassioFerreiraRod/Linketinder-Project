@@ -6,9 +6,9 @@ import br.com.linketinder.service.CompetenciaService
 class MenuInsercao {
     static void menuInsercao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
         println "Digite o nome da nova Competência:"
-        String nome = bufferedReader.readLine()
+        String comptencia = bufferedReader.readLine()
 
-        Competencia novaCompetencia = new Competencia(nome)
+        Competencia novaCompetencia = new Competencia(comptencia)
 
 
         CompetenciaService.cadastrarCompetencia(novaCompetencia)
