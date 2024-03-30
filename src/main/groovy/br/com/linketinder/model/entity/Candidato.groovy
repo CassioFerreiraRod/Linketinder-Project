@@ -33,6 +33,15 @@ class Candidato extends Usuario {
         this.dataNascimento = dataNascimento
         this.competencias = competencias
     }
+    Candidato(int id, String nome,  String sobrenome, String email, String cep, String estado, String pais,
+              String descricao, String cpf,String dataNascimento,String senha) {
+        super(id, nome, email, cep, estado, descricao)
+        this.cpf = cpf
+        this.sobrenome = sobrenome
+        this.pais = pais
+        this.dataNascimento = dataNascimento
+        this.senha = senha
+    }
 
     @Override
     public String toString() {

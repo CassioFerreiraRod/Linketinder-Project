@@ -1,6 +1,5 @@
 package br.com.linketinder.view.menu.candidato
 
-import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.model.entity.Candidato
 import br.com.linketinder.service.CandidatoService
 
@@ -41,7 +40,7 @@ class MenuAlteracao {
         println "Altere a senha:"
         String senha = bufferedReader.readLine()
 
-        Candidato candidatoAlterado = new Candidato(nome, sobrenome, email, cep, estado, pais,
+        Candidato candidatoAlterado = new Candidato(id, nome, sobrenome, email, cep, estado, pais,
                 descricao, cpf, dataNascimento, senha)
 
         CandidatoService.alterarCandidato(candidatoAlterado)
