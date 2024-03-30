@@ -30,7 +30,7 @@ class MenuCandidato {
                     MenuAlteracao.menuAlteracao(bufferedReader, candidatoService)
                     break
                 case '4':
-
+                    MenuExclusao.menuExclusao(bufferedReader, candidatoService)
                     break
                 case '0':
                     continuar = false

@@ -71,9 +71,9 @@ class CandidatoService {
         boolean exclusaoValida =candidatoDAO.remover(id)
 
         if (exclusaoValida) {
-            println("Alteração Realizada com sucesso")
+            println("Candidato excluído com sucesso")
         } else {
-            println("Erro ao fazer alteração")
+            println("Erro ao fazer exclusão")
         }
     }
 }
