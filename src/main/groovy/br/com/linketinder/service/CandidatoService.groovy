@@ -12,7 +12,7 @@ class CandidatoService {
     static CandidatoDAO candidatoDAO
 
     CandidatoService() {
-        this.candidatoDAO = new CandidatoDAO()
+        candidatoDAO = new CandidatoDAO()
     }
 
     static void listarCandidatos() {
