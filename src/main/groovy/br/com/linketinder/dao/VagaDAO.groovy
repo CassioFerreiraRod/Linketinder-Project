@@ -122,6 +122,8 @@ class VagaDAO {
             int empresaId = DatabaseUtils.obterEmpresaIdPorNome(conn, vaga.getEmpresa())
             stm.setInt(5, empresaId)
 
+            stm.setInt(6,vaga.getId())
+
             stm.execute()
             return true
 
