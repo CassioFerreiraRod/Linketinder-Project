@@ -78,6 +78,33 @@ class VagaDAO {
         }
     }
 
+    boolean inserirVagaCompetencia(int competencia_id,int vaga_id) {
+        String sql = """
+                    insert into vaga_competencias (vaga_id, competencia_id)
+                    values (?, ?);
+                    """
+
+        try {
+            this.conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)
+
+            stm.setInt(1, vaga_id)
+            stm.setInt(2, competencia_id)
+
+            stm.execute()
+
+            return true
+
+        } catch (Exception e) {
+            e.printStackTrace()
+            return false
+        } finally {
+            if (conn != null) {
+                ConexaoDAO.desconectar(conn)
+            }
+        }
+    }
+
     boolean alterar(Vaga vaga) {
         String sql = "UPDATE vagas SET nome = ?, descricao = ?, cidade = ?, estado_id = ?, empresa_id = ? WHERE id = ?"
 
