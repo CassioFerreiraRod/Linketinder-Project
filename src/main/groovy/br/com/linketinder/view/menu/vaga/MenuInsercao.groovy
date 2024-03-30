@@ -27,9 +27,9 @@ class MenuInsercao {
         println "Digite o nome da empresa:(dentre as listadas)"
         String empresa = bufferedReader.readLine()
 
-        Vaga novoVaga = new Vaga(nome, descricao, cidade, estado, empresa)
+        Vaga novaVaga = new Vaga(nome, descricao, cidade, estado, empresa)
 
-        VagaService.cadastrarVaga(novoVaga)
+        VagaService.cadastrarVaga(novaVaga)
 
         println "Listando competências cadastradas:"
 

@@ -11,7 +11,7 @@ class MenuVaga {
         def opcao
         while (continuar) {
             println("Escolha uma das opções a seguir:")
-            println("1. Listar Todos os Vagas")
+            println("1. Listar Todas os Vagas")
             println("2. Cadastrar Vaga")
             println("3. Alterar Vaga")
             println("4. Excluir Vaga")

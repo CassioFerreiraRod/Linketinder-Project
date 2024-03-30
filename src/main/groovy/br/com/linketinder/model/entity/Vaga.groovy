@@ -23,6 +23,15 @@ class Vaga {
         this.empresa = empresa
     }
 
+    Vaga(int id,String nome, String descricao, String cidade, String estado, String empresa) {
+        this.nome = nome
+        this.descricao = descricao
+        this.cidade = cidade
+        this.estado = estado
+        this.empresa = empresa
+        this.id = id
+    }
+
     @Override
     public String toString() {
         return """\
