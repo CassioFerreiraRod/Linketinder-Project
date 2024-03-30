@@ -2,9 +2,10 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/postgresql/linketinder_postgres.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/Utils/DatabaseUtils.groovy" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/CandidatoDAO.groovy" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/CompetenciaDAO.groovy" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/EmpresaDAO.groovy" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/VagaDAO.groovy" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/utils/DatabaseUtils.groovy" dialect="GenericSQL" />
   </component>
 </project>
