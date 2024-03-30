@@ -1,10 +1,13 @@
-package br.com.linketinder.Utils
+package br.com.linketinder.utils
 
 import br.com.linketinder.dao.ConexaoDAO
 
 import java.sql.Connection
+import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 class DatabaseUtils {
     static List<String> competenciasVaga(Integer id, Connection conn) {
@@ -40,6 +43,7 @@ class DatabaseUtils {
             }
         }
     }
+
     static List<String> competenciasCandidato(Integer id, Connection conn) {
         String sql = """
                     select c.competencia
@@ -121,5 +125,46 @@ class DatabaseUtils {
             throw new IllegalArgumentException("Empresa não encontrada: " + nomeEmpresa)
         }
 
+    }
+
+    static int obterIdCandidatoRecente(Connection conn) throws Exception {
+        String sql = "SELECT id FROM candidatos ORDER BY id DESC LIMIT 1"
+
+        PreparedStatement stm = conn.prepareStatement(sql)
+        ResultSet resultado = stm.executeQuery()
+
+        if (resultado.next()) {
+            return resultado.getInt("id")
+        } else {
+            throw new IllegalArgumentException("Não há candidatos na tabela")
+        }
+
+    }
+
+    static List<Integer> obterCompetenciasIdPorNome(Connection conn, List<String> listaCompetencias) throws Exception {
+        String sql = "SELECT id FROM competencias WHERE competencia = ?"
+
+        List<Integer> retorno = new ArrayList<>()
+
+        for (String competencia : listaCompetencias) {
+
+            PreparedStatement stm = conn.prepareStatement(sql)
+            stm.setString(1, competencia)
+
+            ResultSet resultado = stm.executeQuery()
+
+            if (resultado.next()) {
+                retorno.add(resultado.getInt("id"))
+            } else {
+                retorno.add(null)
+            }
+        }
+        return retorno
+    }
+
+    static Date converterParaSQLDate(String dataString) throws ParseException {
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy")
+        java.util.Date dataUtil = formatador.parse(dataString)
+        return new Date(dataUtil.getTime())
     }
 }

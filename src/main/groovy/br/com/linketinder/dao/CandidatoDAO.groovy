@@ -1,9 +1,10 @@
 package br.com.linketinder.dao
 
-import br.com.linketinder.Utils.DatabaseUtils
+import br.com.linketinder.utils.DatabaseUtils
 import br.com.linketinder.model.entity.Candidato
 
 import java.sql.Connection
+import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
@@ -56,6 +57,8 @@ class CandidatoDAO {
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
+        Date dataSQL = DatabaseUtils.converterParaSQLDate(candidato.getDataNascimento())
+
         try {
 
             this.conn = ConexaoDAO.conectar()
@@ -63,7 +66,7 @@ class CandidatoDAO {
 
             stm.setString(1, candidato.getNome())
             stm.setString(2, candidato.getSobrenome())
-            stm.setString(3, candidato.getDataNascimento())
+            stm.setDate(3, dataSQL)
             stm.setString(4, candidato.getEmail())
             stm.setString(5, candidato.getCpf())
 
@@ -90,6 +93,33 @@ class CandidatoDAO {
         }
     }
 
+    boolean inserirCandidatoCompetencia(int competencia_id,int candidato_id) {
+        String sql = """
+                    insert into candidato_competencias (candidato_id, competencia_id)
+                    values (?, ?);
+                    """
+
+        try {
+            this.conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)
+
+            stm.setInt(1, candidato_id)
+            stm.setInt(2, competencia_id)
+
+            stm.execute()
+
+            return true
+
+        } catch (Exception e) {
+            e.printStackTrace()
+            return false
+        } finally {
+            if (conn != null) {
+                ConexaoDAO.desconectar(conn)
+            }
+        }
+    }
+
     boolean alterar(Candidato candidato) {
         String sql = """
             UPDATE candidatos 
@@ -97,6 +127,7 @@ class CandidatoDAO {
             cep = ?, descricao_pessoal = ?, senha = ?
             WHERE  id = ?
             """
+        Date dataSQL = DatabaseUtils.converterParaSQLDate(candidato.getDataNascimento())
 
         try {
 
@@ -105,7 +136,7 @@ class CandidatoDAO {
 
             stm.setString(1, candidato.getNome())
             stm.setString(2, candidato.getSobrenome())
-            stm.setString(3, candidato.getDataNascimento())
+            stm.setDate(3, dataSQL)
             stm.setString(4, candidato.getEmail())
             stm.setString(5, candidato.getCpf())
 

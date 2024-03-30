@@ -15,14 +15,13 @@ class Candidato extends Usuario {
     }
 
     Candidato(String nome, String sobrenome, String email, String cep, String estado, String pais,
-              String descricao, String cpf, String dataNascimento, List<String> competencias, String senha) {
+              String descricao, String cpf, String dataNascimento,String senha) {
         super(nome, email, cep, estado, descricao)
         this.cpf = cpf
         this.sobrenome = sobrenome
         this.pais = pais
         this.senha = senha
         this.dataNascimento = dataNascimento
-        this.competencias = competencias
     }
 
     Candidato(int id, String nome,  String sobrenome, String email, String cep, String estado, String pais,

@@ -1,6 +1,6 @@
 package br.com.linketinder.dao
 
-import br.com.linketinder.Utils.DatabaseUtils
+import br.com.linketinder.utils.DatabaseUtils
 import br.com.linketinder.model.entity.Vaga
 
 import java.sql.Connection
