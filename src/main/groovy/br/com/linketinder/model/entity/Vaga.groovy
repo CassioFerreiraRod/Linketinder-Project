@@ -15,13 +15,12 @@ class Vaga {
         this.empresa = empresa
     }
 
-    Vaga(String nome, String descricao, String cidade, String estado, String empresa, List<String> competencias) {
+    Vaga(String nome, String descricao, String cidade, String estado, String empresa) {
         this.nome = nome
         this.descricao = descricao
         this.cidade = cidade
         this.estado = estado
         this.empresa = empresa
-        this.competencias = competencias
     }
 
     @Override

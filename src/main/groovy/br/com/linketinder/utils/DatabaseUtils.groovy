@@ -112,7 +112,7 @@ class DatabaseUtils {
 
 
     static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) throws Exception {
-        String sql = "SELECT id FROM empresa WHERE nome = ?"
+        String sql = "SELECT id FROM empresas WHERE nome_empresa = ?"
 
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setString(1, nomeEmpresa)

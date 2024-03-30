@@ -1,16 +1,14 @@
 package br.com.linketinder.view.menu.principal
 
-import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.view.menu.candidato.MenuCandidato
 import br.com.linketinder.view.menu.competencia.MenuCompetencia
 import br.com.linketinder.view.menu.empresa.MenuEmpresa
+import br.com.linketinder.view.menu.vaga.MenuVaga
 
 
 class MenuPrincipal {
 
-    CandidatoDAO candidatoDAO = new CandidatoDAO()
-
-    void exibirMenu() {
+    static void exibirMenu() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
         def opcao
 
@@ -36,7 +34,7 @@ class MenuPrincipal {
                     MenuCompetencia.menuCompetencias(br)
                     break
                 case '4':
-
+                    MenuVaga.menuVagas(br)
                     break
                 case '0':
                     continuar = false
