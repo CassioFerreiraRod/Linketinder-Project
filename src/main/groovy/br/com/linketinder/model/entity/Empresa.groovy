@@ -29,12 +29,14 @@ class Empresa extends Usuario {
         super(nome, email, cep, estado, descricao)
         this.cnpj = cnpj
         this.pais = pais
+        this.senha = senha
     }
 
     @Override
     public String toString() {
         return """\
 Empresa{
+    id: ${super.id}
     Nome: ${super.nome},
     Email: ${super.email},
     CNPJ: $cnpj,

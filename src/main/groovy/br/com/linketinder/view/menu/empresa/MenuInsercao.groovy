@@ -29,8 +29,8 @@ class MenuInsercao {
         println "Digite a senha:"
         String senha = bufferedReader.readLine()
 
-        Empresa novaEmpresa = new Empresa(nome, email, cnpj, cep, estado, pais,
-                descricao, senha)
+        Empresa novaEmpresa = new Empresa(nome, email, cnpj, cep, estado, pais, descricao, senha)
+
 
         EmpresaService.cadastrarEmpresa(novaEmpresa)
     }
