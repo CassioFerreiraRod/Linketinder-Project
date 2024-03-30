@@ -2,6 +2,7 @@ package br.com.linketinder.view.menu.candidato
 
 import br.com.linketinder.model.entity.Candidato
 import br.com.linketinder.service.CandidatoService
+import br.com.linketinder.service.CompetenciaService
 
 class MenuInsercao {
     static void menuInsercao(BufferedReader bufferedReader, CandidatoService candidatoService) {
@@ -39,7 +40,12 @@ class MenuInsercao {
                 descricao, cpf, dataNascimento, senha)
 
         CandidatoService.cadastrarCandidato(novoCandidato)
-        println "Digite as competências:(separar por vírgula)"
+
+        println "Listando competências cadastradas:"
+        CompetenciaService competenciaService = new CompetenciaService()
+        CompetenciaService.listarCompetencias()
+
+        println "Digite as competências:(separar por vírgula, entre as competências listada)"
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
