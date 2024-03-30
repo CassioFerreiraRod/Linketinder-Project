@@ -2,6 +2,7 @@ package br.com.linketinder.view.menu.principal
 
 import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.view.menu.candidato.MenuCandidato
+import br.com.linketinder.view.menu.empresa.MenuEmpresa
 
 
 class MenuPrincipal {
@@ -28,7 +29,7 @@ class MenuPrincipal {
                     MenuCandidato.menuCandidatos(br)
                     break
                 case '2':
-
+                    MenuEmpresa.menuEmpresas(br)
                     break
                 case '3':
 
