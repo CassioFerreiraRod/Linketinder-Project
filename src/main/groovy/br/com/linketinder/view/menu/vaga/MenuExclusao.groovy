@@ -1,13 +1,13 @@
 package br.com.linketinder.view.menu.vaga
 
-import br.com.linketinder.service.CandidatoService
+import br.com.linketinder.service.VagaService
 
 class MenuExclusao {
-    static void menuExclusao(BufferedReader bufferedReader,CandidatoService candidatoService) {
-        CandidatoService.listarCandidatos()
-        println "Digite o id do candidato que deseja alterar:"
+    static void menuExclusao(BufferedReader bufferedReader,VagaService vagaService) {
+        VagaService.listarVagas()
+        println "Digite o id da vaga que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
 
-        CandidatoService.excluirCandidato(id)
+        VagaService.excluirVaga(id)
     }
 }
