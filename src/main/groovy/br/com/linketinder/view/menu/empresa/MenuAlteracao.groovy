@@ -4,7 +4,7 @@ import br.com.linketinder.model.entity.Empresa
 import br.com.linketinder.service.EmpresaService
 
 class MenuAlteracao {
-    static void menuAlteracao(BufferedReader bufferedReader, EmpresaService candidatoService) {
+    static void menuAlteracao(BufferedReader bufferedReader, EmpresaService empresaService) {
         EmpresaService.listarEmpresas()
 
         println "Digite o id da empresa que deseja alterar:"
@@ -34,10 +34,10 @@ class MenuAlteracao {
         println "Altere a senha:"
         String senha = bufferedReader.readLine()
 
-        Empresa candidatoAlterado = new Empresa(id, nome, email, cnpj, cep, estado, pais,
+        Empresa empresaAlterada = new Empresa(id, nome, email, cnpj, cep, estado, pais,
                 descricao, senha)
 
-        EmpresaService.alterarEmpresa(candidatoAlterado)
+        EmpresaService.alterarEmpresa(empresaAlterada)
 
     }
 }
