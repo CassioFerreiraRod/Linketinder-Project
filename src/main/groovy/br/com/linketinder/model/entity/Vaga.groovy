@@ -37,12 +37,12 @@ class Vaga {
         return """\
 Vaga{
     id: $id,
-    nome: $nome,
-    empresa: $empresa
-    descricao: $descricao,
-    cidade: $cidade,
-    estado: $estado
-    competencias: $competencias
+    Nome: $nome,
+    Empresa: $empresa
+    Descricao: $descricao,
+    Cidade: $cidade,
+    Estado: $estado
+    Competencias: $competencias
 }"""
     }
 }
