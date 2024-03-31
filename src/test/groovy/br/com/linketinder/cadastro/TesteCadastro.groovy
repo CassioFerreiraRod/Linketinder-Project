@@ -24,10 +24,11 @@ class TesteCadastro {
                 "Sherlock Solutions",
                 "shelorcksolutions@solutions.com",
                 "12543-234",
-                "CE",
-                ["Ruby", "Docker", "GIT"],
+                "Ceará",
                 "Empresa focada em investigar problemas voltados a tecnologia",
-                "48.689.552/4521-78", "Brasil")
+                "48.689.552/4521-78",
+                "Brasil"
+        )
 
         // When:
         cadastro.cadastrarEmpresa(empresaCadastro)
