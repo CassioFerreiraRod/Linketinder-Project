@@ -36,6 +36,7 @@ Para ser feito a instalação do Groovy você pode baixar clicando [aqui](https:
 * [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web/CSS_basics)
 * [Bootstrap](https://getbootstrap.com)
+* [Gradle](https://gradle.org/)
 
 ### Banco de dados
 DER Do banco de dados:
