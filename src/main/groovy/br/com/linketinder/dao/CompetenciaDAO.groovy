@@ -25,7 +25,7 @@ class CompetenciaDAO {
             }
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
+            throw new SQLException("Erro ao listar competência: " + e.getMessage())
         }
         return retorno
     }
@@ -40,7 +40,7 @@ class CompetenciaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
+            throw new SQLException("Erro ao inserir competência: " + e.getMessage())
         }
     }
 
@@ -56,7 +56,7 @@ class CompetenciaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
+            throw new SQLException("Erro ao alterar competência: " + e.getMessage())
         }
     }
 
@@ -70,7 +70,7 @@ class CompetenciaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
+            throw new SQLException("Erro ao remover competência: " + e.getMessage())
         }
     }
 }
