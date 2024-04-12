@@ -6,6 +6,7 @@ import br.com.linketinder.dao.ConexaoDAO
 import br.com.linketinder.model.entity.Candidato
 
 import java.sql.Connection
+import java.sql.SQLException
 
 class CandidatoService {
 
@@ -16,64 +17,41 @@ class CandidatoService {
     }
 
     static void listarCandidatos() {
-        List<Candidato> listaCandidatos= candidatoDAO.listar()
+        List<Candidato> listaCandidatos = candidatoDAO.listar()
         listaCandidatos.each {
             println(it)
         }
     }
 
-    static void cadastrarCandidato(Candidato candidato) {
+    static boolean cadastrarCandidato(Candidato candidato) {
 
         boolean cadastroValido = candidatoDAO.inserir(candidato)
 
-        if (cadastroValido) {
-            println("Cadastro Realizado com sucesso")
-        } else {
-            println("Erro ao fazer cadastro")
-        }
-
+        return cadastroValido
     }
 
-    static void cadastrarCandidatoCompetencia(List<String> listaCompetencias) {
-
-        Connection conn = null
-
-        try {
-            conn = ConexaoDAO.conectar()
-
-            List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn,listaCompetencias)
+    static boolean cadastrarCandidatoCompetencia(List<String> listaCompetencias) {
+        try (Connection conn = ConexaoDAO.conectar()) {
+            List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
             int candidatoId = DatabaseUtils.obterIdCandidatoRecente(conn)
-
             for (int id_comptencia : id_competencias) {
                 candidatoDAO.inserirCandidatoCompetencia(id_comptencia, candidatoId)
             }
-            println("Cadastro realizado com sucesso")
-        }catch (Exception e) {
-            e.printStackTrace()
-            println("Erro ao fazer cadastro")
-        }finally {
-            ConexaoDAO.desconectar(conn)
+            return true
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
-
     }
 
-    static void alterarCandidato(Candidato candidato) {
+    static boolean alterarCandidato(Candidato candidato) {
         boolean alteracaoValida = candidatoDAO.alterar(candidato)
 
-        if (alteracaoValida) {
-            println("Alteração Realizada com sucesso")
-        } else {
-            println("Erro ao fazer alteração")
-        }
+        return alteracaoValida
     }
 
-    static void excluirCandidato(int id) {
-        boolean exclusaoValida =candidatoDAO.remover(id)
+    static boolean excluirCandidato(int id) {
+        boolean exclusaoValida = candidatoDAO.remover(id)
 
-        if (exclusaoValida) {
-            println("Candidato excluído com sucesso")
-        } else {
-            println("Erro ao fazer exclusão")
-        }
+        return exclusaoValida
     }
 }

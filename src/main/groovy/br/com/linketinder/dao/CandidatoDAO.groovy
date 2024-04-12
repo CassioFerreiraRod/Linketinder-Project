@@ -10,9 +10,8 @@ import java.sql.ResultSet
 import java.sql.SQLException
 
 class CandidatoDAO {
-    Connection conn = null
 
-    List<Candidato> listar() {
+    static List<Candidato> listar() {
         final String sql = """
                 SELECT c.*, es.nome AS estado, p.nome AS pais
                 FROM candidatos AS c
@@ -21,9 +20,8 @@ class CandidatoDAO {
                 ORDER BY c.id"""
         List<Candidato> retorno = new ArrayList<>()
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
 
             while (resultado.next()) {
@@ -43,84 +41,62 @@ class CandidatoDAO {
                 retorno.add(candidato)
             }
         } catch (SQLException e) {
-            e.printStackTrace()
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+            throw new SQLException("Erro ao listar candidato: " + e.getMessage())
         }
         return retorno
     }
 
-    boolean inserir(Candidato candidato) {
+    static boolean inserir(Candidato candidato) {
         final String sql = "INSERT INTO  candidatos (nome, sobrenome, data_nascimento," +
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
         Date dataSQL = DatabaseUtils.converterParaSQLDate(candidato.getDataNascimento())
 
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
 
             stm.setString(1, candidato.getNome())
             stm.setString(2, candidato.getSobrenome())
             stm.setDate(3, dataSQL)
             stm.setString(4, candidato.getEmail())
             stm.setString(5, candidato.getCpf())
-
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
             stm.setInt(6, estadoId)
-
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
             stm.setInt(7, paisId)
-
             stm.setString(8, candidato.getCep())
             stm.setString(9, candidato.getDescricao())
             stm.setString(10, candidato.getSenha())
-
             stm.execute()
+
             return true
 
         } catch (SQLException e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+            throw new SQLException("Erro ao cadastrar candidato: " + e.getMessage())
         }
     }
 
-    boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
+    static boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
         final String sql = """
                     insert into candidato_competencias (candidato_id, competencia_id)
                     values (?, ?)
                     """
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, candidato_id)
             stm.setInt(2, competencia_id)
-
             stm.execute()
 
             return true
 
         } catch (SQLException e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+            throw new SQLException("Erro ao inserir competência no candidato: " + e.getMessage())
         }
     }
 
-    boolean alterar(Candidato candidato) {
+    static boolean alterar(Candidato candidato) {
         final String sql = """
             UPDATE candidatos 
             SET nome = ?, sobrenome = ?, data_nascimento = ?, email = ?, cpf = ?, estado_id = ?, pais_id = ?, 
@@ -129,56 +105,43 @@ class CandidatoDAO {
             """
         Date dataSQL = DatabaseUtils.converterParaSQLDate(candidato.getDataNascimento())
 
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try(Connection conn = ConexaoDAO.conectar()
+        PreparedStatement stm = conn.prepareStatement(sql)) {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
 
             stm.setString(1, candidato.getNome())
             stm.setString(2, candidato.getSobrenome())
             stm.setDate(3, dataSQL)
             stm.setString(4, candidato.getEmail())
             stm.setString(5, candidato.getCpf())
-
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
             stm.setInt(6, estadoId)
-
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
             stm.setInt(7, paisId)
-
             stm.setString(8, candidato.getCep())
             stm.setString(9, candidato.getDescricao())
             stm.setString(10, candidato.getSenha())
 
             stm.setInt(11, candidato.getId())
-
             stm.execute()
+
             return true
         } catch (SQLException e) {
-            e.printStackTrace()
-            return false
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
     }
 
-    boolean remover(Integer id) {
+    static boolean remover(Integer id) {
         final String sql = "DELETE FROM candidatos where id = ?"
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
             stm.execute()
 
             return true
 
         } catch (SQLException e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
     }
 

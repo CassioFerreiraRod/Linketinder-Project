@@ -2,9 +2,9 @@ package br.com.linketinder.dao
 
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 
 class ConexaoDAO {
-    public Connection connection
 
     ConexaoDAO() {}
 
@@ -17,18 +17,12 @@ class ConexaoDAO {
         String URL_SERVIDOR = "jdbc:postgresql://localhost:5432/linketinder"
 
         try {
+            Class.forName("org.postgresql.Driver")
             return DriverManager.getConnection(URL_SERVIDOR, properties)
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            if (e instanceof ClassNotFoundException) {
-                System.err.println("Verifique o driver de conexão")
-            } else {
-                System.err.println("Verifique se o servidor está ativo");
-            }
-
-            return null
-
+        } catch (ClassNotFoundException e) {
+            System.err.println("Verifique o driver de conexão")
+        } catch (SQLException e) {
+            System.err.println("Verifique se o servidor está ativo: " + e.getMessage())
         }
     }
 

@@ -50,5 +50,6 @@ class MenuInsercao {
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
         CandidatoService.cadastrarCandidatoCompetencia(listaCompetencias)
+        println("Cadastro realizado com sucesso")
     }
 }
