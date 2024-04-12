@@ -5,19 +5,16 @@ import br.com.linketinder.model.entity.Competencia
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.sql.SQLException
 
 class CompetenciaDAO {
-    Connection conn = null
 
-    List<Competencia> listar() {
+    static List<Competencia> listar() {
         String sql = "SELECT * FROM competencias ORDER BY id"
         List<Competencia> retorno = new ArrayList<>()
 
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
             while (resultado.next()) {
                 Competencia competencia = new Competencia(
@@ -27,87 +24,53 @@ class CompetenciaDAO {
                 retorno.add(competencia)
             }
 
-        } catch (Exception e) {
-
-            e.printStackTrace()
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
         return retorno
     }
 
-    boolean inserir(Competencia competencia) {
+    static boolean inserir(Competencia competencia) {
         String sql = "INSERT INTO competencias (competencia) VALUES (?)"
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, competencia.getCompetencia())
             stm.execute()
 
             return true
 
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            return false
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
     }
 
-    boolean alterar(Competencia competencia) {
+    static boolean alterar(Competencia competencia) {
         String sql = "UPDATE competencias SET competencia = ? WHERE id = ?"
 
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, competencia.getCompetencia())
             stm.setInt(2, competencia.getId())
             stm.execute()
 
             return true
 
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            return false
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
     }
 
-    boolean remover(Integer id) {
+    static boolean remover(Integer id) {
         String sql = "DELETE FROM competencias WHERE id=?"
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stmt = conn.prepareStatement(sql)
-            stmt.setInt(1, id)
-            stmt.execute()
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, id)
+            stm.execute()
 
             return true
 
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            return false
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
         }
     }
 }
