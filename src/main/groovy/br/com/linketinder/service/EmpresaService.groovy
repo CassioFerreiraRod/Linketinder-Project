@@ -10,39 +10,28 @@ class EmpresaService {
         empresaDAO = new EmpresaDAO()
     }
 
-    static void listarEmpresas(){
+    static boolean listarEmpresas() {
         List<Empresa> listaEmpresas = empresaDAO.listar()
         listaEmpresas.each {
             println(it)
         }
     }
 
-    static void cadastrarEmpresa(Empresa empresa) {
+    static boolean cadastrarEmpresa(Empresa empresa) {
         boolean cadastroValido = empresaDAO.inserir(empresa)
 
-        if (cadastroValido) {
-            println("Cadastro Realizado com sucesso")
-        } else {
-            println("Erro ao fazer cadastro")
-        }
+        return cadastroValido
     }
 
-    static void alterarEmpresa(Empresa empresa) {
+    static boolean alterarEmpresa(Empresa empresa) {
         boolean aleracaoValida = empresaDAO.alterar(empresa)
 
-        if (aleracaoValida) {
-            println("Alteração Realizado com sucesso")
-        } else {
-            println("Erro ao fazer Alteração")
-        }
+        return aleracaoValida
     }
-    static void excluirEmpresa(Integer id) {
+
+    static boolean excluirEmpresa(Integer id) {
         boolean exclusaoValida = empresaDAO.remover(id)
 
-        if (exclusaoValida) {
-            println("Exclusão Realizado com sucesso")
-        } else {
-            println("Erro ao fazer Exclusão")
-        }
+        return exclusaoValida
     }
 }

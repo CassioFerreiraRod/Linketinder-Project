@@ -6,12 +6,11 @@ import br.com.linketinder.model.entity.Empresa
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.sql.SQLException
 
 class EmpresaDAO {
 
-    Connection conn = null
-
-    List<Empresa> listar() {
+    static List<Empresa> listar() {
         String sql = """
                 SELECT emp.*, es.nome AS estado, p.nome AS pais
                 FROM empresas AS emp
@@ -21,11 +20,9 @@ class EmpresaDAO {
 
         List<Empresa> retorno = new ArrayList<>()
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement smt = conn.prepareStatement(sql)
-
-            ResultSet resultado = smt.executeQuery()
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
+            ResultSet resultado = stm.executeQuery()
 
             while (resultado.next()) {
                 Empresa empresa = new Empresa(
@@ -41,58 +38,43 @@ class EmpresaDAO {
                 retorno.add(empresa)
             }
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return null
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar empresa: " + e.getMessage())
         }
-
         return retorno
 
     }
 
-    boolean inserir(Empresa empresa) {
+    static boolean inserir(Empresa empresa) {
         String sql = """
                       insert into empresas (nome_empresa, cnpj, email_corporativo, descricao_empresa, estado_id, pais_id, cep, senha)
                       values (?, ?, ?, ?, ?, ?, ?, ?);
                       """
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
             stm.setString(1, empresa.getNome())
             stm.setString(2, empresa.getCnpj())
             stm.setString(3, empresa.getEmail())
             stm.setString(4, empresa.getDescricao())
-
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
             stm.setInt(5, estadoId)
-
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
             stm.setInt(6, paisId)
-
             stm.setString(7, empresa.getCep())
             stm.setString(8, empresa.getSenha())
 
             stm.execute()
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inserir empresa: " + e.getMessage())
         }
     }
 
-    boolean alterar(Empresa empresa) {
 
+    static boolean alterar(Empresa empresa) {
         String sql =
                 """
                 UPDATE empresas 
@@ -107,10 +89,8 @@ class EmpresaDAO {
                 WHERE id = ?;
                 """
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, empresa.getNome())
             stm.setString(2, empresa.getCnpj())
             stm.setString(3, empresa.getEmail())
@@ -130,34 +110,22 @@ class EmpresaDAO {
             stm.execute()
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar empresa: " + e.getMessage())
         }
     }
 
-    boolean remover(Integer id) {
+    static boolean remover(Integer id) {
         String sql = "DELETE FROM empresas WHERE id = ?"
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
 
             stm.execute()
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao remover empresa: " + e.getMessage())
         }
     }
 

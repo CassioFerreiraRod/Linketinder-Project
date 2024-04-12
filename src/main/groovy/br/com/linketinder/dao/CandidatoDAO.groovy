@@ -78,7 +78,7 @@ class CandidatoDAO {
     }
 
     static boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
-        final String sql = """
+        String sql = """
                     insert into candidato_competencias (candidato_id, competencia_id)
                     values (?, ?)
                     """
