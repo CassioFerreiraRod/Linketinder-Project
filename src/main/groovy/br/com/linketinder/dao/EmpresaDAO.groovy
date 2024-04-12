@@ -39,7 +39,7 @@ class EmpresaDAO {
             }
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar empresa: " + e.getMessage())
+            throw new SQLException("Erro ao listar empresa: " + e.getMessage())
         }
         return retorno
 
