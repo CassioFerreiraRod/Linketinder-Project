@@ -6,11 +6,11 @@ import br.com.linketinder.model.entity.Vaga
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.sql.SQLException
 
 class VagaDAO {
-    Connection conn = null
 
-    List<Vaga> listar() {
+    static List<Vaga> listar() {
         String sql = """SELECT v.*, es.nome AS estado, e.nome_empresa AS empresa
                 FROM vagas AS v
                 JOIN estados AS es ON v.estado_id = es.id
@@ -18,10 +18,8 @@ class VagaDAO {
                 ORDER BY v.id"""
         List<Vaga> retorno = new ArrayList<>()
 
-        try {
-
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
             while (resultado.next()) {
                 Vaga vaga = new Vaga(
@@ -36,25 +34,18 @@ class VagaDAO {
                 retorno.add(vaga)
             }
 
-        } catch (Exception e) {
-
-            e.printStackTrace()
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao listar vaga: " + e.getMessage())
         }
         return retorno
     }
 
 
-    boolean inserir(Vaga vaga) {
+    static boolean inserir(Vaga vaga) {
         String sql = "INSERT INTO vagas(nome, descricao, cidade, estado_id, empresa_id) values (?, ?, ?, ?, ?)"
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, vaga.getNome())
             stm.setString(2, vaga.getDescricao())
             stm.setString(3, vaga.getCidade())
@@ -68,26 +59,19 @@ class VagaDAO {
             stm.execute()
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inserir vaga: " + e.getMessage())
         }
     }
 
-    boolean inserirVagaCompetencia(int competencia_id,int vaga_id) {
+    static boolean inserirVagaCompetencia(int competencia_id, int vaga_id) {
         String sql = """
                     insert into vaga_competencias (vaga_id, competencia_id)
                     values (?, ?);
                     """
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, vaga_id)
             stm.setInt(2, competencia_id)
 
@@ -95,66 +79,45 @@ class VagaDAO {
 
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inserir competência vaga: " + e.getMessage())
         }
     }
 
-    boolean alterar(Vaga vaga) {
+    static boolean alterar(Vaga vaga) {
         String sql = "UPDATE vagas SET nome = ?, descricao = ?, cidade = ?, estado_id = ?, empresa_id = ? WHERE id = ?"
 
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, vaga.getEstado())
+            int empresaId = DatabaseUtils.obterEmpresaIdPorNome(conn, vaga.getEmpresa())
 
             stm.setString(1, vaga.getNome())
             stm.setString(2, vaga.getDescricao())
             stm.setString(3, vaga.getCidade())
-
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, vaga.getEstado())
             stm.setInt(4, estadoId)
-
-            int empresaId = DatabaseUtils.obterEmpresaIdPorNome(conn, vaga.getEmpresa())
             stm.setInt(5, empresaId)
-
-            stm.setInt(6,vaga.getId())
+            stm.setInt(6, vaga.getId())
 
             stm.execute()
             return true
 
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn);
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao alterar vaga: " + e.getMessage())
         }
 
     }
 
-    boolean remover(Integer id) {
+    static boolean remover(Integer id) {
         String sql = "DELETE FROM vagas WHERE id = ?"
-        try {
-            this.conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-
+        try(Connection conn = ConexaoDAO.conectar()
+            PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
             stm.execute()
 
             return true
-        } catch (Exception e) {
-            e.printStackTrace()
-            return false
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn);
-            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao remover vaga: " + e.getMessage())
         }
     }
 
