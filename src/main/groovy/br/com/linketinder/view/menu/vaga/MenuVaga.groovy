@@ -8,7 +8,7 @@ class MenuVaga {
     static void menuVagas(BufferedReader bufferedReader) {
         candidatoService = new VagaService()
         boolean continuar = true
-        def opcao
+        String opcao
         while (continuar) {
             println("Escolha uma das opções a seguir:")
             println("1. Listar Todas os Vagas")

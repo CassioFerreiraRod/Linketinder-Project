@@ -2,7 +2,9 @@ package br.com.linketinder.model.entity
 
 class Empresa extends Usuario {
     int id
-    String cnpj, pais, senha
+    String cnpj
+    String pais
+    String senha
 
     Empresa(int id, String nome, String email, String cnpj, String cep, String estado, String pais, String descricao) {
         super(id, nome, email, cep, estado, descricao)
@@ -33,7 +35,7 @@ class Empresa extends Usuario {
     }
 
     @Override
-    public String toString() {
+    String toString() {
         return """\
 Empresa{
     id: ${super.id}

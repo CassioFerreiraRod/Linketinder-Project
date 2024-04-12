@@ -2,10 +2,14 @@ package br.com.linketinder.model.entity
 
 class Vaga {
     int id
-    String nome, descricao, cidade, estado, empresa
+    String nome
+    String descricao
+    String cidade
+    String estado
+    String empresa
     List<String> competencias
 
-    Vaga(int id,String empresa, String nome, String descricao, String cidade, String estado, List<String> competencias) {
+    Vaga(int id, String empresa, String nome, String descricao, String cidade, String estado, List<String> competencias) {
         this.id = id
         this.nome = nome
         this.descricao = descricao
@@ -23,7 +27,7 @@ class Vaga {
         this.empresa = empresa
     }
 
-    Vaga(int id,String nome, String descricao, String cidade, String estado, String empresa) {
+    Vaga(int id, String nome, String descricao, String cidade, String estado, String empresa) {
         this.nome = nome
         this.descricao = descricao
         this.cidade = cidade
@@ -33,7 +37,7 @@ class Vaga {
     }
 
     @Override
-    public String toString() {
+    String toString() {
         return """\
 Vaga{
     id: $id,

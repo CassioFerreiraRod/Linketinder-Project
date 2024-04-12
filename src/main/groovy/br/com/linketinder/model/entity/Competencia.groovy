@@ -14,7 +14,7 @@ class Competencia {
     }
 
     @Override
-    public String toString() {
+    String toString() {
         return """\
 Competencia{
     id: $id,

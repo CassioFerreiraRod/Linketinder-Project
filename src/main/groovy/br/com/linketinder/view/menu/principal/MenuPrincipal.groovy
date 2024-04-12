@@ -10,7 +10,7 @@ class MenuPrincipal {
 
     static void exibirMenu() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
-        def opcao
+        String opcao
 
         boolean continuar = true
 

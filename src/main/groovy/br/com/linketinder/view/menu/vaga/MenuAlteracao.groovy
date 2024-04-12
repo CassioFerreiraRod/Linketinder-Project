@@ -26,7 +26,6 @@ class MenuAlteracao {
         String empresa = bufferedReader.readLine()
 
         Vaga vagaAlterada = new Vaga(id,nome, descricao, cidade, estado, empresa)
-
         VagaService.alterarVaga(vagaAlterada)
 
     }

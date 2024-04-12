@@ -7,12 +7,13 @@ import java.sql.Connection
 import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.sql.SQLException
 
 class CandidatoDAO {
     Connection conn = null
 
     List<Candidato> listar() {
-        String sql = """
+        final String sql = """
                 SELECT c.*, es.nome AS estado, p.nome AS pais
                 FROM candidatos AS c
                 JOIN estados AS es ON c.estado_id = es.id
@@ -41,19 +42,18 @@ class CandidatoDAO {
                 )
                 retorno.add(candidato)
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace()
-            return null
         } finally {
             if (conn != null) {
-                ConexaoDAO.desconectar(conn);
+                ConexaoDAO.desconectar(conn)
             }
         }
         return retorno
     }
 
     boolean inserir(Candidato candidato) {
-        String sql = "INSERT INTO  candidatos (nome, sobrenome, data_nascimento," +
+        final String sql = "INSERT INTO  candidatos (nome, sobrenome, data_nascimento," +
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
@@ -83,20 +83,20 @@ class CandidatoDAO {
             stm.execute()
             return true
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace()
             return false
         } finally {
             if (conn != null) {
-                ConexaoDAO.desconectar(conn);
+                ConexaoDAO.desconectar(conn)
             }
         }
     }
 
-    boolean inserirCandidatoCompetencia(int competencia_id,int candidato_id) {
-        String sql = """
+    boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
+        final String sql = """
                     insert into candidato_competencias (candidato_id, competencia_id)
-                    values (?, ?);
+                    values (?, ?)
                     """
 
         try {
@@ -110,7 +110,7 @@ class CandidatoDAO {
 
             return true
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace()
             return false
         } finally {
@@ -121,7 +121,7 @@ class CandidatoDAO {
     }
 
     boolean alterar(Candidato candidato) {
-        String sql = """
+        final String sql = """
             UPDATE candidatos 
             SET nome = ?, sobrenome = ?, data_nascimento = ?, email = ?, cpf = ?, estado_id = ?, pais_id = ?, 
             cep = ?, descricao_pessoal = ?, senha = ?
@@ -154,14 +154,14 @@ class CandidatoDAO {
 
             stm.execute()
             return true
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace()
             return false
         }
     }
 
     boolean remover(Integer id) {
-        String sql = "DELETE FROM candidatos where id = ?"
+        final String sql = "DELETE FROM candidatos where id = ?"
 
         try {
             this.conn = ConexaoDAO.conectar()
@@ -172,12 +172,12 @@ class CandidatoDAO {
 
             return true
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace()
             return false
         } finally {
             if (conn != null) {
-                ConexaoDAO.desconectar(conn);
+                ConexaoDAO.desconectar(conn)
             }
         }
     }

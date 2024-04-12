@@ -8,7 +8,7 @@ class MenuCompetencia {
     static void menuCompetencias(BufferedReader bufferedReader) {
         competenciaService = new CompetenciaService()
         boolean continuar = true
-        def opcao
+        String opcao
         while (continuar) {
             println("Escolha uma das opções a seguir:")
             println("1. Listar Todas as Competencias")

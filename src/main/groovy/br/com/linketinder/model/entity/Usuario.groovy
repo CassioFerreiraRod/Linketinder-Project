@@ -2,7 +2,11 @@ package br.com.linketinder.model.entity
 
 class Usuario {
     int id
-    String nome, email, cep, estado, descricao
+    String nome
+    String email
+    String cep
+    String estado
+    String descricao
 
     Usuario(String nome, String email, String cep, String estado, String descricao) {
         this.nome = nome
