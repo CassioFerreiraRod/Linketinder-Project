@@ -4,9 +4,12 @@ package br.com.linketinder.view.menu.candidato
 import br.com.linketinder.service.CandidatoService
 
 class MenuCandidato {
-    static CandidatoService candidatoService
+    CandidatoService candidatoService
+    MenuExclusao menuExclusao = new MenuExclusao()
+    MenuAlteracao menuAlteracao = new MenuAlteracao()
+    MenuInsercao menuInsercao = new MenuInsercao()
 
-    static void menuCandidatos(BufferedReader bufferedReader) {
+    void menuCandidatos(BufferedReader bufferedReader) {
         candidatoService = new CandidatoService()
         boolean continuar = true
         String opcao
@@ -24,13 +27,13 @@ class MenuCandidato {
                     CandidatoService.listarCandidatos()
                     break
                 case '2':
-                    MenuInsercao.menuInsercao(bufferedReader, candidatoService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, candidatoService)
                     break
                 case '3':
-                    MenuAlteracao.menuAlteracao(bufferedReader, candidatoService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, candidatoService)
                     break
                 case '4':
-                    MenuExclusao.menuExclusao(bufferedReader, candidatoService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, candidatoService)
                     break
                 case '0':
                     continuar = false

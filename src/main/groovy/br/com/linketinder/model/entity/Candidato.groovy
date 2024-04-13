@@ -1,5 +1,9 @@
 package br.com.linketinder.model.entity
 
+import br.com.linketinder.utils.DatabaseUtils
+
+import java.sql.Date
+
 class Candidato extends Usuario {
     String cpf
     String sobrenome
@@ -46,6 +50,10 @@ class Candidato extends Usuario {
         this.pais = pais
         this.dataNascimento = dataNascimento
         this.senha = senha
+    }
+     Date getDataNascimento() {
+         Date dataSQL = DatabaseUtils.converterParaSQLDate(this.dataNascimento)
+         return dataSQL
     }
 
     @Override

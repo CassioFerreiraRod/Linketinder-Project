@@ -10,27 +10,27 @@ import java.sql.SQLException
 
 class CandidatoService {
 
-    static CandidatoDAO candidatoDAO
+    CandidatoDAO candidatoDAO
 
     CandidatoService() {
         candidatoDAO = new CandidatoDAO()
     }
 
-    static void listarCandidatos() {
+    void listarCandidatos() {
         List<Candidato> listaCandidatos = candidatoDAO.listar()
         listaCandidatos.each {
             println(it)
         }
     }
 
-    static boolean cadastrarCandidato(Candidato candidato) {
+    boolean cadastrarCandidato(Candidato candidato) {
 
         boolean cadastroValido = candidatoDAO.inserir(candidato)
 
         return cadastroValido
     }
 
-    static boolean cadastrarCandidatoCompetencia(List<String> listaCompetencias) {
+    boolean cadastrarCandidatoCompetencia(List<String> listaCompetencias) {
         try (Connection conn = ConexaoDAO.conectar()) {
             List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
             int candidatoId = DatabaseUtils.obterIdCandidatoRecente(conn)
@@ -39,17 +39,18 @@ class CandidatoService {
             }
             return true
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar candidato: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 
-    static boolean alterarCandidato(Candidato candidato) {
+    boolean alterarCandidato(Candidato candidato) {
         boolean alteracaoValida = candidatoDAO.alterar(candidato)
 
         return alteracaoValida
     }
 
-    static boolean excluirCandidato(int id) {
+    boolean excluirCandidato(int id) {
         boolean exclusaoValida = candidatoDAO.remover(id)
 
         return exclusaoValida

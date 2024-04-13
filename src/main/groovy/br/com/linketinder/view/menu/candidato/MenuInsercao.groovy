@@ -5,7 +5,7 @@ import br.com.linketinder.service.CandidatoService
 import br.com.linketinder.service.CompetenciaService
 
 class MenuInsercao {
-    static void menuInsercao(BufferedReader bufferedReader, CandidatoService candidatoService) {
+     void exibirMenuInsercao(BufferedReader bufferedReader, CandidatoService candidatoService) {
         println "Digite o nome:"
         String nome = bufferedReader.readLine()
 
@@ -49,7 +49,7 @@ class MenuInsercao {
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
-        CandidatoService.cadastrarCandidatoCompetencia(listaCompetencias)
+        candidatoService.cadastrarCandidatoCompetencia(listaCompetencias)
         println("Cadastro realizado com sucesso")
     }
 }

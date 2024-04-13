@@ -20,28 +20,17 @@ class DatabaseUtils {
 
         List<String> retorno = new ArrayList<>()
 
-        try {
-            conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-            stm.setInt(1, id)
-            ResultSet resultado = stm.executeQuery()
+        conn = ConexaoDAO.conectar()
+        PreparedStatement stm = conn.prepareStatement(sql)
+        stm.setInt(1, id)
+        ResultSet resultado = stm.executeQuery()
 
-            while (resultado.next()) {
-                retorno.add(resultado.getString("competencia"))
-            }
-
-            return retorno
-
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            return null
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        while (resultado.next()) {
+            retorno.add(resultado.getString("competencia"))
         }
+
+        return retorno
+
     }
 
     static List<String> competenciasCandidato(Integer id, Connection conn) {
@@ -54,31 +43,20 @@ class DatabaseUtils {
 
         List<String> retorno = new ArrayList<>()
 
-        try {
-            conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)
-            stm.setInt(1, id)
-            ResultSet resultado = stm.executeQuery()
+        conn = ConexaoDAO.conectar()
+        PreparedStatement stm = conn.prepareStatement(sql)
+        stm.setInt(1, id)
+        ResultSet resultado = stm.executeQuery()
 
-            while (resultado.next()) {
-                retorno.add(resultado.getString("competencia"))
-            }
-
-            return retorno
-
-        } catch (Exception e) {
-
-            e.printStackTrace()
-            return null
-
-        } finally {
-            if (conn != null) {
-                ConexaoDAO.desconectar(conn)
-            }
+        while (resultado.next()) {
+            retorno.add(resultado.getString("competencia"))
         }
+
+        return retorno
+
     }
 
-    static int obterEstadoIdPorNome(Connection conn, String nomeEstado) throws Exception {
+    static int obterEstadoIdPorNome(Connection conn, String nomeEstado) {
         String sql = "SELECT id FROM estados WHERE nome = ?"
 
         PreparedStatement stm = conn.prepareStatement(sql)
@@ -89,12 +67,12 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException("Estado não encontrado: " + nomeEstado)
+            throw new IllegalArgumentException().printStackTrace()
         }
 
     }
 
-    static int obterPaisIdPorNome(Connection conn, String nomePais) throws Exception {
+    static int obterPaisIdPorNome(Connection conn, String nomePais) {
         String sql = "SELECT id FROM pais WHERE nome = ?"
 
         PreparedStatement stm = conn.prepareStatement(sql)
@@ -105,13 +83,13 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException("Estado não encontrado: " + nomePais)
+            throw new IllegalArgumentException().printStackTrace()
         }
 
     }
 
 
-    static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) throws Exception {
+    static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) {
         String sql = "SELECT id FROM empresas WHERE nome_empresa = ?"
 
         PreparedStatement stm = conn.prepareStatement(sql)
@@ -122,12 +100,12 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException("Empresa não encontrada: " + nomeEmpresa)
+            throw new IllegalArgumentException().printStackTrace()
         }
 
     }
 
-    static int obterIdCandidatoRecente(Connection conn) throws Exception {
+    static int obterIdCandidatoRecente(Connection conn) {
         String sql = "SELECT id FROM candidatos ORDER BY id DESC LIMIT 1"
 
         PreparedStatement stm = conn.prepareStatement(sql)
@@ -136,12 +114,12 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException("Não há candidatos na tabela")
+            throw new IllegalArgumentException().printStackTrace()
         }
 
     }
 
-    static List<Integer> obterCompetenciasIdPorNome(Connection conn, List<String> listaCompetencias) throws Exception {
+    static List<Integer> obterCompetenciasIdPorNome(Connection conn, List<String> listaCompetencias) {
         String sql = "SELECT id FROM competencias WHERE competencia = ?"
 
         List<Integer> retorno = new ArrayList<>()
@@ -156,16 +134,21 @@ class DatabaseUtils {
             if (resultado.next()) {
                 retorno.add(resultado.getInt("id"))
             } else {
-                retorno.add(null)
+                throw new IllegalAccessException().printStackTrace()
             }
         }
         return retorno
     }
 
-    static Date converterParaSQLDate(String dataString) throws ParseException {
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy")
-        java.util.Date dataUtil = formatador.parse(dataString)
-        return new Date(dataUtil.getTime())
+    static Date converterParaSQLDate(String dataString) {
+        try {
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy")
+            java.util.Date dataUtil = formatador.parse(dataString)
+            return new Date(dataUtil.getTime())
+        } catch (ParseException e) {
+            e.printStackTrace()
+        }
+
     }
 
     static int obterIdVagaRecente(Connection conn) {
@@ -177,7 +160,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException("Não há candidatos na tabela")
+            throw new IllegalArgumentException().printStackTrace()
         }
     }
 }
