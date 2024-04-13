@@ -4,7 +4,6 @@ import br.com.linketinder.utils.DatabaseUtils
 import br.com.linketinder.model.entity.Candidato
 
 import java.sql.Connection
-import java.sql.Date
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException

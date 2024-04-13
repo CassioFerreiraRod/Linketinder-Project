@@ -24,7 +24,7 @@ class MenuCandidato {
 
             switch (opcao) {
                 case '1':
-                    CandidatoService.listarCandidatos()
+                    candidatoService.listarCandidatos()
                     break
                 case '2':
                     menuInsercao.exibirMenuInsercao(bufferedReader, candidatoService)

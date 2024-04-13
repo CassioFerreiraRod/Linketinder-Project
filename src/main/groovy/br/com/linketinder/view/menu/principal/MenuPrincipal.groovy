@@ -8,7 +8,8 @@ import br.com.linketinder.view.menu.vaga.MenuVaga
 
 class MenuPrincipal {
 
-    static void exibirMenu() {
+    void exibirMenu() {
+        MenuCandidato menuCandidato = new MenuCandidato()
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
         String opcao
 
@@ -25,7 +26,7 @@ class MenuPrincipal {
 
             switch (opcao) {
                 case '1':
-                    MenuCandidato.menuCandidatos(br)
+                    menuCandidato.menuCandidatos(br)
                     break
                 case '2':
                     MenuEmpresa.menuEmpresas(br)
