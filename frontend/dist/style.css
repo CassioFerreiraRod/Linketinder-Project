@@ -1,0 +1,21 @@
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #CCCCCC;
+    color: #333333;
+
+}
+
+.cadastro {
+    background: #CCCCCC;
+    color: #333333;
+    height: 100%;
+}
+
+.perfil {
+    background: #CCCCCC;
+    color: #333333;
+    height: 100%;
+}
