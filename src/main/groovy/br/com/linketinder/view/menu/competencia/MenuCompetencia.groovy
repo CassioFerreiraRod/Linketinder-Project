@@ -3,9 +3,12 @@ package br.com.linketinder.view.menu.competencia
 import br.com.linketinder.service.CompetenciaService
 
 class MenuCompetencia {
-    static CompetenciaService competenciaService
+    CompetenciaService competenciaService
+    MenuAlteracao menuAlteracao = new MenuAlteracao()
+    MenuExclusao menuExclusao = new MenuExclusao()
+    MenuInsercao menuInsercao = new MenuInsercao()
 
-    static void menuCompetencias(BufferedReader bufferedReader) {
+    void menuCompetencias(BufferedReader bufferedReader) {
         competenciaService = new CompetenciaService()
         boolean continuar = true
         String opcao
@@ -20,16 +23,16 @@ class MenuCompetencia {
 
             switch (opcao) {
                 case '1':
-                    CompetenciaService.listarCompetencias()
+                    competenciaService.listarCompetencias()
                     break
                 case '2':
-                    MenuInsercao.menuInsercao(bufferedReader, competenciaService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, competenciaService)
                     break
                 case '3':
-                   MenuAlteracao.menuAlteracao(bufferedReader, competenciaService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, competenciaService)
                     break
                 case '4':
-                    MenuExclusao.menuExclusao(bufferedReader, competenciaService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, competenciaService)
                     break
                 case '0':
                     continuar = false

@@ -10,6 +10,9 @@ class MenuPrincipal {
 
     void exibirMenu() {
         MenuCandidato menuCandidato = new MenuCandidato()
+        MenuCompetencia menuCompetencia = new MenuCompetencia()
+        MenuVaga menuVaga = new MenuVaga()
+        MenuEmpresa menuEmpresa = new MenuEmpresa()
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
         String opcao
 
@@ -29,13 +32,13 @@ class MenuPrincipal {
                     menuCandidato.menuCandidatos(br)
                     break
                 case '2':
-                    MenuEmpresa.menuEmpresas(br)
+                    menuEmpresa.menuEmpresas(br)
                     break
                 case '3':
-                    MenuCompetencia.menuCompetencias(br)
+                    menuCompetencia.menuCompetencias(br)
                     break
                 case '4':
-                    MenuVaga.menuVagas(br)
+                    menuVaga.menuVagas(br)
                     break
                 case '0':
                     continuar = false

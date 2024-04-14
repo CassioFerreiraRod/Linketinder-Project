@@ -9,7 +9,7 @@ import java.sql.SQLException
 
 class CompetenciaDAO {
 
-    static List<Competencia> listar() {
+    List<Competencia> listar() {
         String sql = "SELECT * FROM competencias ORDER BY id"
         List<Competencia> retorno = new ArrayList<>()
 
@@ -25,12 +25,12 @@ class CompetenciaDAO {
             }
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao listar competência: " + e.getMessage())
+            e.printStackTrace()
         }
         return retorno
     }
 
-    static boolean inserir(Competencia competencia) {
+    boolean inserir(Competencia competencia) {
         String sql = "INSERT INTO competencias (competencia) VALUES (?)"
         try (Connection conn = ConexaoDAO.conectar()
              PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -40,11 +40,12 @@ class CompetenciaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao inserir competência: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 
-    static boolean alterar(Competencia competencia) {
+    boolean alterar(Competencia competencia) {
         String sql = "UPDATE competencias SET competencia = ? WHERE id = ?"
 
         try (Connection conn = ConexaoDAO.conectar()
@@ -56,21 +57,23 @@ class CompetenciaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar competência: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 
-    static boolean remover(Integer id) {
+    boolean remover(Integer id) {
         String sql = "DELETE FROM competencias WHERE id=?"
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
             stm.execute()
 
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao remover competência: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 }

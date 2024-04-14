@@ -20,21 +20,10 @@ class ConexaoDAO {
             Class.forName("org.postgresql.Driver")
             return DriverManager.getConnection(URL_SERVIDOR, properties)
         } catch (ClassNotFoundException e) {
-            System.err.println("Verifique o driver de conexão")
+            e.printStackTrace()
         } catch (SQLException e) {
-            System.err.println("Verifique se o servidor está ativo: " + e.getMessage())
+            e.printStackTrace()
         }
     }
 
-    static void desconectar(Connection conn) {
-
-        if (conn != null) {
-            try {
-                conn.close()
-            }catch (Exception e) {
-                e.printStackTrace()
-            }
-        }
-
-    }
 }

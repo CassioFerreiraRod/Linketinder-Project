@@ -4,7 +4,7 @@ import br.com.linketinder.model.entity.Competencia
 import br.com.linketinder.service.CompetenciaService
 
 class MenuAlteracao {
-    static void menuAlteracao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
+     void exibirMenuAlteracao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
         CompetenciaService.listarCompetencias()
 
         println "Digite o id da competência que deseja alterar:"
@@ -16,7 +16,7 @@ class MenuAlteracao {
 
         Competencia competenciaAlterada = new Competencia(id, competencia)
 
-        CompetenciaService.alterarCompetencia(competenciaAlterada)
+        competenciaService.alterarCompetencia(competenciaAlterada)
 
     }
 }
