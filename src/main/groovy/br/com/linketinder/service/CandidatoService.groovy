@@ -1,12 +1,7 @@
 package br.com.linketinder.service
 
-import br.com.linketinder.utils.DatabaseUtils
 import br.com.linketinder.dao.CandidatoDAO
-import br.com.linketinder.dao.ConexaoDAO
 import br.com.linketinder.model.entity.Candidato
-
-import java.sql.Connection
-import java.sql.SQLException
 
 class CandidatoService {
 
