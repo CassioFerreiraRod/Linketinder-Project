@@ -76,4 +76,45 @@ class CompetenciaDAO {
             return false
         }
     }
+
+    boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
+        String sql = """
+                    insert into candidato_competencias (candidato_id, competencia_id)
+                    values (?, ?)
+                    """
+
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, candidato_id)
+            stm.setInt(2, competencia_id)
+            stm.execute()
+
+            return true
+
+        } catch (SQLException e) {
+            e.printStackTrace()
+            return false
+        }
+    }
+
+    boolean inserirVagaCompetencia(int competencia_id, int vaga_id) {
+        String sql = """
+                    insert into vaga_competencias (vaga_id, competencia_id)
+                    values (?, ?);
+                    """
+
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, vaga_id)
+            stm.setInt(2, competencia_id)
+
+            stm.execute()
+
+            return true
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inserir competência vaga: " + e.getMessage())
+        }
+    }
+
 }

@@ -9,20 +9,20 @@ import java.sql.Connection
 import java.sql.SQLException
 
 class VagaService {
-    static VagaDAO vagaDAO
+    VagaDAO vagaDAO
 
     VagaService() {
         vagaDAO = new VagaDAO()
     }
 
-    static boolean listarVagas() {
+    boolean listarVagas() {
         List<Vaga> listaVagas = vagaDAO.listar()
         listaVagas.each {
             println(it)
         }
     }
 
-    static boolean cadastrarVaga(Vaga vaga) {
+    boolean cadastrarVaga(Vaga vaga) {
 
         boolean cadastroValido = vagaDAO.inserir(vaga)
 
@@ -30,28 +30,13 @@ class VagaService {
 
     }
 
-    static boolean cadastrarVagaCompetencia(List<String> listaCompetencias) {
-        try(Connection conn = ConexaoDAO.conectar()) {
-            List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
-            int vagaId = DatabaseUtils.obterIdVagaRecente(conn)
-
-            for (int id_comptencia : id_competencias) {
-                vagaDAO.inserirVagaCompetencia(id_comptencia, vagaId)
-            }
-
-            return true
-        } catch (SQLException e) {
-            throw new SQLException("Erro ao cadastrar competência na vaga: " + e.getMessage())
-        }
-    }
-
-    static boolean alterarVaga(Vaga vaga) {
+    boolean alterarVaga(Vaga vaga) {
         boolean alteracaoValida = vagaDAO.alterar(vaga)
 
         return alteracaoValida
     }
 
-    static boolean excluirVaga(int id) {
+    boolean excluirVaga(int id) {
         boolean exclusaoValida = vagaDAO.remover(id)
 
         return exclusaoValida

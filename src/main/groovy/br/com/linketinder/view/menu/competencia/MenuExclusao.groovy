@@ -4,7 +4,7 @@ import br.com.linketinder.service.CompetenciaService
 
 class MenuExclusao {
     void exibirMenuExclusao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
-        CompetenciaService.listarCompetencias()
+        competenciaService.listarCompetencias()
         println "Digite o id da competência que deseja excluir:"
         int id = Integer.parseInt(bufferedReader.readLine())
 

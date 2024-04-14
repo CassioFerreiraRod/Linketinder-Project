@@ -9,7 +9,7 @@ class MenuCandidato {
     MenuAlteracao menuAlteracao = new MenuAlteracao()
     MenuInsercao menuInsercao = new MenuInsercao()
 
-    void menuCandidatos(BufferedReader bufferedReader) {
+    void exibirMenuCandidatos(BufferedReader bufferedReader) {
         candidatoService = new CandidatoService()
         boolean continuar = true
         String opcao

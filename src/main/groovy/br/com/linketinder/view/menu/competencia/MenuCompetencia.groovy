@@ -8,7 +8,7 @@ class MenuCompetencia {
     MenuExclusao menuExclusao = new MenuExclusao()
     MenuInsercao menuInsercao = new MenuInsercao()
 
-    void menuCompetencias(BufferedReader bufferedReader) {
+    void exibirMenuCompetencias(BufferedReader bufferedReader) {
         competenciaService = new CompetenciaService()
         boolean continuar = true
         String opcao

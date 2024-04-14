@@ -67,7 +67,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException().printStackTrace()
+            throw new IllegalAccessException()
         }
 
     }
@@ -83,7 +83,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException().printStackTrace()
+            throw new IllegalAccessException()
         }
 
     }
@@ -100,7 +100,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException().printStackTrace()
+            throw new IllegalAccessException()
         }
 
     }
@@ -114,7 +114,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException().printStackTrace()
+            throw new IllegalAccessException()
         }
 
     }
@@ -134,7 +134,7 @@ class DatabaseUtils {
             if (resultado.next()) {
                 retorno.add(resultado.getInt("id"))
             } else {
-                throw new IllegalAccessException().printStackTrace()
+                throw new IllegalAccessException()
             }
         }
         return retorno
@@ -160,7 +160,7 @@ class DatabaseUtils {
         if (resultado.next()) {
             return resultado.getInt("id")
         } else {
-            throw new IllegalArgumentException().printStackTrace()
+            throw new IllegalAccessException()
         }
     }
 }

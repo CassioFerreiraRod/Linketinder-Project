@@ -4,7 +4,7 @@ import br.com.linketinder.model.entity.Empresa
 import br.com.linketinder.service.EmpresaService
 
 class MenuInsercao {
-    static void menuInsercao(BufferedReader bufferedReader, EmpresaService empresaService) {
+     void exibirMenuInsercao(BufferedReader bufferedReader, EmpresaService empresaService) {
         println "Digite o nome:"
         String nome = bufferedReader.readLine()
 
@@ -32,6 +32,6 @@ class MenuInsercao {
         Empresa novaEmpresa = new Empresa(nome, email, cnpj, cep, estado, pais, descricao, senha)
 
 
-        EmpresaService.cadastrarEmpresa(novaEmpresa)
+        empresaService.cadastrarEmpresa(novaEmpresa)
     }
 }

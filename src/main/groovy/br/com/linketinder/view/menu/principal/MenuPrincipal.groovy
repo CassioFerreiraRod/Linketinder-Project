@@ -29,16 +29,16 @@ class MenuPrincipal {
 
             switch (opcao) {
                 case '1':
-                    menuCandidato.menuCandidatos(br)
+                    menuCandidato.exibirMenuCandidatos(br)
                     break
                 case '2':
-                    menuEmpresa.menuEmpresas(br)
+                    menuEmpresa.exibirMenuEmpresas(br)
                     break
                 case '3':
-                    menuCompetencia.menuCompetencias(br)
+                    menuCompetencia.exibirMenuCompetencias(br)
                     break
                 case '4':
-                    menuVaga.menuVagas(br)
+                    menuVaga.exibirMenuVagas(br)
                     break
                 case '0':
                     continuar = false

@@ -4,7 +4,7 @@ import br.com.linketinder.service.CandidatoService
 
 class MenuExclusao {
     void exibirMenuExclusao(BufferedReader bufferedReader, CandidatoService candidatoService) {
-        CandidatoService.listarCandidatos()
+        candidatoService.listarCandidatos()
         println "Digite o id do candidato que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
 

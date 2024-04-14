@@ -30,20 +30,6 @@ class CandidatoService {
         return cadastroValido
     }
 
-    boolean cadastrarCandidatoCompetencia(List<String> listaCompetencias) {
-        try (Connection conn = ConexaoDAO.conectar()) {
-            List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
-            int candidatoId = DatabaseUtils.obterIdCandidatoRecente(conn)
-            for (int id_comptencia : id_competencias) {
-                candidatoDAO.inserirCandidatoCompetencia(id_comptencia, candidatoId)
-            }
-            return true
-        } catch (SQLException e) {
-            e.printStackTrace()
-            return false
-        }
-    }
-
     boolean alterarCandidato(Candidato candidato) {
         boolean alteracaoValida = candidatoDAO.alterar(candidato)
 

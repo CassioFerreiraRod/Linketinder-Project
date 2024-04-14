@@ -39,17 +39,17 @@ class MenuInsercao {
         Candidato novoCandidato = new Candidato(nome, sobrenome, email, cep, estado, pais,
                 descricao, cpf, dataNascimento, senha)
 
-        CandidatoService.cadastrarCandidato(novoCandidato)
+        candidatoService.cadastrarCandidato(novoCandidato)
 
         println "Listando competências cadastradas:"
         CompetenciaService competenciaService = new CompetenciaService()
-        CompetenciaService.listarCompetencias()
+        competenciaService.listarCompetencias()
 
         println "Digite as competências:(separar por vírgula, entre as competências listada)"
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
-        candidatoService.cadastrarCandidatoCompetencia(listaCompetencias)
+        competenciaService.cadastrarCandidatoCompetencia(listaCompetencias)
         println("Cadastro realizado com sucesso")
     }
 }

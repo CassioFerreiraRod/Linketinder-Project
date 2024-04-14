@@ -10,7 +10,7 @@ import java.sql.SQLException
 
 class EmpresaDAO {
 
-    static List<Empresa> listar() {
+    List<Empresa> listar() {
         String sql = """
                 SELECT emp.*, es.nome AS estado, p.nome AS pais
                 FROM empresas AS emp
@@ -20,8 +20,8 @@ class EmpresaDAO {
 
         List<Empresa> retorno = new ArrayList<>()
 
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
 
             while (resultado.next()) {
@@ -39,20 +39,20 @@ class EmpresaDAO {
             }
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao listar empresa: " + e.getMessage())
+            e.printStackTrace()
         }
         return retorno
 
     }
 
-    static boolean inserir(Empresa empresa) {
+    boolean inserir(Empresa empresa) {
         String sql = """
                       insert into empresas (nome_empresa, cnpj, email_corporativo, descricao_empresa, estado_id, pais_id, cep, senha)
                       values (?, ?, ?, ?, ?, ?, ?, ?);
                       """
 
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
             int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
@@ -69,12 +69,13 @@ class EmpresaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao inserir empresa: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 
 
-    static boolean alterar(Empresa empresa) {
+    boolean alterar(Empresa empresa) {
         String sql =
                 """
                 UPDATE empresas 
@@ -89,19 +90,17 @@ class EmpresaDAO {
                 WHERE id = ?;
                 """
 
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
+
             stm.setString(1, empresa.getNome())
             stm.setString(2, empresa.getCnpj())
             stm.setString(3, empresa.getEmail())
             stm.setString(4, empresa.getDescricao())
-
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
             stm.setInt(5, estadoId)
-
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
             stm.setInt(6, paisId)
-
             stm.setString(7, empresa.getCep())
             stm.setString(8, empresa.getSenha())
 
@@ -111,21 +110,23 @@ class EmpresaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar empresa: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 
-    static boolean remover(Integer id) {
+    boolean remover(Integer id) {
         String sql = "DELETE FROM empresas WHERE id = ?"
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
 
             stm.execute()
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao remover empresa: " + e.getMessage())
+            e.printStackTrace()
+            return false
         }
     }
 

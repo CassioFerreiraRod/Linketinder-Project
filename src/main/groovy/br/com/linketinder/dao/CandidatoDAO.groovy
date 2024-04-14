@@ -62,26 +62,6 @@ class CandidatoDAO {
         }
     }
 
-    boolean inserirCandidatoCompetencia(int competencia_id, int candidato_id) {
-        String sql = """
-                    insert into candidato_competencias (candidato_id, competencia_id)
-                    values (?, ?)
-                    """
-
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
-            stm.setInt(1, candidato_id)
-            stm.setInt(2, competencia_id)
-            stm.execute()
-
-            return true
-
-        } catch (SQLException e) {
-            e.printStackTrace()
-            return false
-        }
-    }
-
     boolean alterar(Candidato candidato) {
         String sql = """
             UPDATE candidatos 

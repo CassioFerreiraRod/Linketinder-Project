@@ -3,9 +3,13 @@ package br.com.linketinder.view.menu.empresa
 import br.com.linketinder.service.EmpresaService
 
 class MenuEmpresa {
-    static EmpresaService empresaService
+    EmpresaService empresaService
 
-    static void menuEmpresas(BufferedReader bufferedReader) {
+    void exibirMenuEmpresas(BufferedReader bufferedReader) {
+        MenuInsercao menuInsercao = new MenuInsercao()
+        MenuAlteracao menuAlteracao = new MenuAlteracao()
+        MenuExclusao menuExclusao = new MenuExclusao()
+
         empresaService = new EmpresaService()
         boolean continuar = true
         String opcao
@@ -20,16 +24,16 @@ class MenuEmpresa {
 
             switch (opcao) {
                 case '1':
-                    EmpresaService.listarEmpresas()
+                    empresaService.listarEmpresas()
                     break
                 case '2':
-                    MenuInsercao.menuInsercao(bufferedReader, empresaService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, empresaService)
                     break
                 case '3':
-                   MenuAlteracao.menuAlteracao(bufferedReader, empresaService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, empresaService)
                     break
                 case '4':
-                    MenuExclusao.menuExclusao(bufferedReader, empresaService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, empresaService)
                     break
                 case '0':
                     continuar = false

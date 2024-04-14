@@ -4,8 +4,8 @@ import br.com.linketinder.model.entity.Empresa
 import br.com.linketinder.service.EmpresaService
 
 class MenuAlteracao {
-    static void menuAlteracao(BufferedReader bufferedReader, EmpresaService empresaService) {
-        EmpresaService.listarEmpresas()
+     void exibirMenuAlteracao(BufferedReader bufferedReader, EmpresaService empresaService) {
+        empresaService.listarEmpresas()
 
         println "Digite o id da empresa que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
@@ -37,7 +37,7 @@ class MenuAlteracao {
         Empresa empresaAlterada = new Empresa(id, nome, email, cnpj, cep, estado, pais,
                 descricao, senha)
 
-        EmpresaService.alterarEmpresa(empresaAlterada)
+        empresaService.alterarEmpresa(empresaAlterada)
 
     }
 }
