@@ -6,11 +6,11 @@ module.exports = {
     entry: {
         cadastroCandidato:'/src/cadastro/cadastroCandidato.ts',
         cadastroEmpresa:'/src/cadastro/cadastroEmpresa.ts',
-        formatarCampos:'/src/cadastro/formatarCampos.ts',
+        formatarCampos:'/src/tools/formatarCampos.ts',
         perfilCandidato:'/src/perfil/perfilCandidato.ts',
         perfilEmpresa:'/src/perfil/perfilEmpresa.ts',
-        exibirGrafico:'/src/perfil/exibirGrafico.ts',
-        popularLocalStorage:'/src/cadastro/popularLocalStorage'
+        exibirGrafico:'/src/tools/exibirGrafico.ts',
+        popularLocalStorage:'/src/storageDB/popularLocalStorage'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),

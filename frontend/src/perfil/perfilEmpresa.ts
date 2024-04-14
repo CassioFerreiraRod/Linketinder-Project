@@ -1,8 +1,8 @@
-import { Candidato } from "../usuario/Candidato";
-import { CandidatoStorage } from "../cadastro/CandidatoStorage";
-import { EmpresaStorage } from "../cadastro/EmpresaStorage";
-import { Empresa } from "../usuario/Empresa";
-import { anonimizarNome, anonimizarEmail } from "./deixaDadosEmAnomino"
+import { Candidato } from "../model/Candidato";
+import { CandidatoStorage } from "../storageDB/CandidatoStorage";
+import { EmpresaStorage } from "../storageDB/EmpresaStorage";
+import { Empresa } from "../model/Empresa";
+import { anonimizarNome, anonimizarEmail } from "../tools/deixaDadosEmAnomino"
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -74,18 +74,6 @@ function preencherDadosPerfil(empresa: Empresa): void {
 
     if (descricaoElement) {
         descricaoElement.textContent = empresa.descricao
-    }
-
-    const competenciasElement = document.querySelector('.competencias')
-
-    if (competenciasElement) {
-        competenciasElement.innerHTML = ''
-    
-        
-        empresa.competencias.forEach(competencia => {
-            
-            competenciasElement.innerHTML += `<li class="badge text-bg-secondary text-wrap me-2">${competencia}</li>`
-        });
     }
  
 }

@@ -1,8 +1,8 @@
-import { Candidato } from "../usuario/Candidato";
-import { CandidatoStorage } from "../cadastro/CandidatoStorage";
-import { EmpresaStorage } from "../cadastro/EmpresaStorage";
-import { Empresa } from "../usuario/Empresa";
-import { anonimizarNome, anonimizarEmail } from "./deixaDadosEmAnomino"
+import { Candidato } from "../model/Candidato";
+import { CandidatoStorage } from "../storageDB/CandidatoStorage";
+import { anonimizarNome, anonimizarEmail } from "../tools/deixaDadosEmAnomino"
+import {Vagas} from "../model/Vagas";
+import {VagaStorage} from "../storageDB/VagaStorage";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -19,25 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Candidato nao encontrada");
     }
 
-    const empresaStorage = new EmpresaStorage()
-    const empresas = empresaStorage.getStoredEmpresas()
-    listarEmpresas(empresas)
+    const vagaStorage = new VagaStorage()
+    const vagas = vagaStorage.getStoredVagass()
+    listarVagas(vagas)
 })
 
-function listarEmpresas(empreas: Empresa[]): void {
+function listarVagas(vagas: Vagas[]): void {
 
-    const empresasElement = document.getElementById('lista-empresas')
+    const vagasElement = document.getElementById('lista-vagas')
 
-    if (empresasElement) {
-        empresasElement.innerHTML += ''
-        empreas.forEach((empresa) => {
-            empresasElement.innerHTML += `
+    if (vagasElement) {
+        vagasElement.innerHTML += ''
+        vagas.forEach((vaga) => {
+            vagasElement.innerHTML += `
                 <div class="mb-3" style="max-width: 300px;">                
-                     <h4>${anonimizarNome(empresa.nome)}</h4>
-                     <p>Email: ${anonimizarEmail(empresa.email)}</p>
-                     <p>Localização: ${empresa.pais}, ${empresa.estado}</p>
-                     <p>Competências: ${empresa.competencias.join(", ")}</p>
-                     <p>Descrição: ${empresa.descricao}</p>                    
+                     <h4>${anonimizarNome(vaga.nomeEmpresa)}</h4>
+                     <p>Descrição: ${vaga.descricaoVaga}</p>
+                     <p>Localização: ${anonimizarNome(vaga.cidade)}, ${anonimizarNome(vaga.estado)}</p>
+                     <p>Competências: ${vaga.competencias.join(", ")}</p>
                 </div>
             `
         })

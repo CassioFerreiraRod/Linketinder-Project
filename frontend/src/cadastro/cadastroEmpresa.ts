@@ -1,6 +1,6 @@
-import { Empresa } from "../usuario/Empresa";
-import { EmpresaStorage } from "./EmpresaStorage"
-import { validarCep, validarCnpj, validarEmail } from "./ValidarDados";
+import { Empresa } from "../model/Empresa";
+import { EmpresaStorage } from "../storageDB/EmpresaStorage"
+import { validarCep, validarCnpj, validarEmail } from "../tools/ValidarDados";
 
 let nome: string
 let cnpj: string
@@ -9,13 +9,12 @@ let cep: string
 let estado: string
 let pais: string
 let descricao: string
-let competencias: string[] = []
 
 const empresaForm: HTMLElement | null = document.forms.namedItem("cadastroEmpresa")
 empresaForm?.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    if (nome && cnpj && email && cep && estado && pais && descricao && competencias.length > 0 && validarDados()) {
+    if (nome && cnpj && email && cep && estado && pais && descricao && validarDados()) {
 
         const empresa: Empresa = new Empresa(
             nome,
@@ -25,7 +24,6 @@ empresaForm?.addEventListener('submit', (event) => {
             estado,
             pais,
             descricao,
-            competencias
         )
 
         const storage: EmpresaStorage = new EmpresaStorage()
@@ -48,7 +46,7 @@ function validarDados(): boolean {
 
 
 function atulizarFormulario(): void {
-    const campos: string[] = ["nome", "cnpj", "email", "cep", "estado", "pais", "descricao", "competencias"]
+    const campos: string[] = ["nome", "cnpj", "email", "cep", "estado", "pais", "descricao"]
     campos.forEach((campo => {
         const entrada: HTMLInputElement = document.getElementById(campo) as HTMLInputElement
         entrada?.addEventListener("change", () => {
@@ -79,17 +77,6 @@ function atulizarFormulario(): void {
             }
         })
     }))
-    const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('input[name="competencias"]')
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                competencias.push(checkbox.value);
-            } else {
-                competencias = competencias.filter((competencia) => competencia !== checkbox.value)
-            }
-        })
-
-    })
 }
 
 atulizarFormulario()

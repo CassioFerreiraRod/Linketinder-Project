@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
-    "cleave.js": "^1.6.0"
+    "cleave.js": "^1.6.0",
+    "globby": "^14.0.1"
   }
 }

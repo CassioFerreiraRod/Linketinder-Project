@@ -1,6 +1,6 @@
-import { Candidato } from "../usuario/Candidato";
-import { CandidatoStorage } from "./CandidatoStorage"
-import { validarCep, validarCnpj, validarCpf, validarEmail } from "./ValidarDados"
+import { Candidato } from "../model/Candidato";
+import { CandidatoStorage } from "../storageDB/CandidatoStorage"
+import { validarCep, validarCnpj, validarCpf, validarEmail } from "../tools/ValidarDados"
 
 let nome: string
 let idade: number
