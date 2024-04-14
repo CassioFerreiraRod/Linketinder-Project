@@ -16,19 +16,14 @@ class CompetenciaDAO {
         try (Connection conn = ConexaoDAO.conectar()
              PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
-            while (resultado.next()) {
-                Competencia competencia = new Competencia(
-                        resultado.getInt("id"),
-                        resultado.getString("competencia")
-                )
-                retorno.add(competencia)
-            }
+            adicionarCompetenciasNaLista(resultado, retorno)
 
         } catch (SQLException e) {
             e.printStackTrace()
         }
         return retorno
     }
+
 
     boolean inserir(Competencia competencia) {
         String sql = "INSERT INTO competencias (competencia) VALUES (?)"
@@ -117,4 +112,13 @@ class CompetenciaDAO {
         }
     }
 
+    private void adicionarCompetenciasNaLista(ResultSet resultado, ArrayList<Competencia> retorno) {
+        while (resultado.next()) {
+            Competencia competencia = new Competencia(
+                    resultado.getInt("id"),
+                    resultado.getString("competencia")
+            )
+            retorno.add(competencia)
+        }
+    }
 }

@@ -24,19 +24,7 @@ class EmpresaDAO {
              PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
 
-            while (resultado.next()) {
-                Empresa empresa = new Empresa(
-                        resultado.getInt("id"),
-                        resultado.getString("nome_empresa"),
-                        resultado.getString("email_corporativo"),
-                        resultado.getString("cnpj"),
-                        resultado.getString("cep"),
-                        resultado.getString("estado"),
-                        resultado.getString("pais"),
-                        resultado.getString("descricao_empresa")
-                )
-                retorno.add(empresa)
-            }
+            adicionarEmpresaNaLista(resultado, retorno)
 
         } catch (SQLException e) {
             e.printStackTrace()
@@ -44,6 +32,7 @@ class EmpresaDAO {
         return retorno
 
     }
+
 
     boolean inserir(Empresa empresa) {
         String sql = """
@@ -130,4 +119,19 @@ class EmpresaDAO {
         }
     }
 
+    private void adicionarEmpresaNaLista(ResultSet resultado, ArrayList<Empresa> retorno) {
+        while (resultado.next()) {
+            Empresa empresa = new Empresa(
+                    resultado.getInt("id"),
+                    resultado.getString("nome_empresa"),
+                    resultado.getString("email_corporativo"),
+                    resultado.getString("cnpj"),
+                    resultado.getString("cep"),
+                    resultado.getString("estado"),
+                    resultado.getString("pais"),
+                    resultado.getString("descricao_empresa")
+            )
+            retorno.add(empresa)
+        }
+    }
 }

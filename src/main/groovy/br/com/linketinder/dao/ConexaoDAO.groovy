@@ -1,8 +1,9 @@
 package br.com.linketinder.dao
 
+import org.postgresql.util.PSQLException
+
 import java.sql.Connection
 import java.sql.DriverManager
-import java.sql.SQLException
 
 class ConexaoDAO {
 
@@ -21,7 +22,7 @@ class ConexaoDAO {
             return DriverManager.getConnection(URL_SERVIDOR, properties)
         } catch (ClassNotFoundException e) {
             e.printStackTrace()
-        } catch (SQLException e) {
+        } catch (PSQLException e) {
             e.printStackTrace()
         }
     }

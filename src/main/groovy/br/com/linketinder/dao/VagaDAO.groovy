@@ -10,7 +10,7 @@ import java.sql.SQLException
 
 class VagaDAO {
 
-    static List<Vaga> listar() {
+    List<Vaga> listar() {
         String sql = """SELECT v.*, es.nome AS estado, e.nome_empresa AS empresa
                 FROM vagas AS v
                 JOIN estados AS es ON v.estado_id = es.id
@@ -21,18 +21,7 @@ class VagaDAO {
         try (Connection conn = ConexaoDAO.conectar()
              PreparedStatement stm = conn.prepareStatement(sql)) {
             ResultSet resultado = stm.executeQuery()
-            while (resultado.next()) {
-                Vaga vaga = new Vaga(
-                        resultado.getInt("id"),
-                        resultado.getString("empresa"),
-                        resultado.getString("nome"),
-                        resultado.getString("descricao"),
-                        resultado.getString("cidade"),
-                        resultado.getString("estado"),
-                        DatabaseUtils.competenciasVaga(resultado.getInt("id"), conn)
-                )
-                retorno.add(vaga)
-            }
+            adicionaVagaNaLista(resultado, conn, retorno)
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao listar vaga: " + e.getMessage())
@@ -41,7 +30,7 @@ class VagaDAO {
     }
 
 
-    static boolean inserir(Vaga vaga) {
+    boolean inserir(Vaga vaga) {
         String sql = "INSERT INTO vagas(nome, descricao, cidade, estado_id, empresa_id) values (?, ?, ?, ?, ?)"
 
         try (Connection conn = ConexaoDAO.conectar()
@@ -64,11 +53,11 @@ class VagaDAO {
         }
     }
 
-    static boolean alterar(Vaga vaga) {
+    boolean alterar(Vaga vaga) {
         String sql = "UPDATE vagas SET nome = ?, descricao = ?, cidade = ?, estado_id = ?, empresa_id = ? WHERE id = ?"
 
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, vaga.getEstado())
             int empresaId = DatabaseUtils.obterEmpresaIdPorNome(conn, vaga.getEmpresa())
 
@@ -88,10 +77,10 @@ class VagaDAO {
 
     }
 
-    static boolean remover(Integer id) {
+    boolean remover(Integer id) {
         String sql = "DELETE FROM vagas WHERE id = ?"
-        try(Connection conn = ConexaoDAO.conectar()
-            PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexaoDAO.conectar()
+             PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id)
             stm.execute()
 
@@ -101,4 +90,18 @@ class VagaDAO {
         }
     }
 
+    private void adicionaVagaNaLista(ResultSet resultado, Connection conn, ArrayList<Vaga> retorno) {
+        while (resultado.next()) {
+            Vaga vaga = new Vaga(
+                    resultado.getInt("id"),
+                    resultado.getString("empresa"),
+                    resultado.getString("nome"),
+                    resultado.getString("descricao"),
+                    resultado.getString("cidade"),
+                    resultado.getString("estado"),
+                    DatabaseUtils.competenciasVaga(resultado.getInt("id"), conn)
+            )
+            retorno.add(vaga)
+        }
+    }
 }
