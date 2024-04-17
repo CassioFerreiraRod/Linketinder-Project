@@ -10,6 +10,8 @@ import java.sql.SQLException
 
 class VagaDAO {
 
+    Connection conn
+
     List<Vaga> listar() {
         String sql = """SELECT v.*, es.nome AS estado, e.nome_empresa AS empresa
                 FROM vagas AS v
@@ -18,13 +20,15 @@ class VagaDAO {
                 ORDER BY v.id"""
         List<Vaga> retorno = new ArrayList<>()
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             ResultSet resultado = stm.executeQuery()
             adicionaVagaNaLista(resultado, conn, retorno)
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao listar vaga: " + e.getMessage())
+            e.printStackTrace()
+        } finally {
+            this.conn.close()
         }
         return retorno
     }
@@ -33,8 +37,8 @@ class VagaDAO {
     boolean inserir(Vaga vaga) {
         String sql = "INSERT INTO vagas(nome, descricao, cidade, estado_id, empresa_id) values (?, ?, ?, ?, ?)"
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             stm.setString(1, vaga.getNome())
             stm.setString(2, vaga.getDescricao())
             stm.setString(3, vaga.getCidade())
@@ -49,15 +53,19 @@ class VagaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao inserir vaga: " + e.getMessage())
+            e.printStackTrace()
+            return false
+        } finally {
+            this.conn.close()
         }
     }
 
     boolean alterar(Vaga vaga) {
         String sql = "UPDATE vagas SET nome = ?, descricao = ?, cidade = ?, estado_id = ?, empresa_id = ? WHERE id = ?"
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, vaga.getEstado())
             int empresaId = DatabaseUtils.obterEmpresaIdPorNome(conn, vaga.getEmpresa())
 
@@ -72,21 +80,28 @@ class VagaDAO {
             return true
 
         } catch (SQLException e) {
-            throw new SQLException("Erro ao alterar vaga: " + e.getMessage())
+            e.printStackTrace()
+            return false
+        } finally {
+            this.conn.close()
         }
 
     }
 
     boolean remover(Integer id) {
         String sql = "DELETE FROM vagas WHERE id = ?"
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setInt(1, id)
             stm.execute()
 
             return true
         } catch (SQLException e) {
-            throw new SQLException("Erro ao remover vaga: " + e.getMessage())
+            e.printStackTrace()
+            return false
+        } finally {
+            this.conn.close()
         }
     }
 

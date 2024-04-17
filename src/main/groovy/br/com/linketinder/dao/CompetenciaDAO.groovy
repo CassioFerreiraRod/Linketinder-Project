@@ -9,17 +9,22 @@ import java.sql.SQLException
 
 class CompetenciaDAO {
 
+    Connection conn
+
     List<Competencia> listar() {
         String sql = "SELECT * FROM competencias ORDER BY id"
         List<Competencia> retorno = new ArrayList<>()
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             ResultSet resultado = stm.executeQuery()
             adicionarCompetenciasNaLista(resultado, retorno)
 
         } catch (SQLException e) {
             e.printStackTrace()
+        } finally {
+            this.conn.close()
         }
         return retorno
     }
@@ -27,8 +32,9 @@ class CompetenciaDAO {
 
     boolean inserir(Competencia competencia) {
         String sql = "INSERT INTO competencias (competencia) VALUES (?)"
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setString(1, competencia.getCompetencia())
             stm.execute()
 
@@ -37,14 +43,17 @@ class CompetenciaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
     boolean alterar(Competencia competencia) {
         String sql = "UPDATE competencias SET competencia = ? WHERE id = ?"
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setString(1, competencia.getCompetencia())
             stm.setInt(2, competencia.getId())
             stm.execute()
@@ -54,13 +63,16 @@ class CompetenciaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
     boolean remover(Integer id) {
         String sql = "DELETE FROM competencias WHERE id=?"
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setInt(1, id)
             stm.execute()
 
@@ -69,6 +81,8 @@ class CompetenciaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
@@ -78,8 +92,8 @@ class CompetenciaDAO {
                     values (?, ?)
                     """
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             stm.setInt(1, candidato_id)
             stm.setInt(2, competencia_id)
             stm.execute()
@@ -98,8 +112,8 @@ class CompetenciaDAO {
                     values (?, ?);
                     """
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             stm.setInt(1, vaga_id)
             stm.setInt(2, competencia_id)
 

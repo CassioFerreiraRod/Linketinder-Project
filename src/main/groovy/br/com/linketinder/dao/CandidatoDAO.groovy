@@ -9,6 +9,7 @@ import java.sql.ResultSet
 import java.sql.SQLException
 
 class CandidatoDAO {
+    Connection conn
 
     List<Candidato> listar() {
         String sql = """
@@ -17,16 +18,20 @@ class CandidatoDAO {
                 JOIN estados AS es ON c.estado_id = es.id
                 JOIN pais AS p on c.pais_id = p.id
                 ORDER BY c.id"""
+
         List<Candidato> retorno = new ArrayList<>()
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             ResultSet resultado = stm.executeQuery()
 
             adicionaCanditosNaLista(resultado, conn, retorno)
 
         } catch (SQLException e) {
             e.printStackTrace()
+        } finally {
+            this.conn.close()
         }
         return retorno
     }
@@ -37,8 +42,9 @@ class CandidatoDAO {
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
             int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
 
@@ -59,6 +65,8 @@ class CandidatoDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
@@ -70,14 +78,15 @@ class CandidatoDAO {
             WHERE  id = ?
             """
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
             int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
 
             stm.setString(1, candidato.getNome())
             stm.setString(2, candidato.getSobrenome())
-            stm.setDate(3, getDataNascimento())
+            stm.setDate(3, candidato.getDataNascimento())
             stm.setString(4, candidato.getEmail())
             stm.setString(5, candidato.getCpf())
             stm.setInt(6, estadoId)
@@ -93,14 +102,17 @@ class CandidatoDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
     boolean remover(Integer id) {
         String sql = "DELETE FROM candidatos where id = ?"
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setInt(1, id)
             stm.execute()
 
@@ -109,6 +121,8 @@ class CandidatoDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 

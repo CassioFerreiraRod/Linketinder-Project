@@ -10,6 +10,8 @@ import java.sql.SQLException
 
 class EmpresaDAO {
 
+    Connection conn
+
     List<Empresa> listar() {
         String sql = """
                 SELECT emp.*, es.nome AS estado, p.nome AS pais
@@ -20,14 +22,16 @@ class EmpresaDAO {
 
         List<Empresa> retorno = new ArrayList<>()
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             ResultSet resultado = stm.executeQuery()
 
             adicionarEmpresaNaLista(resultado, retorno)
 
         } catch (SQLException e) {
             e.printStackTrace()
+        } finally {
+            this.conn.close()
         }
         return retorno
 
@@ -40,8 +44,8 @@ class EmpresaDAO {
                       values (?, ?, ?, ?, ?, ?, ?, ?);
                       """
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
             int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
@@ -60,6 +64,8 @@ class EmpresaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
@@ -79,8 +85,9 @@ class EmpresaDAO {
                 WHERE id = ?;
                 """
 
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
             int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
@@ -101,13 +108,16 @@ class EmpresaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
     boolean remover(Integer id) {
         String sql = "DELETE FROM empresas WHERE id = ?"
-        try (Connection conn = ConexaoDAO.conectar()
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = conn.prepareStatement(sql)) {
+            this.conn = ConexaoDAO.conectar()
+
             stm.setInt(1, id)
 
             stm.execute()
@@ -116,6 +126,8 @@ class EmpresaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
             return false
+        } finally {
+            this.conn.close()
         }
     }
 
