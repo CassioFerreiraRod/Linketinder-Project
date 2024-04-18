@@ -4,6 +4,7 @@ import org.postgresql.util.PSQLException
 
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 
 class ConexaoDAO {
 
@@ -21,10 +22,22 @@ class ConexaoDAO {
             Class.forName("org.postgresql.Driver")
             return DriverManager.getConnection(URL_SERVIDOR, properties)
         } catch (ClassNotFoundException e) {
-            e.printStackTrace()
-        } catch (PSQLException e) {
-            e.printStackTrace()
+            throw e
+        } catch (SQLException e) {
+            throw e
         }
+    }
+
+    static void desconectar(Connection conn) {
+
+        if (conn != null) {
+            try {
+                conn.close()
+            } catch (Exception e) {
+                e.printStackTrace()
+            }
+        }
+
     }
 
 }

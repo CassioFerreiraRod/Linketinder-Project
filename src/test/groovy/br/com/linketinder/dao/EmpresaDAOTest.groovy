@@ -27,7 +27,7 @@ class EmpresaDAOTest {
         when(connectionMock.prepareStatement(anyString(), anyInt(), anyInt())).thenReturn(prepareStatementMock)
         when(prepareStatementMock.executeQuery()).thenReturn(resultSetMock)
 
-        empresaDAO = new EmpresaDAO(conn: connectionMock)
+        empresaDAO = new EmpresaDAO(connectionMock)
     }
 
     @Test

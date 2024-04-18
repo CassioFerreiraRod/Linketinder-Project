@@ -28,7 +28,7 @@ class CandidatoDAOTest {
         when(connectionMock.prepareStatement(anyString(), anyInt(), anyInt())).thenReturn(prepareStatementMock)
         when(prepareStatementMock.executeQuery()).thenReturn(resultSetMock)
 
-        candidatoDAO = new CandidatoDAO(conn: connectionMock)
+        candidatoDAO = new CandidatoDAO(connectionMock)
     }
 
     @Test

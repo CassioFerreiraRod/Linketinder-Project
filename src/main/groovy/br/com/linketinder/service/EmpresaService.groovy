@@ -1,5 +1,6 @@
 package br.com.linketinder.service
 
+import br.com.linketinder.dao.ConexaoDAO
 import br.com.linketinder.dao.EmpresaDAO
 import br.com.linketinder.model.entity.Empresa
 
@@ -7,10 +8,10 @@ class EmpresaService {
     EmpresaDAO empresaDAO
 
     EmpresaService() {
-        empresaDAO = new EmpresaDAO()
+        empresaDAO = new EmpresaDAO(ConexaoDAO.conectar())
     }
 
-    boolean listarEmpresas() {
+    void listarEmpresas() {
         List<Empresa> listaEmpresas = empresaDAO.listar()
         listaEmpresas.each {
             println(it)
@@ -18,20 +19,14 @@ class EmpresaService {
     }
 
     boolean cadastrarEmpresa(Empresa empresa) {
-        boolean cadastroValido = empresaDAO.inserir(empresa)
-
-        return cadastroValido
+        return empresaDAO.inserir(empresa)
     }
 
     boolean alterarEmpresa(Empresa empresa) {
-        boolean aleracaoValida = empresaDAO.alterar(empresa)
-
-        return aleracaoValida
+        return empresaDAO.alterar(empresa)
     }
 
     boolean excluirEmpresa(Integer id) {
-        boolean exclusaoValida = empresaDAO.remover(id)
-
-        return exclusaoValida
+        return empresaDAO.remover(id)
     }
 }

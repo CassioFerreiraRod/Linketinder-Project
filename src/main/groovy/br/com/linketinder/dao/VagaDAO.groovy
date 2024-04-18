@@ -12,6 +12,10 @@ class VagaDAO {
 
     Connection conn
 
+    VagaDAO(Connection conn) {
+        this.conn = conn
+    }
+
     List<Vaga> listar() {
         String sql = """SELECT v.*, es.nome AS estado, e.nome_empresa AS empresa
                 FROM vagas AS v

@@ -3,19 +3,15 @@ package br.com.linketinder.service
 import br.com.linketinder.dao.VagaDAO
 import br.com.linketinder.dao.ConexaoDAO
 import br.com.linketinder.model.entity.Vaga
-import br.com.linketinder.utils.DatabaseUtils
-
-import java.sql.Connection
-import java.sql.SQLException
 
 class VagaService {
     VagaDAO vagaDAO
 
     VagaService() {
-        vagaDAO = new VagaDAO()
+        vagaDAO = new VagaDAO(ConexaoDAO.conectar())
     }
 
-    boolean listarVagas() {
+    void listarVagas() {
         List<Vaga> listaVagas = vagaDAO.listar()
         listaVagas.each {
             println(it)
@@ -23,22 +19,14 @@ class VagaService {
     }
 
     boolean cadastrarVaga(Vaga vaga) {
-
-        boolean cadastroValido = vagaDAO.inserir(vaga)
-
-        return cadastroValido
-
+        return vagaDAO.inserir(vaga)
     }
 
     boolean alterarVaga(Vaga vaga) {
-        boolean alteracaoValida = vagaDAO.alterar(vaga)
-
-        return alteracaoValida
+        return vagaDAO.alterar(vaga)
     }
 
     boolean excluirVaga(int id) {
-        boolean exclusaoValida = vagaDAO.remover(id)
-
-        return exclusaoValida
+        return vagaDAO.remover(id)
     }
 }

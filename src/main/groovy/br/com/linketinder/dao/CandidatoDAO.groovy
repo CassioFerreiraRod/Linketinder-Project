@@ -11,6 +11,10 @@ import java.sql.SQLException
 class CandidatoDAO {
     Connection conn
 
+    CandidatoDAO(Connection conn) {
+        this.conn = conn
+    }
+
     List<Candidato> listar() {
         String sql = """
                 SELECT c.*, es.nome AS estado, p.nome AS pais
@@ -21,17 +25,17 @@ class CandidatoDAO {
 
         List<Candidato> retorno = new ArrayList<>()
 
-        try (PreparedStatement stm = conn.prepareStatement(sql)) {
-            this.conn = ConexaoDAO.conectar()
+        try {
+            try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
+                ResultSet resultado = stm.executeQuery()
 
-            ResultSet resultado = stm.executeQuery()
-
-            adicionaCanditosNaLista(resultado, conn, retorno)
+                adicionaCanditosNaLista(resultado, this.conn, retorno)
+            }
 
         } catch (SQLException e) {
             e.printStackTrace()
         } finally {
-            this.conn.close()
+            ConexaoDAO.desconectar(this.conn)
         }
         return retorno
     }
@@ -42,23 +46,24 @@ class CandidatoDAO {
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
-        try (PreparedStatement stm = conn.prepareStatement(sql)) {
-            this.conn = ConexaoDAO.conectar()
+        try {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
 
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
+            try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
 
-            stm.setString(1, candidato.getNome())
-            stm.setString(2, candidato.getSobrenome())
-            stm.setDate(3, candidato.getDataNascimento())
-            stm.setString(4, candidato.getEmail())
-            stm.setString(5, candidato.getCpf())
-            stm.setInt(6, estadoId)
-            stm.setInt(7, paisId)
-            stm.setString(8, candidato.getCep())
-            stm.setString(9, candidato.getDescricao())
-            stm.setString(10, candidato.getSenha())
-            stm.execute()
+                stm.setString(1, candidato.getNome())
+                stm.setString(2, candidato.getSobrenome())
+                stm.setDate(3, candidato.getDataNascimento())
+                stm.setString(4, candidato.getEmail())
+                stm.setString(5, candidato.getCpf())
+                stm.setInt(6, estadoId)
+                stm.setInt(7, paisId)
+                stm.setString(8, candidato.getCep())
+                stm.setString(9, candidato.getDescricao())
+                stm.setString(10, candidato.getSenha())
+                stm.executeUpdate()
+            }
 
             return true
 
@@ -66,7 +71,7 @@ class CandidatoDAO {
             e.printStackTrace()
             return false
         } finally {
-            this.conn.close()
+            ConexaoDAO.desconectar(this.conn)
         }
     }
 
@@ -78,51 +83,49 @@ class CandidatoDAO {
             WHERE  id = ?
             """
 
-        try (PreparedStatement stm = conn.prepareStatement(sql)) {
-            this.conn = ConexaoDAO.conectar()
+        try {
+            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
+            int paisId = DatabaseUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
 
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, candidato.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, candidato.getPais())
+            try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
+                stm.setString(1, candidato.getNome())
+                stm.setString(2, candidato.getSobrenome())
+                stm.setDate(3, candidato.getDataNascimento())
+                stm.setString(4, candidato.getEmail())
+                stm.setString(5, candidato.getCpf())
+                stm.setInt(6, estadoId)
+                stm.setInt(7, paisId)
+                stm.setString(8, candidato.getCep())
+                stm.setString(9, candidato.getDescricao())
+                stm.setString(10, candidato.getSenha())
 
-            stm.setString(1, candidato.getNome())
-            stm.setString(2, candidato.getSobrenome())
-            stm.setDate(3, candidato.getDataNascimento())
-            stm.setString(4, candidato.getEmail())
-            stm.setString(5, candidato.getCpf())
-            stm.setInt(6, estadoId)
-            stm.setInt(7, paisId)
-            stm.setString(8, candidato.getCep())
-            stm.setString(9, candidato.getDescricao())
-            stm.setString(10, candidato.getSenha())
-
-            stm.setInt(11, candidato.getId())
-            stm.execute()
-
+                stm.setInt(11, candidato.getId())
+                stm.executeUpdate()
+            }
             return true
         } catch (SQLException e) {
             e.printStackTrace()
             return false
         } finally {
-            this.conn.close()
+            ConexaoDAO.desconectar(this.conn)
         }
     }
 
     boolean remover(Integer id) {
         String sql = "DELETE FROM candidatos where id = ?"
 
-        try (PreparedStatement stm = conn.prepareStatement(sql)) {
-            this.conn = ConexaoDAO.conectar()
-
-            stm.setInt(1, id)
-            stm.execute()
-
+        try {
+            try (PreparedStatement stm = conn.prepareStatement(sql)) {
+                stm.setInt(1, id)
+                stm.executeUpdate()
+            }
             return true
 
         } catch (SQLException e) {
             e.printStackTrace()
             return false
         } finally {
-            this.conn.close()
+            ConexaoDAO.desconectar(this.conn)
         }
     }
 

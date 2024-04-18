@@ -28,7 +28,7 @@ class CompetenciaDAOTest {
         when(connectionMock.prepareStatement(anyString(), anyInt(), anyInt())).thenReturn(prepareStatementMock)
         when(prepareStatementMock.executeQuery()).thenReturn(resultSetMock)
 
-        competenciaDAO = new CompetenciaDAO(conn: connectionMock)
+        competenciaDAO = new CompetenciaDAO(connectionMock)
     }
 
     @Test

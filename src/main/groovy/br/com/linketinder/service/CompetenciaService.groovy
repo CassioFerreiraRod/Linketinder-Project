@@ -1,9 +1,7 @@
 package br.com.linketinder.service
 
-import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.dao.CompetenciaDAO
 import br.com.linketinder.dao.ConexaoDAO
-import br.com.linketinder.dao.VagaDAO
 import br.com.linketinder.model.entity.Competencia
 import br.com.linketinder.utils.DatabaseUtils
 
@@ -14,10 +12,10 @@ class CompetenciaService {
     CompetenciaDAO competenciaDAO
 
     CompetenciaService() {
-        competenciaDAO = new CompetenciaDAO()
+        competenciaDAO = new CompetenciaDAO(ConexaoDAO.conectar())
     }
 
-    boolean listarCompetencias() {
+    void listarCompetencias() {
         List<Competencia> listaCompetencias = competenciaDAO.listar()
         listaCompetencias.each {
             println(it)
@@ -25,21 +23,15 @@ class CompetenciaService {
     }
 
     boolean cadastrarCompetencia(Competencia competencia) {
-        boolean cadastroValido = competenciaDAO.inserir(competencia)
-
-        return cadastroValido
+        return competenciaDAO.inserir(competencia)
     }
 
-    boolean alterarCompetencia(Competencia competencia) {
-        boolean aleracaoValida = competenciaDAO.alterar(competencia)
-
-        return aleracaoValida
+    boolean alterarCompetencia(Competencia competencia){
+        return competenciaDAO.alterar(competencia)
     }
 
     boolean excluirCompetencia(Integer id) {
-        boolean exclusaoValida = competenciaDAO.remover(id)
-
-        return exclusaoValida
+        return competenciaDAO.remover(id)
     }
 
     boolean cadastrarCandidatoCompetencia(List<String> competencias) {

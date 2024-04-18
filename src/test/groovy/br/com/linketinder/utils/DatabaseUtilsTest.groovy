@@ -1,25 +1,25 @@
 package br.com.linketinder.utils
 
 import br.com.linketinder.dao.CandidatoDAO
-import br.com.linketinder.dao.ConexaoDAO
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 import java.sql.Connection
 
 import static org.junit.Assert.*
+import static org.mockito.Mockito.mock
 
 class DatabaseUtilsTest {
 
     static DatabaseUtils databaseUtils
-    static Connection connection
+    static Connection connectionMock
     private static CandidatoDAO candidatoDAO
 
     @BeforeEach
     void setUp() {
         databaseUtils = new DatabaseUtils()
-        connection = ConexaoDAO.conectar()
-        candidatoDAO = new CandidatoDAO()
+        connectionMock = mock(Connection.class)
+        candidatoDAO = new CandidatoDAO(connectionMock)
     }
 
     @Test
@@ -28,7 +28,7 @@ class DatabaseUtilsTest {
         int idEstadoEsperado = 27
 
         // When:
-        int idEstadoObtido = DatabaseUtils.obterEstadoIdPorNome(connection, "Tocantins")
+        int idEstadoObtido = databaseUtils.obterEstadoIdPorNome(connectionMock, "Tocantins")
 
         // Then:
         assertEquals(idEstadoEsperado, idEstadoObtido)
@@ -39,7 +39,7 @@ class DatabaseUtilsTest {
         // Given:
         int idPaisEsperado = 1
         // When:
-        int idPaisObtido = DatabaseUtils.obterPaisIdPorNome(connection, "Brasil")
+        int idPaisObtido = DatabaseUtils.obterPaisIdPorNome(connectionMock, "Brasil")
         // Then:
         assertEquals(idPaisEsperado, idPaisObtido)
     }
@@ -50,7 +50,7 @@ class DatabaseUtilsTest {
         int idEmpresaEsperada = 9
 
         // When:
-        int idEmpresaObtida = DatabaseUtils.obterEmpresaIdPorNome(connection, "Paçoca tech")
+        int idEmpresaObtida = DatabaseUtils.obterEmpresaIdPorNome(connectionMock, "Paçoca tech")
 
         // Then:
         assertEquals(idEmpresaEsperada, idEmpresaObtida)
@@ -62,7 +62,7 @@ class DatabaseUtilsTest {
         int idCandidatoEsperado = candidatoDAO.listar().last().id
 
         // When:
-        int idCandidatoObtido = DatabaseUtils.obterIdCandidatoRecente(connection)
+        int idCandidatoObtido = DatabaseUtils.obterIdCandidatoRecente(connectionMock)
 
         // Then:
         assertEquals(idCandidatoEsperado, idCandidatoObtido)

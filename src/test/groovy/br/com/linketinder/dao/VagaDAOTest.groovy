@@ -28,7 +28,7 @@ class VagaDAOTest {
         when(connectionMock.prepareStatement(anyString(), anyInt(), anyInt())).thenReturn(prepareStatementMock)
         when(prepareStatementMock.executeQuery()).thenReturn(resultSetMock)
 
-        vagaDAO = new VagaDAO(conn: connectionMock)
+        vagaDAO = new VagaDAO(connectionMock)
     }
 
     @Test
