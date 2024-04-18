@@ -95,6 +95,7 @@ class DatabaseUtils {
     static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) throws SQLException{
         String sql = "SELECT id FROM empresas WHERE nome_empresa = ?"
 
+        conn = ConexaoDAO.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setString(1, nomeEmpresa)
 
@@ -111,6 +112,7 @@ class DatabaseUtils {
     static int obterIdCandidatoRecente(Connection conn) {
         String sql = "SELECT id FROM candidatos ORDER BY id DESC LIMIT 1"
 
+        conn = ConexaoDAO.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         ResultSet resultado = stm.executeQuery()
 
@@ -119,7 +121,6 @@ class DatabaseUtils {
         } else {
             throw new IllegalAccessException()
         }
-
     }
 
     static List<Integer> obterCompetenciasIdPorNome(Connection conn, List<String> listaCompetencias) {
@@ -128,7 +129,7 @@ class DatabaseUtils {
         List<Integer> retorno = new ArrayList<>()
 
         for (String competencia : listaCompetencias) {
-
+            conn = ConexaoDAO.conectar()
             PreparedStatement stm = conn.prepareStatement(sql)
             stm.setString(1, competencia)
 
@@ -157,6 +158,7 @@ class DatabaseUtils {
     static int obterIdVagaRecente(Connection conn) {
         String sql = "SELECT id FROM vagas ORDER BY id DESC LIMIT 1"
 
+        conn = ConexaoDAO.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         ResultSet resultado = stm.executeQuery()
 
