@@ -1,6 +1,6 @@
 package br.com.linketinder.dao
 
-import br.com.linketinder.utils.DatabaseUtils
+import br.com.linketinder.utils.DAOUtils
 import br.com.linketinder.model.entity.Empresa
 
 import java.sql.Connection
@@ -51,8 +51,8 @@ class EmpresaDAO implements IOperacoesDBCRUD<Empresa>{
         try {
             PreparedStatement stm = conn.prepareStatement(sql)
             this.conn = ConexaoDB.conectar()
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
+            int paisId = DAOUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
             stm.setString(1, empresa.getNome())
             stm.setString(2, empresa.getCnpj())
@@ -94,8 +94,8 @@ class EmpresaDAO implements IOperacoesDBCRUD<Empresa>{
             PreparedStatement stm = conn.prepareStatement(sql)
             this.conn = ConexaoDB.conectar()
 
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(conn, empresa.getPais())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(conn, empresa.getEstado())
+            int paisId = DAOUtils.obterPaisIdPorNome(conn, empresa.getPais())
 
             stm.setString(1, empresa.getNome())
             stm.setString(2, empresa.getCnpj())

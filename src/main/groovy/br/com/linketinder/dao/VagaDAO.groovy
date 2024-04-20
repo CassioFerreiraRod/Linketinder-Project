@@ -1,6 +1,6 @@
 package br.com.linketinder.dao
 
-import br.com.linketinder.utils.DatabaseUtils
+import br.com.linketinder.utils.DAOUtils
 import br.com.linketinder.model.entity.Vaga
 
 import java.sql.Connection
@@ -48,10 +48,10 @@ class VagaDAO implements IOperacoesDBCRUD<Vaga> {
             stm.setString(2, vaga.getDescricao())
             stm.setString(3, vaga.getCidade())
 
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, vaga.getEstado())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(this.conn, vaga.getEstado())
             stm.setInt(4, estadoId)
 
-            int empresaId = DatabaseUtils.obterEmpresaIdPorNome(this.conn, vaga.getEmpresa())
+            int empresaId = DAOUtils.obterEmpresaIdPorNome(this.conn, vaga.getEmpresa())
             stm.setInt(5, empresaId)
 
             stm.execute()
@@ -71,8 +71,8 @@ class VagaDAO implements IOperacoesDBCRUD<Vaga> {
         try {
             PreparedStatement stm = this.conn.prepareStatement(sql)
 
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, vaga.getEstado())
-            int empresaId = DatabaseUtils.obterEmpresaIdPorNome(this.conn, vaga.getEmpresa())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(this.conn, vaga.getEstado())
+            int empresaId = DAOUtils.obterEmpresaIdPorNome(this.conn, vaga.getEmpresa())
 
             stm.setString(1, vaga.getNome())
             stm.setString(2, vaga.getDescricao())
@@ -118,7 +118,7 @@ class VagaDAO implements IOperacoesDBCRUD<Vaga> {
                     resultado.getString("descricao"),
                     resultado.getString("cidade"),
                     resultado.getString("estado"),
-                    DatabaseUtils.competenciasVaga(resultado.getInt("id"), conn)
+                    DAOUtils.competenciasVaga(resultado.getInt("id"), conn)
             )
             retorno.add(vaga)
         }

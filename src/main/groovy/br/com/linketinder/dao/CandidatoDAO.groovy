@@ -1,6 +1,6 @@
 package br.com.linketinder.dao
 
-import br.com.linketinder.utils.DatabaseUtils
+import br.com.linketinder.utils.DAOUtils
 import br.com.linketinder.model.entity.Candidato
 
 import java.sql.Connection
@@ -48,8 +48,8 @@ class CandidatoDAO implements IOperacoesDBCRUD<Candidato>{
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
         try {
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
+            int paisId = DAOUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
 
             try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
 
@@ -86,8 +86,8 @@ class CandidatoDAO implements IOperacoesDBCRUD<Candidato>{
             """
 
         try {
-            int estadoId = DatabaseUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
-            int paisId = DatabaseUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
+            int estadoId = DAOUtils.obterEstadoIdPorNome(this.conn, candidato.getEstado())
+            int paisId = DAOUtils.obterPaisIdPorNome(this.conn, candidato.getPais())
 
             try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
                 stm.setString(1, candidato.getNome())
@@ -145,7 +145,7 @@ class CandidatoDAO implements IOperacoesDBCRUD<Candidato>{
                     resultado.getString("descricao_pessoal"),
                     resultado.getString("cpf"),
                     resultado.getString("data_nascimento"),
-                    DatabaseUtils.competenciasCandidato(resultado.getInt("id"), conn)
+                    DAOUtils.competenciasCandidato(resultado.getInt("id"), conn)
             )
             retorno.add(candidato)
         }

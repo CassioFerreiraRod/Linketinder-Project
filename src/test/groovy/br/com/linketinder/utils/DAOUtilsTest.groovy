@@ -18,9 +18,9 @@ import static org.mockito.ArgumentMatchers.anyString
 import static org.mockito.Mockito.mock
 import static org.mockito.Mockito.when
 
-class DatabaseUtilsTest {
+class DAOUtilsTest {
 
-    DatabaseUtils databaseUtils
+    DAOUtils databaseUtils
     Connection connectionMock
     private CandidatoDAO candidatoDAO
     private VagaDAO vagaDAO
@@ -28,7 +28,7 @@ class DatabaseUtilsTest {
     @BeforeEach
     void setUp() {
         connectionMock = mock(Connection.class)
-        databaseUtils = new DatabaseUtils()
+        databaseUtils = new DAOUtils()
         PreparedStatement prepareStatementMock = mock(PreparedStatement.class)
         ResultSet resultSetMock = mock(ResultSet.class)
 
@@ -57,7 +57,7 @@ class DatabaseUtilsTest {
         // Given:
         int idPaisEsperado = 1
         // When:
-        int idPaisObtido = DatabaseUtils.obterPaisIdPorNome(connectionMock, "Brasil")
+        int idPaisObtido = DAOUtils.obterPaisIdPorNome(connectionMock, "Brasil")
         // Then:
         assertEquals(idPaisEsperado, idPaisObtido)
     }

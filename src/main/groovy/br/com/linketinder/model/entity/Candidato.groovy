@@ -1,6 +1,6 @@
 package br.com.linketinder.model.entity
 
-import br.com.linketinder.utils.DatabaseUtils
+import br.com.linketinder.utils.DAOUtils
 
 import java.sql.Date
 
@@ -52,7 +52,7 @@ class Candidato extends Usuario {
         this.senha = senha
     }
      Date getDataNascimento() {
-         Date dataSQL = DatabaseUtils.converterParaSQLDate(this.dataNascimento)
+         Date dataSQL = DAOUtils.converterParaSQLDate(this.dataNascimento)
          return dataSQL
     }
 
