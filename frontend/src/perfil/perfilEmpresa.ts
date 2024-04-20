@@ -35,7 +35,7 @@ function listarCandidatos(candidatos: Candidato[]): void {
                 <div class="mb-3"  style="max-width: 300px;">                
                      <h4>${anonimizarNome(candidato.nome)}</h4>
                      <p>Email: ${anonimizarEmail(candidato.email)}</p>
-                     <p>Localização: ${candidato.estado}</p>
+                     <p>Localização: ${anonimizarNome(candidato.estado)}</p>
                      <p>Competências: ${candidato.competencias.join(", ")}</p>
                      <p>Descrição: ${candidato.descricao}</p>                    
                 </div>
