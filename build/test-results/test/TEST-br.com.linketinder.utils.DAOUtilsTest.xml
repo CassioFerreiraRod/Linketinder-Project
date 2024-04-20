@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.linketinder.utils.DAOUtilsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-04-20T17:58:30" hostname="cassio-Aspire-A515-51" time="2.424">
+  <properties/>
+  <testcase name="obterCompetenciasIdPorNomeTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="1.478"/>
+  <testcase name="competenciasCandidatoTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.098"/>
+  <testcase name="obterPaisIdPorNomeTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.092"/>
+  <testcase name="obterEmpresaIdPorNomeTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.084"/>
+  <testcase name="competenciasVagaTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.101"/>
+  <testcase name="obterIdCandidatoRecenteTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.229"/>
+  <testcase name="converterParaSQLDateTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.068"/>
+  <testcase name="obterEstadoIdPorNomeTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.069"/>
+  <testcase name="obterIdVagaRecenteTest()" classname="br.com.linketinder.utils.DAOUtilsTest" time="0.196"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

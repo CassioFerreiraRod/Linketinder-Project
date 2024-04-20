@@ -6,6 +6,6 @@
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/CompetenciaDAO.groovy" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/EmpresaDAO.groovy" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/dao/VagaDAO.groovy" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/utils/DatabaseUtils.groovy" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/groovy/br/com/linketinder/utils/DAOUtils.groovy" dialect="GenericSQL" />
   </component>
 </project>
