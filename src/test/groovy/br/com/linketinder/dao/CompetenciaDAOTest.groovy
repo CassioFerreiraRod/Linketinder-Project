@@ -1,6 +1,7 @@
 package br.com.linketinder.dao
 
 import br.com.linketinder.model.entity.Competencia
+import br.com.linketinder.model.factory.CompetenciaFactory
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -33,8 +34,9 @@ class CompetenciaDAOTest {
 
     @Test
     void inserir() {
+
         // Given:
-        Competencia novaCompetencia = new Competencia(
+        Competencia novaCompetencia =  CompetenciaFactory.criarCompetencia(
                 "GO")
         // When:
         boolean retorno = competenciaDAO.inserir(novaCompetencia)

@@ -1,9 +1,8 @@
 package br.com.linketinder.utils
 
 import br.com.linketinder.dao.CandidatoDAO
-import br.com.linketinder.dao.ConexaoDAO
+import br.com.linketinder.dao.ConexaoDB
 import br.com.linketinder.dao.VagaDAO
-import br.com.linketinder.model.entity.Candidato
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -37,8 +36,8 @@ class DatabaseUtilsTest {
         when(connectionMock.prepareStatement(anyString(), anyInt(), anyInt())).thenReturn(prepareStatementMock)
         when(prepareStatementMock.executeQuery()).thenReturn(resultSetMock)
 
-        candidatoDAO = new CandidatoDAO(ConexaoDAO.conectar())
-        vagaDAO = new VagaDAO(ConexaoDAO.conectar())
+        candidatoDAO = new CandidatoDAO(ConexaoDB.conectar())
+        vagaDAO = new VagaDAO(ConexaoDB.conectar())
     }
 
     @Test

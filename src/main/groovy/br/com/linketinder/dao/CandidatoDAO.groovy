@@ -8,13 +8,14 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-class CandidatoDAO {
+class CandidatoDAO implements IOperacoesDBCRUD<Candidato>{
     Connection conn
 
     CandidatoDAO(Connection conn) {
         this.conn = conn
     }
 
+    @Override
     List<Candidato> listar() {
         String sql = """
                 SELECT c.*, es.nome AS estado, p.nome AS pais
@@ -35,12 +36,12 @@ class CandidatoDAO {
         } catch (SQLException e) {
             e.printStackTrace()
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
         return retorno
     }
 
-
+    @Override
     boolean inserir(Candidato candidato) {
         String sql = "INSERT INTO  candidatos (nome, sobrenome, data_nascimento," +
                 "email, cpf, estado_id, pais_id, cep, descricao_pessoal, senha)" +
@@ -71,10 +72,11 @@ class CandidatoDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
+    @Override
     boolean alterar(Candidato candidato) {
         String sql = """
             UPDATE candidatos 
@@ -107,10 +109,11 @@ class CandidatoDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
+    @Override
     boolean remover(Integer id) {
         String sql = "DELETE FROM candidatos where id = ?"
 
@@ -125,7 +128,7 @@ class CandidatoDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -148,4 +151,3 @@ class CandidatoDAO {
         }
     }
 }
-

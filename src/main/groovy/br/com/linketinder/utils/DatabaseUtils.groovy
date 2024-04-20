@@ -1,6 +1,6 @@
 package br.com.linketinder.utils
 
-import br.com.linketinder.dao.ConexaoDAO
+import br.com.linketinder.dao.ConexaoDB
 
 import java.sql.Connection
 import java.sql.Date
@@ -21,7 +21,7 @@ class DatabaseUtils {
 
         List<String> retorno = new ArrayList<>()
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setInt(1, id)
         ResultSet resultado = stm.executeQuery()
@@ -44,7 +44,7 @@ class DatabaseUtils {
 
         List<String> retorno = new ArrayList<>()
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setInt(1, id)
         ResultSet resultado = stm.executeQuery()
@@ -60,7 +60,7 @@ class DatabaseUtils {
     static int obterEstadoIdPorNome(Connection conn, String nomeEstado) {
         String sql = "SELECT id FROM estados WHERE nome = ?"
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setString(1, nomeEstado)
 
@@ -77,7 +77,7 @@ class DatabaseUtils {
     static int obterPaisIdPorNome(Connection conn, String nomePais) {
         String sql = "SELECT id FROM pais WHERE nome = ?"
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setString(1, nomePais)
 
@@ -95,7 +95,7 @@ class DatabaseUtils {
     static int obterEmpresaIdPorNome(Connection conn, String nomeEmpresa) throws SQLException{
         String sql = "SELECT id FROM empresas WHERE nome_empresa = ?"
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         stm.setString(1, nomeEmpresa)
 
@@ -112,7 +112,7 @@ class DatabaseUtils {
     static int obterIdCandidatoRecente(Connection conn) {
         String sql = "SELECT id FROM candidatos ORDER BY id DESC LIMIT 1"
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         ResultSet resultado = stm.executeQuery()
 
@@ -129,7 +129,7 @@ class DatabaseUtils {
         List<Integer> retorno = new ArrayList<>()
 
         for (String competencia : listaCompetencias) {
-            conn = ConexaoDAO.conectar()
+            conn = ConexaoDB.conectar()
             PreparedStatement stm = conn.prepareStatement(sql)
             stm.setString(1, competencia)
 
@@ -158,7 +158,7 @@ class DatabaseUtils {
     static int obterIdVagaRecente(Connection conn) {
         String sql = "SELECT id FROM vagas ORDER BY id DESC LIMIT 1"
 
-        conn = ConexaoDAO.conectar()
+        conn = ConexaoDB.conectar()
         PreparedStatement stm = conn.prepareStatement(sql)
         ResultSet resultado = stm.executeQuery()
 

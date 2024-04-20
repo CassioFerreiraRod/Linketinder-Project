@@ -1,6 +1,7 @@
 package br.com.linketinder.dao
 
 import br.com.linketinder.model.entity.Vaga
+import br.com.linketinder.model.factory.VagaFactory
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -34,7 +35,7 @@ class VagaDAOTest {
     @Test
     void inserirTest() {
         // Given:
-        Vaga novaVaga = new Vaga(
+        Vaga novaVaga = VagaFactory.criarVaga(
                 "Analista de requisitos",
                 "Estamos em busca de um analista de requistos para fazer parte de nossa equipe.",
                 "Fortaleza",

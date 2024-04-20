@@ -7,7 +7,7 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-class CompetenciaDAO {
+class CompetenciaDAO implements IOperacoesDBCRUD<Competencia>{
 
     Connection conn
 
@@ -28,7 +28,7 @@ class CompetenciaDAO {
         } catch (SQLException e) {
             e.printStackTrace()
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
         return retorno
     }
@@ -48,7 +48,7 @@ class CompetenciaDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -68,7 +68,7 @@ class CompetenciaDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -86,7 +86,7 @@ class CompetenciaDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -108,7 +108,7 @@ class CompetenciaDAO {
             e.printStackTrace()
             return false
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -130,7 +130,7 @@ class CompetenciaDAO {
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir competência vaga: " + e.getMessage())
         } finally {
-            ConexaoDAO.desconectar(this.conn)
+            ConexaoDB.desconectar(this.conn)
         }
     }
 

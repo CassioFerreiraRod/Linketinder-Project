@@ -1,6 +1,7 @@
 package br.com.linketinder.dao
 
 import br.com.linketinder.model.entity.Candidato
+import br.com.linketinder.model.factory.UsuarioFactory
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -34,7 +35,7 @@ class CandidatoDAOTest {
     @Test
     void testeDeInserir() {
         //Given:
-        Candidato candidato = new Candidato(
+        Candidato candidato = UsuarioFactory.criarCandidato(
                 "Edson",
                 "Rodrigues",
                 "edson.rodrigues@email",

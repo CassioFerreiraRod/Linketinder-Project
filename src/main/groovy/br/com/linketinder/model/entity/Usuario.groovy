@@ -1,6 +1,6 @@
 package br.com.linketinder.model.entity
 
-class Usuario {
+abstract class Usuario {
     int id
     String nome
     String email

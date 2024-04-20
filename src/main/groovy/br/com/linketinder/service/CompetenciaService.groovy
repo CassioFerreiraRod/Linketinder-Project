@@ -1,7 +1,7 @@
 package br.com.linketinder.service
 
 import br.com.linketinder.dao.CompetenciaDAO
-import br.com.linketinder.dao.ConexaoDAO
+import br.com.linketinder.dao.ConexaoDB
 import br.com.linketinder.model.entity.Competencia
 import br.com.linketinder.utils.DatabaseUtils
 
@@ -12,7 +12,7 @@ class CompetenciaService {
     CompetenciaDAO competenciaDAO
 
     CompetenciaService() {
-        competenciaDAO = new CompetenciaDAO(ConexaoDAO.conectar())
+        competenciaDAO = new CompetenciaDAO(ConexaoDB.conectar())
     }
 
     void listarCompetencias() {
@@ -35,7 +35,7 @@ class CompetenciaService {
     }
 
     boolean cadastrarCandidatoCompetencia(List<String> competencias) {
-        try(Connection conn = ConexaoDAO.conectar()) {
+        try(Connection conn = ConexaoDB.conectar()) {
             List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, competencias)
             int candidatoId = DatabaseUtils.obterIdCandidatoRecente(conn)
 
@@ -50,7 +50,7 @@ class CompetenciaService {
     }
 
      boolean cadastrarVagaCompetencia(List<String> listaCompetencias) {
-        try(Connection conn = ConexaoDAO.conectar()) {
+        try(Connection conn = ConexaoDB.conectar()) {
             List<Integer> id_competencias = DatabaseUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
             int vagaId = DatabaseUtils.obterIdVagaRecente(conn)
 
