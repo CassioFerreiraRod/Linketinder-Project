@@ -32,11 +32,13 @@ function listarVagas(vagas: Vagas[]): void {
         vagasElement.innerHTML += ''
         vagas.forEach((vaga) => {
             vagasElement.innerHTML += `
-                <div class="mb-3" style="max-width: 300px;">                
-                     <h4>${anonimizarNome(vaga.nomeEmpresa)}</h4>
-                     <p>Descrição: ${vaga.descricaoVaga}</p>
-                     <p>Localização: ${anonimizarNome(vaga.cidade)}, ${anonimizarNome(vaga.estado)}</p>
-                     <p>Competências: ${vaga.competencias.join(", ")}</p>
+                <div class="card mb-3 mx-4" style="max-width: 300px;">
+                    <div class="card-body">
+                      <h4 class="card-title">${anonimizarNome(vaga.nomeEmpresa)}</h4>
+                      <p class="card-text">Descrição: ${vaga.descricaoVaga}</p>
+                      <p class="card-text">Localização: ${anonimizarNome(vaga.cidade)}, ${anonimizarNome(vaga.estado)}</p>
+                      <p class="card-text">Competências: ${vaga.competencias.join(", ")}</p>
+                    </div>
                 </div>
             `
         })

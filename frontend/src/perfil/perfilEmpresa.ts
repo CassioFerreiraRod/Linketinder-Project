@@ -32,13 +32,15 @@ function listarCandidatos(candidatos: Candidato[]): void {
         candidatosElement.innerHTML += ''
         candidatos.forEach((candidato) => {
             candidatosElement.innerHTML += `
-                <div class="mb-3"  style="max-width: 300px;">                
-                     <h4>${anonimizarNome(candidato.nome)}</h4>
-                     <p>Email: ${anonimizarEmail(candidato.email)}</p>
-                     <p>Localização: ${anonimizarNome(candidato.estado)}</p>
-                     <p>Competências: ${candidato.competencias.join(", ")}</p>
-                     <p>Descrição: ${candidato.descricao}</p>                    
-                </div>
+                <div class="card mb-3 mx-4" style="max-width: 300px;">
+                    <div class="card-body">
+                      <h4 class="card-title">${anonimizarNome(candidato.nome)}</h4>
+                      <p class="card-text">Email: ${anonimizarEmail(candidato.email)}</p>
+                      <p class="card-text">Localização: ${anonimizarNome(candidato.estado)}</p>
+                      <p class="card-text">Competências: ${candidato.competencias.join(", ")}</p>
+                      <p class="card-text">Descrição: ${candidato.descricao}</p>
+                    </div>
+               </div>
             `
         })
     }
