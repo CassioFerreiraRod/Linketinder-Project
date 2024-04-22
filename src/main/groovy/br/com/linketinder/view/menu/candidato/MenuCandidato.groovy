@@ -1,16 +1,11 @@
 package br.com.linketinder.view.menu.candidato
 
-
-import br.com.linketinder.service.CandidatoService
+import br.com.linketinder.controller.CandidatoController
 
 class MenuCandidato {
-    CandidatoService candidatoService
-    MenuExclusao menuExclusao = new MenuExclusao()
-    MenuAlteracao menuAlteracao = new MenuAlteracao()
-    MenuInsercao menuInsercao = new MenuInsercao()
+    CandidatoController controller = new CandidatoController()
 
     void exibirMenuCandidatos(BufferedReader bufferedReader) {
-        candidatoService = new CandidatoService()
         boolean continuar = true
         String opcao
         while (continuar) {
@@ -24,16 +19,16 @@ class MenuCandidato {
 
             switch (opcao) {
                 case '1':
-                    candidatoService.listarCandidatos()
+                    controller.listarCandidatos()
                     break
                 case '2':
-                    menuInsercao.exibirMenuInsercao(bufferedReader, candidatoService)
+//                    menuInsercao.exibirMenuInsercao(bufferedReader, candidatoService)
                     break
                 case '3':
-                    menuAlteracao.exibirMenuAlteracao(bufferedReader, candidatoService)
+//                    menuAlteracao.exibirMenuAlteracao(bufferedReader, candidatoService)
                     break
                 case '4':
-                    menuExclusao.exibirMenuExclusao(bufferedReader, candidatoService)
+//                    menuExclusao.exibirMenuExclusao(bufferedReader, candidatoService)
                     break
                 case '0':
                     continuar = false

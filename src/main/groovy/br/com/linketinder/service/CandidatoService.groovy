@@ -3,6 +3,7 @@ package br.com.linketinder.service
 import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.dao.ConexaoDB
 import br.com.linketinder.model.entity.Candidato
+import br.com.linketinder.model.entity.Usuario
 
 class CandidatoService {
 
@@ -19,7 +20,7 @@ class CandidatoService {
         }
     }
 
-    boolean cadastrarCandidato(Candidato candidato) {
+    boolean cadastrarCandidato(Usuario candidato) {
         return candidatoDAO.inserir(candidato)
     }
 
