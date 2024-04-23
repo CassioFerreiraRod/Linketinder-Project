@@ -1,16 +1,12 @@
 package br.com.linketinder.view.menu.competencia
 
-import br.com.linketinder.model.entity.Competencia
-import br.com.linketinder.service.CompetenciaService
+import br.com.linketinder.controller.CompetenciaController
 
 class MenuInsercao {
-    void exibirMenuInsercao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
+    void exibirMenuInsercao(BufferedReader bufferedReader, CompetenciaController competenciaController) {
         println "Digite o nome da nova Competência:"
-        String comptencia = bufferedReader.readLine()
+        String competencia = bufferedReader.readLine()
 
-        Competencia novaCompetencia = new Competencia(comptencia)
-
-
-        competenciaService.cadastrarCompetencia(novaCompetencia)
+        competenciaController.cadastraCompetencia(competencia)
     }
 }

@@ -1,13 +1,13 @@
 package br.com.linketinder.view.menu.empresa
 
-import br.com.linketinder.service.EmpresaService
+import br.com.linketinder.controller.EmpresaController
 
 class MenuExclusao {
-     void exibirMenuExclusao(BufferedReader bufferedReader, EmpresaService empresaService) {
-        empresaService.listarEmpresas()
+     void exibirMenuExclusao(BufferedReader bufferedReader, EmpresaController empresaController) {
+        empresaController.listarEmpresas()
         println "Digite o id do empresa que deseja excluir:"
         int id = Integer.parseInt(bufferedReader.readLine())
 
-        empresaService.excluirEmpresa(id)
+        empresaController.excluirEmpresa(id)
     }
 }

@@ -2,11 +2,10 @@ package br.com.linketinder.model.factory
 
 import br.com.linketinder.model.entity.Candidato
 import br.com.linketinder.model.entity.Empresa
-import br.com.linketinder.model.entity.Usuario
 
 class UsuarioFactory {
 
-    static Usuario criarCandidato(
+    static Candidato criarCandidato(
             String nome,
             String sobrenome,
             String email,
@@ -20,7 +19,7 @@ class UsuarioFactory {
         return new Candidato(nome, sobrenome, email, cep, estado, pais, descricao, cpf, dataNascimento, senha)
     }
 
-    static Usuario criarEmpresa(
+    static Empresa criarEmpresa(
             String nome,
             String email,
             String cnpj,

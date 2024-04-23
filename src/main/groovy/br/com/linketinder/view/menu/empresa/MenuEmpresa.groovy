@@ -1,16 +1,17 @@
 package br.com.linketinder.view.menu.empresa
 
-import br.com.linketinder.service.EmpresaService
+
+import br.com.linketinder.controller.EmpresaController
 
 class MenuEmpresa {
-    EmpresaService empresaService
+    EmpresaController empresaController
 
     void exibirMenuEmpresas(BufferedReader bufferedReader) {
         MenuInsercao menuInsercao = new MenuInsercao()
         MenuAlteracao menuAlteracao = new MenuAlteracao()
         MenuExclusao menuExclusao = new MenuExclusao()
 
-        empresaService = new EmpresaService()
+        empresaController = new EmpresaController()
         boolean continuar = true
         String opcao
         while (continuar) {
@@ -24,16 +25,16 @@ class MenuEmpresa {
 
             switch (opcao) {
                 case '1':
-                    empresaService.listarEmpresas()
+                    empresaController.listarEmpresas()
                     break
                 case '2':
-                    menuInsercao.exibirMenuInsercao(bufferedReader, empresaService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, empresaController)
                     break
                 case '3':
-                    menuAlteracao.exibirMenuAlteracao(bufferedReader, empresaService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, empresaController)
                     break
                 case '4':
-                    menuExclusao.exibirMenuExclusao(bufferedReader, empresaService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, empresaController)
                     break
                 case '0':
                     continuar = false

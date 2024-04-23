@@ -4,8 +4,14 @@ import br.com.linketinder.controller.CandidatoController
 
 class MenuCandidato {
     CandidatoController controller = new CandidatoController()
+    MenuInsercao menuInsercao
+    MenuAlteracao menuAlteracao
+    MenuExclusao menuExclusao
 
     void exibirMenuCandidatos(BufferedReader bufferedReader) {
+        menuInsercao = new MenuInsercao()
+        menuAlteracao = new MenuAlteracao()
+        menuExclusao = new MenuExclusao()
         boolean continuar = true
         String opcao
         while (continuar) {
@@ -22,13 +28,13 @@ class MenuCandidato {
                     controller.listarCandidatos()
                     break
                 case '2':
-//                    menuInsercao.exibirMenuInsercao(bufferedReader, candidatoService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader)
                     break
                 case '3':
-//                    menuAlteracao.exibirMenuAlteracao(bufferedReader, candidatoService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader)
                     break
                 case '4':
-//                    menuExclusao.exibirMenuExclusao(bufferedReader, candidatoService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader)
                     break
                 case '0':
                     continuar = false

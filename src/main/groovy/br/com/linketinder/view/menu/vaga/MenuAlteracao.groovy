@@ -1,11 +1,11 @@
 package br.com.linketinder.view.menu.vaga
 
 import br.com.linketinder.model.entity.Vaga
-import br.com.linketinder.service.VagaService
+import br.com.linketinder.controller.VagaController
 
 class MenuAlteracao {
-    void exibirMenuAlteracao(BufferedReader bufferedReader, VagaService vagaService) {
-        vagaService.listarVagas()
+    void exibirMenuAlteracao(BufferedReader bufferedReader, VagaController vagaController) {
+        vagaController.listarVagas()
 
         println "Digite o id da vaga que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
@@ -26,7 +26,7 @@ class MenuAlteracao {
         String empresa = bufferedReader.readLine()
 
         Vaga vagaAlterada = new Vaga(id, nome, descricao, cidade, estado, empresa)
-        vagaService.alterarVaga(vagaAlterada)
+        vagaController.atualizaVaga(vagaAlterada)
 
     }
 }

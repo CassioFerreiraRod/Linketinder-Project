@@ -1,12 +1,11 @@
 package br.com.linketinder.view.menu.vaga
 
-import br.com.linketinder.model.entity.Vaga
-import br.com.linketinder.service.CompetenciaService
-import br.com.linketinder.service.EmpresaService
-import br.com.linketinder.service.VagaService
+import br.com.linketinder.controller.CompetenciaController
+import br.com.linketinder.controller.EmpresaController
+import br.com.linketinder.controller.VagaController
 
 class MenuInsercao {
-     void exibirMenuInsercao(BufferedReader bufferedReader, VagaService vagaService) {
+     void exibirMenuInsercao(BufferedReader bufferedReader, VagaController vagaController) {
         println "Digite o nome da vaga:"
         String nome = bufferedReader.readLine()
 
@@ -21,25 +20,23 @@ class MenuInsercao {
 
         println "Listando empresas cadastradas:"
 
-        EmpresaService empresaService = new EmpresaService()
-        empresaService.listarEmpresas()
+        EmpresaController empresaController = new EmpresaController()
+        empresaController.listarEmpresas()
 
         println "Digite o nome da empresa:(dentre as listadas)"
         String empresa = bufferedReader.readLine()
 
-        Vaga novaVaga = new Vaga(nome, descricao, cidade, estado, empresa)
-
-        vagaService.cadastrarVaga(novaVaga)
+        vagaController.cadastrarVaga(nome, descricao, cidade, estado, empresa)
 
         println "Listando competências cadastradas:"
 
-        CompetenciaService competenciaService = new CompetenciaService()
-        competenciaService.listarCompetencias()
+        CompetenciaController competenciaController = new CompetenciaController()
+        competenciaController.listarCompetencias()
 
         println "Digite as competências:(separar por vírgula, dentre as listadas)"
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
-        competenciaService.cadastrarVagaCompetencia(listaCompetencias)
+        competenciaController.cadastrarVagaCompetencia(listaCompetencias)
     }
 }

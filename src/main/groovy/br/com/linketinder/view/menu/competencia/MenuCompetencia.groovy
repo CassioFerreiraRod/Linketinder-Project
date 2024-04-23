@@ -1,15 +1,15 @@
 package br.com.linketinder.view.menu.competencia
 
-import br.com.linketinder.service.CompetenciaService
+import br.com.linketinder.controller.CompetenciaController
 
 class MenuCompetencia {
-    CompetenciaService competenciaService
+    CompetenciaController competenciaController
     MenuAlteracao menuAlteracao = new MenuAlteracao()
     MenuExclusao menuExclusao = new MenuExclusao()
     MenuInsercao menuInsercao = new MenuInsercao()
 
     void exibirMenuCompetencias(BufferedReader bufferedReader) {
-        competenciaService = new CompetenciaService()
+        competenciaController = new CompetenciaController()
         boolean continuar = true
         String opcao
         while (continuar) {
@@ -23,16 +23,16 @@ class MenuCompetencia {
 
             switch (opcao) {
                 case '1':
-                    competenciaService.listarCompetencias()
+                    competenciaController.listarCompetencias()
                     break
                 case '2':
-                    menuInsercao.exibirMenuInsercao(bufferedReader, competenciaService)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, competenciaController)
                     break
                 case '3':
-                    menuAlteracao.exibirMenuAlteracao(bufferedReader, competenciaService)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, competenciaController)
                     break
                 case '4':
-                    menuExclusao.exibirMenuExclusao(bufferedReader, competenciaService)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, competenciaController)
                     break
                 case '0':
                     continuar = false
