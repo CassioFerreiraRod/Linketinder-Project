@@ -1,15 +1,15 @@
 package br.com.linketinder.view.menu.candidato
 
-import br.com.linketinder.controller.CandidatoController
+import br.com.linketinder.service.CandidatoService
 
 class MenuExclusao {
-    CandidatoController controller
+    CandidatoService service
     void exibirMenuExclusao(BufferedReader bufferedReader) {
-        controller = new CandidatoController()
-        controller.listarCandidatos()
+        service = new CandidatoService()
+        service.listarCandidatos()
         println "Digite o id do candidato que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
 
-        controller.excluirCandidato(id)
+        service.excluirCandidato(id)
     }
 }

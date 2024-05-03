@@ -1,7 +1,6 @@
 package br.com.linketinder.dao
 
 import br.com.linketinder.model.entity.Empresa
-import br.com.linketinder.model.factory.UsuarioFactory
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -34,7 +33,7 @@ class EmpresaDAOTest {
     @Test
     void inserir() {
         // Given:
-        Empresa novaEmpresa = UsuarioFactory.criarEmpresa(
+        Empresa novaEmpresa = new Empresa(
                 "Playsoft",
                 "palysoft@email.com",
                 "55.579.878/0001-90",
@@ -87,6 +86,6 @@ class EmpresaDAOTest {
         // When:
         boolean retorno = empresaDAO.remover(id)
         // Then:
-        assertTrue (retorno)
+        assertTrue(retorno)
     }
 }

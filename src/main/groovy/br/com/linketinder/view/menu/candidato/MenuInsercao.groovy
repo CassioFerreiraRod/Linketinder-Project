@@ -1,14 +1,16 @@
 package br.com.linketinder.view.menu.candidato
 
-import br.com.linketinder.controller.CandidatoController
-import br.com.linketinder.controller.CompetenciaController
+import br.com.linketinder.model.entity.Candidato
+import br.com.linketinder.service.CandidatoService
+import br.com.linketinder.service.CompetenciaService
 
 class MenuInsercao {
-   CandidatoController controller
-   CompetenciaController competenciaController
-     void exibirMenuInsercao(BufferedReader bufferedReader) {
-        controller = new CandidatoController()
-        competenciaController = new CompetenciaController()
+    CandidatoService service
+    CompetenciaService competenciaService
+
+    void exibirMenuInsercao(BufferedReader bufferedReader) {
+        service = new CandidatoService()
+        competenciaService = new CompetenciaService()
         println "Digite o nome:"
         String nome = bufferedReader.readLine()
 
@@ -39,17 +41,19 @@ class MenuInsercao {
         println "Digite a senha:"
         String senha = bufferedReader.readLine()
 
-        controller.cadastraCandidato(nome, sobrenome, email, cep, estado, pais, descricao, cpf, dataNascimento, senha)
+        Candidato candidato = new Candidato(nome, sobrenome, email, cep, estado, pais, descricao, cpf, dataNascimento, senha)
+
+        service.cadastrarCandidato(candidato)
 
         println "Listando competências cadastradas:"
 
-        competenciaController.listarCompetencias()
+        competenciaService.listarCompetencias()
 
         println "Digite as competências:(separar por vírgula, entre as competências listada)"
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
-        competenciaController.cadastrarCandidatoCompetencia(listaCompetencias)
+        competenciaService.cadastrarCandidatoCompetencia(listaCompetencias)
         println("Cadastro realizado com sucesso")
     }
 }

@@ -1,22 +1,20 @@
-package br.com.linketinder.dao
-
-import org.postgresql.util.PSQLException
+package br.com.linketinder.conn
 
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-class ConexaoDB {
+class ConexaoDB implements IConexaoDB{
 
-    ConexaoDB() {}
+    private static final String USUARIO = "postgres"
+    private static final String SENHA = "postgres"
+    private static final String URL_SERVIDOR = "jdbc:postgresql://localhost:5432/linketinder"
 
     static Connection conectar() {
         Properties properties = new Properties()
-        properties.setProperty("user", "postgres")
-        properties.setProperty("password", "postgres")
+        properties.setProperty("user", USUARIO)
+        properties.setProperty("password", SENHA)
         properties.setProperty("ssl", "false")
-
-        String URL_SERVIDOR = "jdbc:postgresql://localhost:5432/linketinder"
 
         try {
             Class.forName("org.postgresql.Driver")
@@ -37,7 +35,6 @@ class ConexaoDB {
                 e.printStackTrace()
             }
         }
-
     }
 
 }

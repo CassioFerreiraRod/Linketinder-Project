@@ -1,9 +1,9 @@
 package br.com.linketinder.view.menu.candidato
 
-import br.com.linketinder.controller.CandidatoController
+import br.com.linketinder.service.CandidatoService
 
 class MenuCandidato {
-    CandidatoController controller = new CandidatoController()
+    CandidatoService service = new CandidatoService()
     MenuInsercao menuInsercao
     MenuAlteracao menuAlteracao
     MenuExclusao menuExclusao
@@ -25,7 +25,7 @@ class MenuCandidato {
 
             switch (opcao) {
                 case '1':
-                    controller.listarCandidatos()
+                    service.listarCandidatos()
                     break
                 case '2':
                     menuInsercao.exibirMenuInsercao(bufferedReader)

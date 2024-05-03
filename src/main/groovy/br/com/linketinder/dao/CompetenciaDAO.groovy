@@ -1,5 +1,6 @@
 package br.com.linketinder.dao
 
+import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.model.entity.Competencia
 
 import java.sql.Connection

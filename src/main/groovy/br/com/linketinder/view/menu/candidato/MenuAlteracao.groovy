@@ -1,13 +1,13 @@
 package br.com.linketinder.view.menu.candidato
 
-import br.com.linketinder.controller.CandidatoController
+import br.com.linketinder.service.CandidatoService
 import br.com.linketinder.model.entity.Candidato
 
 class MenuAlteracao {
-   CandidatoController controller
+   CandidatoService service
      void exibirMenuAlteracao(BufferedReader bufferedReader) {
-        controller  = new CandidatoController()
-        controller.listarCandidatos()
+        service  = new CandidatoService()
+        service.listarCandidatos()
 
         println "Digite o id do candidato que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
@@ -45,7 +45,7 @@ class MenuAlteracao {
         Candidato candidatoAlterado = new Candidato(id, nome, sobrenome, email, cep, estado, pais,
                 descricao, cpf, dataNascimento, senha)
 
-        controller.atualizaCandidato(candidatoAlterado)
+        service.alterarCandidato(candidatoAlterado)
 
     }
 }

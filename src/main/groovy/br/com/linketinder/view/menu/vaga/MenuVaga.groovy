@@ -1,16 +1,16 @@
 package br.com.linketinder.view.menu.vaga
 
-import br.com.linketinder.controller.VagaController
+import br.com.linketinder.service.VagaService
 
 class MenuVaga {
-     VagaController vagaController
+     VagaService vagaService
 
      void exibirMenuVagas(BufferedReader bufferedReader) {
          MenuInsercao menuInsercao = new MenuInsercao()
          MenuAlteracao menuAlteracao = new MenuAlteracao()
          MenuExclusao menuExclusao = new MenuExclusao()
 
-        vagaController = new VagaController()
+        vagaService = new VagaService()
         boolean continuar = true
         String opcao
         while (continuar) {
@@ -24,16 +24,16 @@ class MenuVaga {
 
             switch (opcao) {
                 case '1':
-                    vagaController.listarVagas()
+                    vagaService.listarVagas()
                     break
                 case '2':
-                    menuInsercao.exibirMenuInsercao(bufferedReader, vagaController)
+                    menuInsercao.exibirMenuInsercao(bufferedReader, vagaService)
                     break
                 case '3':
-                    menuAlteracao.exibirMenuAlteracao(bufferedReader, vagaController)
+                    menuAlteracao.exibirMenuAlteracao(bufferedReader, vagaService)
                     break
                 case '4':
-                    menuExclusao.exibirMenuExclusao(bufferedReader, vagaController)
+                    menuExclusao.exibirMenuExclusao(bufferedReader, vagaService)
                     break
                 case '0':
                     continuar = false

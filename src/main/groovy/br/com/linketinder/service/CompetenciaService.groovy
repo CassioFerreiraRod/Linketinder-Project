@@ -1,7 +1,7 @@
 package br.com.linketinder.service
 
 import br.com.linketinder.dao.CompetenciaDAO
-import br.com.linketinder.dao.ConexaoDB
+import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.model.entity.Competencia
 import br.com.linketinder.utils.DAOUtils
 

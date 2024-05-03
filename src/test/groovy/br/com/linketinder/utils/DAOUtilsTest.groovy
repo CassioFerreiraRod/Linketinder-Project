@@ -1,7 +1,7 @@
 package br.com.linketinder.utils
 
 import br.com.linketinder.dao.CandidatoDAO
-import br.com.linketinder.dao.ConexaoDB
+import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.dao.VagaDAO
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

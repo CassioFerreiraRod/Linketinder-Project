@@ -1,11 +1,11 @@
 package br.com.linketinder.view.menu.competencia
 
-import br.com.linketinder.controller.CompetenciaController
+import br.com.linketinder.service.CompetenciaService
 import br.com.linketinder.model.entity.Competencia
 
 class MenuAlteracao {
-     void exibirMenuAlteracao(BufferedReader bufferedReader, CompetenciaController competenciaController) {
-        competenciaController.listarCompetencias()
+     void exibirMenuAlteracao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
+        competenciaService.listarCompetencias()
 
         println "Digite o id da competência que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())
@@ -16,7 +16,7 @@ class MenuAlteracao {
 
         Competencia competenciaAlterada = new Competencia(id, competencia)
 
-        competenciaController.alterarCompetencia(competenciaAlterada)
+        competenciaService.alterarCompetencia(competenciaAlterada)
 
     }
 }

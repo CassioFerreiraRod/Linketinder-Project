@@ -1,11 +1,12 @@
 package br.com.linketinder.view.menu.vaga
 
-import br.com.linketinder.controller.CompetenciaController
-import br.com.linketinder.controller.EmpresaController
-import br.com.linketinder.controller.VagaController
+import br.com.linketinder.model.entity.Vaga
+import br.com.linketinder.service.CompetenciaService
+import br.com.linketinder.service.EmpresaService
+import br.com.linketinder.service.VagaService
 
 class MenuInsercao {
-     void exibirMenuInsercao(BufferedReader bufferedReader, VagaController vagaController) {
+    void exibirMenuInsercao(BufferedReader bufferedReader, VagaService vagaService) {
         println "Digite o nome da vaga:"
         String nome = bufferedReader.readLine()
 
@@ -20,23 +21,25 @@ class MenuInsercao {
 
         println "Listando empresas cadastradas:"
 
-        EmpresaController empresaController = new EmpresaController()
-        empresaController.listarEmpresas()
+        EmpresaService empresaService = new EmpresaService()
+        empresaService.listarEmpresas()
 
         println "Digite o nome da empresa:(dentre as listadas)"
         String empresa = bufferedReader.readLine()
 
-        vagaController.cadastrarVaga(nome, descricao, cidade, estado, empresa)
+        Vaga vaga = new Vaga(nome, descricao, cidade, estado, empresa)
+
+        vagaService.cadastrarVaga(vaga)
 
         println "Listando competências cadastradas:"
 
-        CompetenciaController competenciaController = new CompetenciaController()
-        competenciaController.listarCompetencias()
+        CompetenciaService competenciaService = new CompetenciaService()
+        competenciaService.listarCompetencias()
 
         println "Digite as competências:(separar por vírgula, dentre as listadas)"
         String competenciasString = bufferedReader.readLine().trim()
         List<String> listaCompetencias = competenciasString.tokenize(',')
 
-        competenciaController.cadastrarVagaCompetencia(listaCompetencias)
+        competenciaService.cadastrarVagaCompetencia(listaCompetencias)
     }
 }

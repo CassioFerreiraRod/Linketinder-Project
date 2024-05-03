@@ -1,7 +1,7 @@
 package br.com.linketinder.service
 
 import br.com.linketinder.dao.CandidatoDAO
-import br.com.linketinder.dao.ConexaoDB
+import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.model.entity.Candidato
 import br.com.linketinder.model.entity.Usuario
 

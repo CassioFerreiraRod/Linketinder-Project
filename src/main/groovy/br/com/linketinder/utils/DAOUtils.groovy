@@ -1,6 +1,6 @@
 package br.com.linketinder.utils
 
-import br.com.linketinder.dao.ConexaoDB
+import br.com.linketinder.conn.ConexaoDB
 
 import java.sql.Connection
 import java.sql.Date

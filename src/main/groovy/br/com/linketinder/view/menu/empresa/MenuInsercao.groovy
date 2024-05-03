@@ -1,9 +1,10 @@
 package br.com.linketinder.view.menu.empresa
 
-import br.com.linketinder.controller.EmpresaController
+import br.com.linketinder.model.entity.Empresa
+import br.com.linketinder.service.EmpresaService
 
 class MenuInsercao {
-     void exibirMenuInsercao(BufferedReader bufferedReader, EmpresaController empresaController) {
+    void exibirMenuInsercao(BufferedReader bufferedReader, EmpresaService empresaService) {
         println "Digite o nome:"
         String nome = bufferedReader.readLine()
 
@@ -28,6 +29,8 @@ class MenuInsercao {
         println "Digite a senha:"
         String senha = bufferedReader.readLine()
 
-        empresaController.cadastrarEmpresa(nome, email, cnpj, cep, estado, pais, descricao, senha)
+        Empresa empresa = new Empresa(nome, estado, cnpj, cep, estado, pais, descricao, senha)
+
+        empresaService.cadastrarEmpresa(empresa)
     }
 }

@@ -1,6 +1,6 @@
 package br.com.linketinder.service
 
-import br.com.linketinder.dao.ConexaoDB
+import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.dao.EmpresaDAO
 import br.com.linketinder.model.entity.Empresa
 
