@@ -4,7 +4,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-class ConexaoDB implements IConexaoDB{
+class ConexaoDB {
 
     private static final String USUARIO = "postgres"
     private static final String SENHA = "postgres"
