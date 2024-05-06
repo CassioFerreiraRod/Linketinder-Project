@@ -29,6 +29,7 @@ Cria uma nova vaga.
   "competencias": ["Java", "Groovy"]
 }
 ```
+#### Exemplo de resposta
 ***Sucesso***
 ```json
 {
