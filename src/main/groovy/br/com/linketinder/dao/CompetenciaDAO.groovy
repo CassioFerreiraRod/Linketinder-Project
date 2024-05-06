@@ -108,8 +108,6 @@ class CompetenciaDAO implements IOperacoesDBCRUD<Competencia>{
         } catch (SQLException e) {
             e.printStackTrace()
             return false
-        } finally {
-            ConexaoDB.desconectar(this.conn)
         }
     }
 
@@ -130,8 +128,6 @@ class CompetenciaDAO implements IOperacoesDBCRUD<Competencia>{
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir competência vaga: " + e.getMessage())
-        } finally {
-            ConexaoDB.desconectar(this.conn)
         }
     }
 

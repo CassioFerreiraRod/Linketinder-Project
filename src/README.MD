@@ -5,9 +5,9 @@ Esta API permite fazer a persistência informações sobre vagas de emprego, emp
 * [Tomcat](https://tomcat.apache.org/)
 * [Jersey](https://eclipse-ee4j.github.io/jersey/)
 ## Endpoints
+
 ### Criar Vaga (POST)
 Cria uma nova vaga.
-
 #### URL
 ```http request
     http://localhost:8080/linketinder/usuario/empresas/vagas
@@ -16,6 +16,7 @@ Cria uma nova vaga.
 #### Parâmetros de Solicitação
 
 ![img.png](prints/printDadosVaga.png)
+![img.png](prints/printDadosVagasCompetencias.png)
 
 #### Exemplo de Corpo de Solicitação
 ```json
@@ -28,13 +29,14 @@ Cria uma nova vaga.
   "competencias": ["Java", "Groovy"]
 }
 ```
-#### Exemplo de resposta
+***Sucesso***
 ```json
 {
   "status": 201,
   "mensagem": "Cadastro feito com sucesso"
 }
 ```
+
 ### Criar Empresa (POST)
 Cria uma nova empresa.
 
@@ -61,6 +63,44 @@ Cria uma nova empresa.
 }
 ```
 #### Exemplo de resposta
+***Sucesso***
+```json
+{
+  "status": 201,
+  "mensagem": "Cadastro feito com sucesso"
+}
+```
+
+### Criar Candidato (POST)
+Cria um novo candidato.
+
+#### URL
+```http request
+    http://localhost:8080/linketinder/usuario/candidatos
+```
+#### Parâmetros de Solicitação
+
+![img.png](prints/printDadosCandidato.png)
+![img.png](prints/printDadosCandidatosCompetencias.png)
+
+#### Exemplo de Corpo de Solicitação
+```json
+{
+  "nome": "Fulano",
+  "sobrenome": "Ciclano",
+  "email":"fulano@email.com",
+  "cep" : "95178-35",
+  "estado": "Ceará",
+  "pais":  "Brasil",
+  "descricao":"EScrava uma descrição",
+  "cpf": "123.456.789-10",
+  "dataNascimento":"01/01/2000",
+  "senha":"senha4515665",
+  "competencias": ["Java", "Groovy"]
+}
+```
+#### Exemplo de resposta
+***Sucesso***
 ```json
 {
   "status": 201,

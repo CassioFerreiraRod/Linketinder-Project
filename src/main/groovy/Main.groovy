@@ -1,13 +1,16 @@
-import br.com.linketinder.utils.DAOUtils
-import br.com.linketinder.view.menu.principal.MenuPrincipal
-
-import java.sql.Date
+import br.com.linketinder.service.CompetenciaService
 
 class Main {
 
     static void main(String[] args) {
-        MenuPrincipal principal = new MenuPrincipal()
+//        MenuPrincipal principal = new MenuPrincipal()
+//
+//        principal.exibirMenu()
+        List<String> list = new ArrayList<>()
+        list.add("Java")
+        list.add("Groovy")
 
-        principal.exibirMenu()
+        CompetenciaService competenciaService = new CompetenciaService()
+        competenciaService.cadastrarCandidatoCompetencia(list)
     }
 }

@@ -18,7 +18,6 @@ class CandidatoController {
 
     private CandidatoService candidatoService = new CandidatoService()
     private CompetenciaService competenciaService = new CompetenciaService()
-    private Response response
     private Map mensagem = [
             "status": 201,
             "mensagem": "Cadastro feito com sucesso"
@@ -31,14 +30,14 @@ class CandidatoController {
         try {
             candidatoService.cadastrarCandidato(candidato)
             competenciaService.cadastrarCandidatoCompetencia(candidato.getCompetencias())
-            response = Response.status(Response.Status.CREATED)
+            return Response.status(Response.Status.CREATED)
                     .entity(mensagem)
                     .type(MediaType.APPLICATION_JSON)
                     .build()
-            return response
         } catch (WebApplicationException ex) {
+            ex.getMessage()
             Logger.getLogger(CandidatoController.class.getName()).log(Level.SEVERE, null, ex)
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.CREATED).build()
         }
     }
 

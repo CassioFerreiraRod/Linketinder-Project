@@ -17,8 +17,9 @@ class EmpresaController {
 
     EmpresaService empresaService = new EmpresaService()
 
-    Map mensagem = [
-            resposta: Response.Status.CREATED
+    private Map mensagem = [
+            "status": 201,
+            "mensagem": "Cadastro feito com sucesso"
     ]
 
     @POST
@@ -33,8 +34,9 @@ class EmpresaController {
                     .type(MediaType.APPLICATION_JSON)
                     .build()
         } catch (WebApplicationException ex) {
-            Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex)
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR)
+            ex.getMessage()
+            Logger.getLogger(CandidatoController.class.getName()).log(Level.SEVERE, null, ex)
+            return Response.status(Response.Status.CREATED).build()
         }
     }
 }
