@@ -1,16 +1,10 @@
-import br.com.linketinder.service.CompetenciaService
+import br.com.linketinder.view.menu.principal.MenuPrincipal
 
 class Main {
 
     static void main(String[] args) {
-//        MenuPrincipal principal = new MenuPrincipal()
-//
-//        principal.exibirMenu()
-        List<String> list = new ArrayList<>()
-        list.add("Java")
-        list.add("Groovy")
+        MenuPrincipal principal = new MenuPrincipal()
 
-        CompetenciaService competenciaService = new CompetenciaService()
-        competenciaService.cadastrarCandidatoCompetencia(list)
+        principal.exibirMenu()
     }
 }
