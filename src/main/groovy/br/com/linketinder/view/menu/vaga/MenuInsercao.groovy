@@ -22,7 +22,9 @@ class MenuInsercao {
         println "Listando empresas cadastradas:"
 
         EmpresaService empresaService = new EmpresaService()
-        empresaService.listarEmpresas()
+        empresaService.listarEmpresas().each {
+            println it
+        }
 
         println "Digite o nome da empresa:(dentre as listadas)"
         String empresa = bufferedReader.readLine()

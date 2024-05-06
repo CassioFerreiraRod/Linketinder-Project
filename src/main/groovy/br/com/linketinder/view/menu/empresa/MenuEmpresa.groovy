@@ -25,7 +25,9 @@ class MenuEmpresa {
 
             switch (opcao) {
                 case '1':
-                    empresaService.listarEmpresas()
+                    empresaService.listarEmpresas().each {
+                        println it
+                    }
                     break
                 case '2':
                     menuInsercao.exibirMenuInsercao(bufferedReader, empresaService)

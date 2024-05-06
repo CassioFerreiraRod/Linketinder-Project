@@ -47,7 +47,9 @@ class MenuInsercao {
 
         println "Listando competências cadastradas:"
 
-        competenciaService.listarCompetencias()
+        competenciaService.listarCompetencias().each {
+            println it
+        }
 
         println "Digite as competências:(separar por vírgula, entre as competências listada)"
         String competenciasString = bufferedReader.readLine().trim()

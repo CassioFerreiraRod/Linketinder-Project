@@ -1,5 +1,8 @@
 package br.com.linketinder.model.entity
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+
 class Vaga {
     int id
     String nome
@@ -19,12 +22,34 @@ class Vaga {
         this.empresa = empresa
     }
 
-    Vaga(String nome, String descricao, String cidade, String estado, String empresa) {
+    Vaga(
+            String nome,
+            String descricao,
+            String cidade,
+            String estado,
+            String empresa) {
         this.nome = nome
         this.descricao = descricao
         this.cidade = cidade
         this.estado = estado
         this.empresa = empresa
+    }
+
+    @JsonCreator
+    Vaga(
+            @JsonProperty("nome") String nome,
+            @JsonProperty("descricao") String descricao,
+            @JsonProperty("cidade") String cidade,
+            @JsonProperty("estado") String estado,
+            @JsonProperty("empresa") String empresa,
+            @JsonProperty("competencias") List<String> competencias
+    ) {
+        this.nome = nome
+        this.descricao = descricao
+        this.cidade = cidade
+        this.estado = estado
+        this.empresa = empresa
+        this.competencias = competencias
     }
 
     Vaga(int id, String nome, String descricao, String cidade, String estado, String empresa) {

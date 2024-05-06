@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.linketinder.dao.CompetenciaDAOTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-05-06T01:26:11" hostname="cassio-Aspire-A515-51" time="0.033">
+  <properties/>
+  <testcase name="inserirCandidatoCompetenciaTest()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.01"/>
+  <testcase name="inserirVagaCompetenciaTest()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.003"/>
+  <testcase name="alterarTest()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.007"/>
+  <testcase name="removerTest()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.002"/>
+  <testcase name="listarTest()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.002"/>
+  <testcase name="inserir()" classname="br.com.linketinder.dao.CompetenciaDAOTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

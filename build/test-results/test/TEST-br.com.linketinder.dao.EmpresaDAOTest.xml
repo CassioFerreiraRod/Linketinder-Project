@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.linketinder.dao.EmpresaDAOTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-05-06T01:26:11" hostname="cassio-Aspire-A515-51" time="0.311">
+  <properties/>
+  <testcase name="alterarTest()" classname="br.com.linketinder.dao.EmpresaDAOTest" time="0.15"/>
+  <testcase name="removerTest()" classname="br.com.linketinder.dao.EmpresaDAOTest" time="0.029"/>
+  <testcase name="listarTest()" classname="br.com.linketinder.dao.EmpresaDAOTest" time="0.031"/>
+  <testcase name="inserir()" classname="br.com.linketinder.dao.EmpresaDAOTest" time="0.098"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

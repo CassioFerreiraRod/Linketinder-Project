@@ -24,7 +24,9 @@ class MenuVaga {
 
             switch (opcao) {
                 case '1':
-                    vagaService.listarVagas()
+                    vagaService.listarVagas().each {
+                        println it
+                    }
                     break
                 case '2':
                     menuInsercao.exibirMenuInsercao(bufferedReader, vagaService)

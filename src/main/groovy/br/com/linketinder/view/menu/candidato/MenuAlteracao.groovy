@@ -7,7 +7,9 @@ class MenuAlteracao {
    CandidatoService service
      void exibirMenuAlteracao(BufferedReader bufferedReader) {
         service  = new CandidatoService()
-        service.listarCandidatos()
+        service.listarCandidatos().each {
+           println it
+        }
 
         println "Digite o id do candidato que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())

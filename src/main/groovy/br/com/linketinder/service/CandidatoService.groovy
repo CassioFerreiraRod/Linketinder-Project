@@ -3,7 +3,6 @@ package br.com.linketinder.service
 import br.com.linketinder.dao.CandidatoDAO
 import br.com.linketinder.conn.ConexaoDB
 import br.com.linketinder.model.entity.Candidato
-import br.com.linketinder.model.entity.Usuario
 
 class CandidatoService {
 
@@ -13,14 +12,16 @@ class CandidatoService {
         candidatoDAO = new CandidatoDAO(ConexaoDB.conectar())
     }
 
-    void listarCandidatos() {
+    List<Candidato> listarCandidatos() {
         List<Candidato> listaCandidatos = candidatoDAO.listar()
-        listaCandidatos.each {
-            println(it)
-        }
+        return listaCandidatos
     }
 
-    boolean cadastrarCandidato(Usuario candidato) {
+    Candidato listarCandidato(int id) {
+        return candidatoDAO.obterCandidato(id)
+    }
+
+    boolean cadastrarCandidato(Candidato candidato) {
         return candidatoDAO.inserir(candidato)
     }
 
@@ -31,4 +32,5 @@ class CandidatoService {
     boolean excluirCandidato(int id) {
         return candidatoDAO.remover(id)
     }
+
 }

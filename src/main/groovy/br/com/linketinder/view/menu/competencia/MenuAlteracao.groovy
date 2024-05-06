@@ -5,7 +5,9 @@ import br.com.linketinder.model.entity.Competencia
 
 class MenuAlteracao {
      void exibirMenuAlteracao(BufferedReader bufferedReader, CompetenciaService competenciaService) {
-        competenciaService.listarCompetencias()
+        competenciaService.listarCompetencias().each {
+            println it
+        }
 
         println "Digite o id da competência que deseja alterar:"
         int id = Integer.parseInt(bufferedReader.readLine())

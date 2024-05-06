@@ -167,7 +167,7 @@ class DAOUtils {
 
     static Date converterParaSQLDate(String dataString) {
         try {
-            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy")
+            SimpleDateFormat formatador = new SimpleDateFormat("yyyy/MM/dd")
             java.util.Date dataUtil = formatador.parse(dataString)
             return new Date(dataUtil.getTime())
         } catch (ParseException e) {

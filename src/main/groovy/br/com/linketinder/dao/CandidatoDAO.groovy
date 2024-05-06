@@ -42,6 +42,45 @@ class CandidatoDAO implements IOperacoesDBCRUD<Candidato>{
         return retorno
     }
 
+    Candidato obterCandidato(int id) {
+        String sql = """
+                SELECT c.*, es.nome AS estado, p.nome AS pais
+                FROM candidatos AS c
+                    JOIN estados AS es ON c.estado_id = es.id
+                    JOIN pais AS p on c.pais_id = p.id
+                WHERE c.id = ?;"""
+
+        try {
+            try (PreparedStatement stm = this.conn.prepareStatement(sql)) {
+                stm.setInt(1, id)
+                ResultSet resultado = stm.executeQuery()
+
+                if (resultado.next()) {
+                    Candidato candidato = new Candidato(
+                            resultado.getInt("id"),
+                            resultado.getString("nome"),
+                            resultado.getString("sobrenome"),
+                            resultado.getString("email"),
+                            resultado.getString("cep"),
+                            resultado.getString("estado"),
+                            resultado.getString("pais"),
+                            resultado.getString("descricao_pessoal"),
+                            resultado.getString("cpf"),
+                            resultado.getString("data_nascimento"),
+                            DAOUtils.competenciasCandidato(resultado.getInt("id"), this.conn)
+                    )
+                    return candidato
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace()
+            return null
+        } finally {
+            ConexaoDB.desconectar(this.conn)
+        }
+    }
+
     @Override
     boolean inserir(Candidato candidato) {
         String sql = "INSERT INTO  candidatos (nome, sobrenome, data_nascimento," +

@@ -15,18 +15,16 @@ class CompetenciaService {
         competenciaDAO = new CompetenciaDAO(ConexaoDB.conectar())
     }
 
-    void listarCompetencias() {
+    List<Competencia> listarCompetencias() {
         List<Competencia> listaCompetencias = competenciaDAO.listar()
-        listaCompetencias.each {
-            println(it)
-        }
+        return listaCompetencias
     }
 
     boolean cadastrarCompetencia(Competencia competencia) {
         return competenciaDAO.inserir(competencia)
     }
 
-    boolean alterarCompetencia(Competencia competencia){
+    boolean alterarCompetencia(Competencia competencia) {
         return competenciaDAO.alterar(competencia)
     }
 
@@ -35,32 +33,39 @@ class CompetenciaService {
     }
 
     boolean cadastrarCandidatoCompetencia(List<String> competencias) {
-        try(Connection conn = ConexaoDB.conectar()) {
+        Connection conn = ConexaoDB.conectar()
+        try {
             List<Integer> id_competencias = DAOUtils.obterCompetenciasIdPorNome(conn, competencias)
             int candidatoId = DAOUtils.obterIdCandidatoRecente(conn)
 
-            for (int id_competencia : id_competencias) {
-                competenciaDAO.inserirCandidatoCompetencia(id_competencia, candidatoId)
+            id_competencias.each {
+                competenciaDAO.inserirCandidatoCompetencia(it, candidatoId)
             }
+
 
             return true
         } catch (SQLException e) {
-            throw new SQLException("Erro ao cadastrar competência na vaga: " + e.getMessage())
+            e.printStackTrace()
+        } finally {
+            conn.close()
         }
     }
 
-     boolean cadastrarVagaCompetencia(List<String> listaCompetencias) {
-        try(Connection conn = ConexaoDB.conectar()) {
+    boolean cadastrarVagaCompetencia(List<String> listaCompetencias) {
+        Connection conn = ConexaoDB.conectar()
+        try {
             List<Integer> id_competencias = DAOUtils.obterCompetenciasIdPorNome(conn, listaCompetencias)
             int vagaId = DAOUtils.obterIdVagaRecente(conn)
 
-            for (int id_competencia : id_competencias) {
-                competenciaDAO.inserirVagaCompetencia(id_competencia, vagaId)
+            id_competencias.each {
+                competenciaDAO.inserirVagaCompetencia(it, vagaId)
             }
 
             return true
         } catch (SQLException e) {
-            throw new SQLException("Erro ao cadastrar competência na vaga: " + e.getMessage())
+            e.printStackTrace()
+        } finally {
+            conn.close()
         }
     }
 }

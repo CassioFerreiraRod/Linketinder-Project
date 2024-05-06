@@ -1,5 +1,8 @@
 package br.com.linketinder.model.entity
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+
 class Empresa extends Usuario {
     String cnpj
     String pais
@@ -18,7 +21,16 @@ class Empresa extends Usuario {
         this.senha = senha
     }
 
-    Empresa(String nome, String email, String cnpj, String cep, String estado, String pais, String descricao, String senha) {
+    @JsonCreator
+    Empresa(
+            @JsonProperty("nome") String nome,
+            @JsonProperty("email") String email,
+            @JsonProperty("cnpj") String cnpj,
+            @JsonProperty("cep") String cep,
+            @JsonProperty("estado") String estado,
+            @JsonProperty("pais") String pais,
+            @JsonProperty("descricao") String descricao,
+            @JsonProperty("senha") String senha) {
         super(nome, email, cep, estado, descricao)
         this.cnpj = cnpj
         this.pais = pais

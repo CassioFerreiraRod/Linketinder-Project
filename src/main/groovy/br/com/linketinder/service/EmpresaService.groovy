@@ -11,11 +11,9 @@ class EmpresaService {
         empresaDAO = new EmpresaDAO(ConexaoDB.conectar())
     }
 
-    void listarEmpresas() {
+    List<Empresa> listarEmpresas() {
         List<Empresa> listaEmpresas = empresaDAO.listar()
-        listaEmpresas.each {
-            println(it)
-        }
+        return listaEmpresas
     }
 
     boolean cadastrarEmpresa(Empresa empresa) {

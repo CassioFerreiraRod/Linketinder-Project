@@ -11,11 +11,9 @@ class VagaService {
         vagaDAO = new VagaDAO(ConexaoDB.conectar())
     }
 
-    void listarVagas() {
+    List<Vaga> listarVagas() {
         List<Vaga> listaVagas = vagaDAO.listar()
-        listaVagas.each {
-            println(it)
-        }
+        return listaVagas
     }
 
     boolean cadastrarVaga(Vaga vaga) {

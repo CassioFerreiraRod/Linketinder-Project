@@ -64,7 +64,7 @@ class EmpresaDAO implements IOperacoesDBCRUD<Empresa>{
             stm.setString(7, empresa.getCep())
             stm.setString(8, empresa.getSenha())
 
-            stm.execute()
+            stm.executeQuery()
             return true
 
         } catch (SQLException e) {
@@ -109,7 +109,7 @@ class EmpresaDAO implements IOperacoesDBCRUD<Empresa>{
 
             stm.setInt(9, empresa.getId())
 
-            stm.execute()
+            stm.executeUpdate()
             return true
 
         } catch (SQLException e) {
